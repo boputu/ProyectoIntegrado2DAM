@@ -54,12 +54,12 @@ export default class HomeScreen extends Component {
               underlineColorAndroid='transparent'
               onChangeText={(nombre) => this.setState({nombre})}/>
         </View>
-        
 
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
         onPress={() => {}}>
-          <Text style={styles.loginText}>Scanear</Text>
+          <Text style={styles.loginText}>Scanear QR</Text>
         </TouchableHighlight>
+
 
 
       </View>
@@ -76,9 +76,11 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
       borderBottomColor: 'black',
+      borderRightColor: '#e61a31',
       backgroundColor: '#FFFFFF',
       borderRadius:30,
       borderBottomWidth: 1,
+      borderRightWidth: 5,
       width:250,
       height:45,
       marginBottom:20,
