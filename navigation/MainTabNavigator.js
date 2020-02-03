@@ -72,6 +72,20 @@ const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+},{
+
+tabBarOptions: {
+    showLabel: true,
+    labelStyle: {
+      fontSize: 12,
+    },
+    activeTintColor: '#CDC12B',
+    inactiveTintColor: 'white',
+    style: {
+      backgroundColor: "#e61a31",
+      fontSize: 25
+    }
+  }
 });
 
 tabNavigator.path = '';
