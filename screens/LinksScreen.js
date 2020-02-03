@@ -10,11 +10,15 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
+  FlatList,
 } from 'react-native';
+import { TouchableNativeFeedback, TouchableOpacity } from 'react-native-gesture-handler';
+
+import Producto from '../components/Producto';
 
 export default class LinksScreen extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +26,7 @@ export default class LinksScreen extends Component {
   }
 
 
-    static navigationOptions = {
+  static navigationOptions = {
     title: '',
     headerStyle: {
       backgroundColor: '#e61a31',
@@ -35,33 +39,47 @@ export default class LinksScreen extends Component {
   };
 
 
-  
+
   render() {
 
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
+    let data = [{
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    }, {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    }, {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    },
+    {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    }, {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    }, {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    },
+    {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    }, {
+      "nombre": "nf",
+      "descripcion": "dfasljfadlñsdfañj"
+    },
+    ]
 
     return (
-      <View style={styles.container}>
-          <Image
-          style={{width: 150, height: 150, marginBottom: 50}}
-          source={require('../images/florida.png')}
-          />
-        <View style={styles.inputContainer}>
-        <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26}/>
-          <TextInput style={styles.inputs}
-              placeholder="Escriba un código"
-              keyboardType="email-address"
-              underlineColorAndroid='transparent'
-              onChangeText={(nombre) => this.setState({nombre})}/>
-        </View>
-        
-
-        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
-        onPress={() => {}}>
-          <Text style={styles.loginText}>Scanear</Text>
-        </TouchableHighlight>
-
-
+      <View>
+        <TouchableOpacity><Text>Volver a intruducir usuario</Text></TouchableOpacity>
+        <FlatList
+          data={data}
+          numColumns={2}
+          renderItem={({ item }) => <Producto nombre={item.nombre} />}
+        />
       </View>
     );
   }
@@ -75,34 +93,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#DCDCDC',
   },
   inputContainer: {
-      borderBottomColor: 'black',
-      backgroundColor: '#FFFFFF',
-      borderRadius:30,
-      borderBottomWidth: 1,
-      width:250,
-      height:45,
-      marginBottom:20,
-      flexDirection: 'row',
-      alignItems:'center'
+    borderBottomColor: 'black',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 30,
+    borderBottomWidth: 1,
+    width: 250,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  inputs:{
-      height:45,
-      marginLeft:16,
-      borderBottomColor: '#FFFFFF',
-      flex:1,
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    borderBottomColor: '#FFFFFF',
+    flex: 1,
   },
-  inputIcon:{
-    marginLeft:15,
+  inputIcon: {
+    marginLeft: 15,
     justifyContent: 'center'
   },
   buttonContainer: {
-    height:45,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
   },
   loginButton: {
     backgroundColor: "#2f95dc",
