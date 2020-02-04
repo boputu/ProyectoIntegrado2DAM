@@ -7,6 +7,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import RateScreen from '../screens/RateScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -68,10 +69,27 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
+const RateStack = createStackNavigator(
+  {
+    Rate: RateScreen,
+  },
+  config
+);
+
+RateStack.navigationOptions = {
+  tabBarLabel: 'Rate',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+RateStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  RateStack,
 },{
 
 tabBarOptions: {
