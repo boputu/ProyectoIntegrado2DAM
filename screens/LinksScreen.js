@@ -1,21 +1,15 @@
 
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Button,
-  TouchableHighlight,
-  Image,
-  Alert,
   FlatList,
 } from 'react-native';
-import { TouchableNativeFeedback, TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import Producto from '../components/Producto';
+import CasillaApp from '../components/CasillaApp';
 
 export default class LinksScreen extends Component {
 
@@ -38,103 +32,113 @@ export default class LinksScreen extends Component {
     },
   };
 
-
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          borderLeftWidth: 1,
+          borderLeftColor: "#CED0CE",
+        }}
+      />
+    );
+  };
 
   render() {
 
     const { navigate } = this.props.navigation;
     let data = [{
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
-    }, {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
-    }, {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
+      "equipo": "Equipo 1",
+      "nombre": "App de cervezas"
+    }, 
+    {
+      "equipo": "Equipo 2",
+      "nombre": "Base de datos"
+    }, 
+    {
+      "equipo": "Equipo 3",
+      "nombre": "Anti-bullying"
     },
     {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
+      "equipo": "Equipo 4",
+      "nombre": "No lo se"
     }, {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
+      "equipo": "Equipo 5",
+      "nombre": "Valoracion de apps"
     }, {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
+      "equipo": "Equipo 6",
+      "nombre": "Upcoming"
     },
     {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
+      "equipo": "Equipo 7",
+      "nombre": "Upcoming"
     }, {
-      "nombre": "nf",
-      "descripcion": "dfasljfadlñsdfañj"
+      "equipo": "Equipo 8",
+      "nombre": "Upcoming"
     },
     ]
 
     return (
-      <View>
-        <TouchableOpacity><Text>Volver a intruducir usuario</Text></TouchableOpacity>
-        <FlatList
-          data={data}
-          numColumns={2}
-          renderItem={({ item }) => <Producto nombre={item.nombre} />}
-        />
+      <View style={styles.mainContainer}>
+
+        <View style={styles.flatlistContainer}>
+
+          <FlatList
+            data={data}
+            numColumns={2}
+
+            renderItem={({ item }) => 
+
+              <CasillaApp 
+                equipo={item.equipo}
+                nombre={item.nombre}
+              ></CasillaApp>
+            }
+
+            keyExtractor={item => item.equipo}
+          />
+
+        </View>
+        
+        <View style={styles.buttonContainer}>
+          
+          <TouchableOpacity style={styles.buttonComplete}>
+            <Text style={styles.textButton}>Completar valoraciones</Text>
+          </TouchableOpacity>
+
+        </View>
+        
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#DCDCDC',
+  mainContainer: {
+    flex: 1
   },
-  inputContainer: {
-    borderBottomColor: 'black',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 30,
-    borderBottomWidth: 1,
-    width: 250,
-    height: 45,
+
+  flatlistContainer: {
+    flex: 1,
     marginBottom: 20,
-    flexDirection: 'row',
-    alignItems: 'center'
   },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: '#FFFFFF',
-    flex: 1,
-  },
-  inputIcon: {
-    marginLeft: 15,
-    justifyContent: 'center'
-  },
+
   buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 30,
+    flex: 1/5,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  loginButton: {
-    backgroundColor: "#2f95dc",
-    borderRightColor: '#2577b0',
-    borderRightWidth: 5,
-    borderLeftColor: '#2577b0',
-    borderLeftWidth: 5,
+
+  buttonComplete: {
+    width: 350,
+    height: 40,
+    backgroundColor: "rgba(255,0,0,1)",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 17,
   },
-  loginText: {
-    color: 'white',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#FFDFDF',
-    padding: 10
-  },
+
+  textButton: {
+    color: "white",
+    fontSize: 25,
+  }, 
 })
