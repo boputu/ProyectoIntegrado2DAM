@@ -12,17 +12,38 @@ import {
   Image,
   Alert
 } from 'react-native';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
+
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default class HomeScreen extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
+      hasCameraPermission: null,
+      scanned: false,
+      qrData: null,
+      rendered: false,
     }
   }
 
+  async componentDidMount() {
+    this.getPermissionsAsync();
+  }
 
-    static navigationOptions = {
+  renderCamera(){
+    this.setState({ rendered: true });
+  }
+
+  getPermissionsAsync = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({ hasCameraPermission: status === 'granted' });
+  }
+
+
+  static navigationOptions = {
     title: '',
     headerStyle: {
       backgroundColor: '#e61a31',
@@ -35,10 +56,11 @@ export default class HomeScreen extends Component {
   };
 
 
-  
+
   render() {
 
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
+    const { hasCameraPermission, scanned } = this.state;
 
     return (
       <View style={styles.container}>
@@ -50,21 +72,35 @@ export default class HomeScreen extends Component {
         <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26}/>
           <TextInput style={styles.inputs}
               placeholder="Escriba un código"
+              value={this.state.qrData}
               keyboardType="email-address"
               underlineColorAndroid='transparent'
               onChangeText={(nombre) => this.setState({nombre})}/>
         </View>
 
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
-        onPress={() => {}}>
+          onPress={() => {this.renderCamera()}}>
           <Text style={styles.loginText}>Scanear QR</Text>
         </TouchableHighlight>
-
+        
+        {this.state.rendered && (
+          <BarCodeScanner
+          onBarCodeScanned={this.handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+        />
+        )}
 
 
       </View>
     );
+
   }
+  handleBarCodeScanned = ({ type, data }) => {
+    this.setState({ scanned: true });
+    this.setState({ qrData: data });
+    this.setState({ rendered: false });
+    alert(`Código escaneado: ${data}`);
+  };
 }
 
 const styles = StyleSheet.create({
@@ -75,36 +111,36 @@ const styles = StyleSheet.create({
     backgroundColor: '#DCDCDC',
   },
   inputContainer: {
-      borderBottomColor: 'black',
-      borderRightColor: '#e61a31',
-      backgroundColor: '#FFFFFF',
-      borderRadius:30,
-      borderBottomWidth: 1,
-      borderRightWidth: 5,
-      width:250,
-      height:45,
-      marginBottom:20,
-      flexDirection: 'row',
-      alignItems:'center'
+    borderBottomColor: 'black',
+    borderRightColor: '#e61a31',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 30,
+    borderBottomWidth: 1,
+    borderRightWidth: 5,
+    width: 250,
+    height: 45,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  inputs:{
-      height:45,
-      marginLeft:16,
-      borderBottomColor: '#FFFFFF',
-      flex:1,
+  inputs: {
+    height: 45,
+    marginLeft: 16,
+    borderBottomColor: '#FFFFFF',
+    flex: 1,
   },
-  inputIcon:{
-    marginLeft:15,
+  inputIcon: {
+    marginLeft: 15,
     justifyContent: 'center'
   },
   buttonContainer: {
-    height:45,
+    height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
   },
   loginButton: {
     backgroundColor: "#2f95dc",
