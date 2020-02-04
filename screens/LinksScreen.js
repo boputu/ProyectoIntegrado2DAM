@@ -32,16 +32,16 @@ export default class LinksScreen extends Component {
     },
   };
 
-  renderSeparator = () => {
+  itemSeparator = () => {
     return (
       <View
         style={{
-          borderLeftWidth: 1,
-          borderLeftColor: "#CED0CE",
+          height: 1,
+          width: "100%",
         }}
       />
     );
-  };
+  }
 
   render() {
 
@@ -85,13 +85,16 @@ export default class LinksScreen extends Component {
           <FlatList
             data={data}
             numColumns={2}
+            ItemSeparatorComponent={this.itemSeparator}
 
-            renderItem={({ item }) => 
+            renderItem={({ item, index }) => 
 
+            <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
               <CasillaApp 
                 equipo={item.equipo}
                 nombre={item.nombre}
               ></CasillaApp>
+            </View>
             }
 
             keyExtractor={item => item.equipo}
@@ -120,6 +123,7 @@ const styles = StyleSheet.create({
   flatlistContainer: {
     flex: 1,
     marginBottom: 20,
+    backgroundColor: "rgba(255,0,0,1)"
   },
 
   buttonContainer: {
