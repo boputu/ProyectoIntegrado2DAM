@@ -8,6 +8,7 @@ import {
   View,
   TextInput,
   Button,
+  Dimensions,
   TouchableHighlight,
   Image,
   Alert
@@ -16,6 +17,8 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
+
+const { width } = Dimensions.get('screen');
 
 export default class HomeScreen extends Component {
 
@@ -33,7 +36,7 @@ export default class HomeScreen extends Component {
     this.getPermissionsAsync();
   }
 
-  renderCamera(){
+  renderCamera() {
     this.setState({ rendered: true });
   }
 
@@ -64,30 +67,46 @@ export default class HomeScreen extends Component {
 
     return (
       <View style={styles.container}>
-          <Image
-          style={{width: 150, height: 150, marginBottom: 50}}
+        <Image
+          style={{ width: 150, height: 150, marginBottom: 50 }}
           source={require('../images/florida.png')}
-          />
+        />
         <View style={styles.inputContainer}>
-        <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26}/>
+          <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26} />
           <TextInput style={styles.inputs}
-              placeholder="Escriba un código"
-              value={this.state.qrData}
-              keyboardType="email-address"
-              underlineColorAndroid='transparent'
-              onChangeText={(nombre) => this.setState({nombre})}/>
+            placeholder="Escriba un código"
+            value={this.state.qrData}
+            keyboardType="email-address"
+            underlineColorAndroid='transparent'
+            onChangeText={(nombre) => this.setState({ nombre })} />
         </View>
 
         <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
-          onPress={() => {this.renderCamera()}}>
+          onPress={() => { this.renderCamera() }}>
           <Text style={styles.loginText}>Scanear QR</Text>
         </TouchableHighlight>
-        
+
         {this.state.rendered && (
           <BarCodeScanner
-          onBarCodeScanned={this.handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-        />
+            onBarCodeScanned={this.handleBarCodeScanned}
+            style={[StyleSheet.absoluteFill, styles.containerCamera]}
+          >
+            <View style={{ ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ width: width / 2, height: width / 2 }}>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  <View style={styles.leftTop} />
+                  <View style={{ flex: 1 }} />
+                  <View style={styles.rightTop} />
+                </View>
+                <View style={{ flex: 1 }} />
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  <View style={styles.leftBottom} />
+                  <View style={{ flex: 1 }} />
+                  <View style={styles.rightBottom} />
+                </View>
+              </View>
+            </View>
+          </BarCodeScanner>
         )}
 
 
@@ -104,6 +123,30 @@ export default class HomeScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  leftTop: {
+    borderLeftWidth: 3,
+    borderTopWidth: 3,
+    borderColor: 'white',
+    flex: 1,
+  },
+  leftBottom: {
+    borderLeftWidth: 3,
+    borderBottomWidth: 3,
+    borderColor: 'white',
+    flex: 1,
+  },
+  rightTop: {
+    borderRightWidth: 3,
+    borderTopWidth: 3,
+    borderColor: 'white',
+    flex: 1,
+  },
+  rightBottom: {
+    borderRightWidth: 3,
+    borderBottomWidth: 3,
+    borderColor: 'white',
+    flex: 1,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
