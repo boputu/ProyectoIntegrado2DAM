@@ -12,13 +12,25 @@ class CustomSlider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            starCount: 3
+            starCount: 3,
+            color: "orange"
         };
     }
 
     onStarRatingPress(rating) {
+        let color = "orange";
+        if(rating == 1 || rating == 2){
+            color="red";
+        }
+        if(rating == 3){
+            color="orange";
+        }
+        if(rating == 5 || rating == 4){
+            color="green";
+        }
         this.setState({
-            starCount: rating
+            starCount: rating,
+            color:color
         });
     }
 
@@ -30,6 +42,7 @@ class CustomSlider extends React.Component {
                     maxStars={5}
                     rating={this.state.starCount}
                     selectedStar={(rating) => this.onStarRatingPress(rating)}
+                    starStyle={{color:this.state.color}}
                 />
             </View>
         );
