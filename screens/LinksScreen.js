@@ -11,6 +11,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import CasillaApp from '../components/CasillaApp';
 
+
+
 export default class LinksScreen extends Component {
 
   constructor(props) {
@@ -19,9 +21,8 @@ export default class LinksScreen extends Component {
     }
   }
 
-
   static navigationOptions = {
-    title: '',
+    title: "",
     headerStyle: {
       backgroundColor: '#e61a31',
     },
@@ -45,7 +46,9 @@ export default class LinksScreen extends Component {
 
   render() {
 
-    const { navigate } = this.props.navigation;
+    const { navigation } = this.props;
+    const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
+
     let data = [{
       "id":1,
       "equipo": "Equipo 1",
@@ -98,7 +101,7 @@ export default class LinksScreen extends Component {
 
     return (
       <View style={styles.mainContainer}>
-
+        <Text>{qr}</Text>
         <View style={styles.flatlistContainer}>
 
           <FlatList

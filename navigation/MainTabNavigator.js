@@ -9,6 +9,7 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import RateScreen from '../screens/RateScreen';
 import AplicacionScreen from '../screens/AplicacionScreen';
+import GraphicScreen from '../screens/GraphicScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -38,15 +39,26 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
+<<<<<<< HEAD
 const AplicacionStack = createStackNavigator(
   {
     Aplicacion: AplicacionScreen,
+=======
+const GraphicStack = createStackNavigator(
+  {
+    Graphic: GraphicScreen,
+>>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
   },
   config
 );
 
+<<<<<<< HEAD
 AplicacionStack.navigationOptions = {
   tabBarLabel: 'Aplicacion',
+=======
+GraphicStack.navigationOptions = {
+  tabBarLabel: 'Gráficos',
+>>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -59,7 +71,11 @@ AplicacionStack.navigationOptions = {
   ),
 };
 
+<<<<<<< HEAD
 AplicacionStack.path = '';
+=======
+GraphicStack.path = '';
+>>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
 
 const LinksStack = createStackNavigator(
   {
@@ -114,7 +130,11 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   RateStack,
+<<<<<<< HEAD
   AplicacionStack,
+=======
+  GraphicStack,
+>>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
 },{
 
 tabBarOptions: {
