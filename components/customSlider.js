@@ -17,6 +17,10 @@ class CustomSlider extends React.Component {
         };
     }
 
+    componentDidMount(){
+        this.props.pulsado(this.state.starCount);
+    }
+
     onStarRatingPress(rating) {
         let color = "orange";
         if(rating == 1 || rating == 2){
