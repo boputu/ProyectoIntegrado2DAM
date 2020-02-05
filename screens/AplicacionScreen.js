@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
 import {
@@ -9,9 +8,9 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import CasillaApp from '../components/CasillaApp';
+import Aplicacion from '../components/Aplicacion';
 
-export default class LinksScreen extends Component {
+export default class CarlosScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -98,33 +97,15 @@ export default class LinksScreen extends Component {
 
     return (
       <View style={styles.mainContainer}>
-
-        <View style={styles.flatlistContainer}>
-
-          <FlatList
-            data={data}
-            numColumns={2}
-            ItemSeparatorComponent={this.itemSeparator}
-
-            renderItem={({ item, index }) => 
-
-            <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
-              <CasillaApp 
-                equipo={item.equipo}
-                nombre={item.nombre}
-              ></CasillaApp>
-            </View>
-            }
-
-            keyExtractor={item => item.equipo}
-          />
-
+        
+        <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
+              <Aplicacion equipo={item.equipo} nombre={item.nombre} descripcion={item.descripcion}></Aplicacion>
         </View>
         
         <View style={styles.buttonContainer}>
           
           <TouchableOpacity style={styles.buttonComplete}>
-            <Text style={styles.textButton}>Completar valoraciones</Text>
+            <Text style={styles.textButton}>VOTAR</Text>
           </TouchableOpacity>
 
         </View>

@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import RateScreen from '../screens/RateScreen';
+import AplicacionScreen from '../screens/AplicacionScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -36,6 +37,29 @@ HomeStack.navigationOptions = {
 };
 
 HomeStack.path = '';
+
+const AplicacionStack = createStackNavigator(
+  {
+    Aplicacion: AplicacionScreen,
+  },
+  config
+);
+
+AplicacionStack.navigationOptions = {
+  tabBarLabel: 'Aplicacion',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+AplicacionStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
@@ -90,6 +114,7 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   RateStack,
+  AplicacionStack,
 },{
 
 tabBarOptions: {
