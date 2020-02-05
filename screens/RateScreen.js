@@ -5,11 +5,10 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
+  Image
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
-import CasillaApp from '../components/CasillaApp';
+import CustomSlider from '../components/customSlider';
 
 export default class RateScreen extends Component {
 
@@ -23,6 +22,42 @@ export default class RateScreen extends Component {
 
     return (
       <View style={styles.mainContainer}>
+
+        <View style={styles.appContainer}>
+
+          <View style={styles.app_LogoContainer}>
+            <Image source={require('../images/LogoApp.png')} style={styles.image}></Image>
+          </View>
+
+          <View style={styles.app_DescriptionContainer}>
+
+            <View style={styles.nameContainer}>
+              <Text style={styles.name}>Cervezas</Text>
+            </View>
+
+            <View style={styles.teamContainer}>
+              <Text style={styles.team}>Equipo 1</Text>
+            </View>
+
+          </View>
+
+        </View>
+
+        <View style={styles.ratingsContainer}>
+
+          <View style={styles.rating}>
+            <CustomSlider></CustomSlider>
+          </View>
+
+          <View style={styles.rating}>
+            <CustomSlider></CustomSlider>
+          </View>
+
+          <View style={styles.rating}>
+            <CustomSlider></CustomSlider>
+          </View>
+
+        </View>
 
         <View style={styles.buttonContainer}>
           
@@ -42,14 +77,69 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
-  flatlistContainer: {
-    flex: 1,
-    marginBottom: 20,
-    backgroundColor: "rgba(255,0,0,1)"
+  appContainer: {
+    flex: 2,
+    flexDirection: "row",
+    marginBottom: 60,
+
+    borderWidth: 1
+  },
+
+  app_LogoContainer: {
+    flex: 1/2,
+    marginLeft: 30,
+    marginRight: 15,
+
+    justifyContent: 'center',
+    alignItems: "center",
+
+    borderWidth: 1,
+  },
+
+  image: {
+    width: 150,
+    resizeMode: "contain"
+  },
+
+  app_DescriptionContainer: {
+    flex: 1/2,
+    marginRight: 30,
+    marginLeft: 15,
+
+    alignItems: "center"
+  },
+
+  nameContainer: {
+    flex: 1/2,
+    justifyContent: "flex-end"
+  },
+
+  teamContainer: {
+    flex: 1/2,
+
+    marginTop: 5,
+  },
+
+  name:{
+    color: "#FF5E60",
+    fontSize: 30,
+  },
+
+  team:{
+    color: "#FF5E60",
+    fontSize: 15,
+  },
+
+  ratingsContainer: {
+    flex: 4,
+  },
+
+  rating:{
+    marginTop: -50,
   },
 
   buttonContainer: {
-    flex: 1/5,
+    flex: 1/3,
     justifyContent: "center",
     alignItems: "center",
   },

@@ -24,7 +24,7 @@ class CustomSlider extends React.Component {
 
     render() {
         return (
-            <View style={{ padding: 50 }}>
+            <View>
                 <StarRating
                     disabled={false}
                     maxStars={5}
