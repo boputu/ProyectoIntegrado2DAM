@@ -27,7 +27,7 @@ export default class HomeScreen extends Component {
     this.state = {
       hasCameraPermission: null,
       scanned: false,
-      qrData: null,
+      qrData: "",
       rendered: false,
     }
   }
@@ -38,6 +38,15 @@ export default class HomeScreen extends Component {
 
   renderCamera() {
     this.setState({ rendered: true });
+  }
+
+  aceptar() {
+    const { navigate } = this.props.navigation;
+    if (this.state.qrData == ""){
+      Alert.alert("Introduce o escanea un código QR")
+    }else{
+      navigate('Links', {qr: this.state.qrData});
+    }
   }
 
   getPermissionsAsync = async () => {
@@ -62,7 +71,6 @@ export default class HomeScreen extends Component {
 
   render() {
 
-    const { navigate } = this.props.navigation;
     const { hasCameraPermission, scanned } = this.state;
 
     return (
@@ -78,12 +86,17 @@ export default class HomeScreen extends Component {
             value={this.state.qrData}
             keyboardType="email-address"
             underlineColorAndroid='transparent'
-            onChangeText={(nombre) => this.setState({ nombre })} />
+            onChangeText={(qrData) => this.setState({ qrData })} />
         </View>
 
-        <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]}
+        <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
           onPress={() => { this.renderCamera() }}>
           <Text style={styles.loginText}>Scanear QR</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={[styles.aceptarContainer, styles.aceptarButton]}
+          onPress={() => { this.aceptar() }}>
+          <Text><Ionicons style={styles.inputIcon} name="md-checkmark" color="#a8f748" size={40} /></Text>
         </TouchableHighlight>
 
         {this.state.rendered && (
@@ -115,9 +128,11 @@ export default class HomeScreen extends Component {
 
   }
   handleBarCodeScanned = ({ type, data }) => {
+    const { navigate } = this.props.navigation;
     this.setState({ scanned: true });
-    this.setState({ qrData: data });
     this.setState({ rendered: false });
+    navigate('Links', {qr: data});
+
     alert(`Código escaneado: ${data}`);
   };
 }
@@ -176,7 +191,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     justifyContent: 'center'
   },
-  buttonContainer: {
+  scanContainer: {
     height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -185,11 +200,27 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 30,
   },
+  aceptarContainer: {
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 5,
+  },
   loginButton: {
     backgroundColor: "#2f95dc",
     borderRightColor: '#2577b0',
     borderRightWidth: 5,
     borderLeftColor: '#2577b0',
+    borderLeftWidth: 5,
+  },
+  aceptarButton: {
+    backgroundColor: "#818285",
+    borderRightColor: '#a8f748',
+    borderRightWidth: 5,
+    borderLeftColor: '#a8f748',
     borderLeftWidth: 5,
   },
   loginText: {
