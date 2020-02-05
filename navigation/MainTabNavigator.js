@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import RateScreen from '../screens/RateScreen';
+import GraphicScreen from '../screens/GraphicScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -36,6 +37,29 @@ HomeStack.navigationOptions = {
 };
 
 HomeStack.path = '';
+
+const GraphicStack = createStackNavigator(
+  {
+    Graphic: GraphicScreen,
+  },
+  config
+);
+
+GraphicStack.navigationOptions = {
+  tabBarLabel: 'Gráficos',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+GraphicStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
@@ -90,6 +114,7 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   RateStack,
+  GraphicStack,
 },{
 
 tabBarOptions: {
