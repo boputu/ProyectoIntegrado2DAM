@@ -10,7 +10,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import Aplicacion from '../components/Aplicacion';
 
-export default class CarlosScreen extends Component {
+export default class AplicacionScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -98,7 +98,7 @@ export default class CarlosScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         
-        <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
+        <View>
               <Aplicacion equipo={item.equipo} nombre={item.nombre} descripcion={item.descripcion}></Aplicacion>
         </View>
         
