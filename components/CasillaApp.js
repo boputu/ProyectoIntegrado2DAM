@@ -6,6 +6,7 @@ import {
     View,
     Image,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class CasillaApp extends Component {
     constructor(props) {
@@ -16,7 +17,9 @@ class CasillaApp extends Component {
         return (
             <View style={styles.mainContainer}>
 
-              <View style={styles.itemContainer}>
+              <TouchableOpacity style={styles.itemContainer}
+                
+              >
 
                 <View style={styles.item_LogoContainer}>
                   <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
@@ -34,7 +37,7 @@ class CasillaApp extends Component {
 
                 </View>
 
-              </View>
+              </TouchableOpacity>
                
             </View>
         );

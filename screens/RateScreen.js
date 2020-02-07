@@ -99,8 +99,6 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: "row",
     marginBottom: 20,
-
-    borderWidth: 1
   },
 
   app_LogoContainer: {
@@ -110,12 +108,10 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: "center",
-
-    borderWidth: 1,
   },
 
   image: {
-    width: 135,
+    width: "80%",
     resizeMode: "contain"
   },
 
@@ -155,12 +151,13 @@ const styles = StyleSheet.create({
   feedbackContainer:{
     flex: 1.5,
     marginTop: 5,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 20,
+    marginRight: 20,
   },
 
   text: {
-    opacity: 0.35
+    color: "red",
+    opacity: 0.6
   },
 
   labelContainer: {

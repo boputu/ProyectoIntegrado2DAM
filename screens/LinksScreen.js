@@ -11,8 +11,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import CasillaApp from '../components/CasillaApp';
 
-
-
 export default class LinksScreen extends Component {
 
   constructor(props) {
