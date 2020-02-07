@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
@@ -29,54 +30,56 @@ export default class GraphicScreen extends Component {
 
   render() {
 
+    const star = <Ionicons name="ios-qr-scanner" size={26} />
+    const config = {
+      // data needed to calculate the number of lines to render
+      data: [3,4,5,6],
+      // width of your chart
+      width: 100,
+      // height of your chart
+      height: 20,
+    }
 
 
 
     return (
       <View style={styles.mainContainer}>
-        <Text>test</Text>
-        <LineChart
-          data={{
-            labels: ["January", "February", "March", "April", "May", "June"],
-            datasets: [
-              {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100
-                ]
+        <View style={styles.chart1}>
+          <LineChart
+            data={{
+              labels: ["P1", "P2", "P3", "P4", "P5"],
+              datasets: [
+                {
+                  data: [1,2,3,4,2]
+                }
+              ]         }}
+            width={Dimensions.get("window").width - 40} // from react-native
+            height={220}
+            yAxisLabel={star}
+            renderVerticalLabels={config}
+            chartConfig={{
+              //backgroundColor: "blue",
+              backgroundGradientFrom: "#e61a31",
+              backgroundGradientTo: "white",
+              decimalPlaces: 0, // optional, defaults to 2dp
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+              propsForDots: {
+                r: "6",
+                strokeWidth: "2",
+                stroke: "#ffa726"
               }
-            ]
-          }}
-          width={Dimensions.get("window").width} // from react-native
-          height={220}
-          yAxisLabel="$"
-          yAxisSuffix="k"
-          chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#fb8c00",
-            backgroundGradientTo: "#ffa726",
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
               borderRadius: 16
-            },
-            propsForDots: {
-              r: "6",
-              strokeWidth: "2",
-              stroke: "#ffa726"
-            }
-          }}
-          bezier
-          style={{
-            marginVertical: 8,
-            borderRadius: 16
-          }}
-        />
+            }}
+          />
+        </View>
       </View>
     );
 
@@ -85,7 +88,8 @@ export default class GraphicScreen extends Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#DCDCDC',
   },
 
   flatlistContainer: {
@@ -113,4 +117,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 25,
   },
+  chart1: {
+    marginTop:20,
+    justifyContent: "center",
+    alignItems: "center",
+  }
 })
