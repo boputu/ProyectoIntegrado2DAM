@@ -99,7 +99,7 @@ export default class AplicacionScreen extends Component {
       <View style={styles.mainContainer}>
         
         <View>
-              <Aplicacion equipo={item.equipo} nombre={item.nombre} descripcion={item.descripcion}></Aplicacion>
+              <Aplicacion equipo={data.equipo} nombre={data.nombre} descripcion={data.descripcion}></Aplicacion>
         </View>
         
         <View style={styles.buttonContainer}>
