@@ -39,26 +39,15 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = '';
 
-<<<<<<< HEAD
 const AplicacionStack = createStackNavigator(
   {
     Aplicacion: AplicacionScreen,
-=======
-const GraphicStack = createStackNavigator(
-  {
-    Graphic: GraphicScreen,
->>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
   },
   config
 );
 
-<<<<<<< HEAD
 AplicacionStack.navigationOptions = {
   tabBarLabel: 'Aplicacion',
-=======
-GraphicStack.navigationOptions = {
-  tabBarLabel: 'Gráficos',
->>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -71,11 +60,30 @@ GraphicStack.navigationOptions = {
   ),
 };
 
-<<<<<<< HEAD
 AplicacionStack.path = '';
-=======
-GraphicStack.path = '';
->>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
+
+const GraphicStack = createStackNavigator(
+  {
+    Graphic: GraphicScreen,
+  },
+  config
+);
+
+GraphicStack.navigationOptions = {
+  tabBarLabel: 'Graficos',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+AplicacionStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
@@ -130,11 +138,8 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   RateStack,
-<<<<<<< HEAD
-  AplicacionStack,
-=======
   GraphicStack,
->>>>>>> 5cb70fb6751db4723c510f42db09f1ea7a948f32
+  AplicacionStack,
 },{
 
 tabBarOptions: {
