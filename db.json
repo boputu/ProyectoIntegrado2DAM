@@ -1,0 +1,80 @@
+{
+    "Equipos": [
+        {
+            "id": 1,
+            "nombre": "Proyecto 1",
+            "integrantes": ["Aldimir", "Borja", "Rubén", "Sergio", "Javi", "Carlos"]
+            
+        },
+
+        {
+            "id": 2,
+            "nombre": "Proyecto 2",
+            "integrantes": ["Jose", "Josep", "Cristina", "Sergio", "Fran", "Cristobal"]
+            
+        },
+
+        {
+            "id": 3,
+            "nombre": "Proyecto 3",
+            "integrantes": ["Fran", "Alvaro", "Sergio", "Pepe", "Gloria"]
+            
+        },
+
+        {
+            "id": 4,
+            "nombre": "Proyecto 4",
+            "integrantes": ["Xavo", "Jose", "Jaume", "Juan", "Tomas", "Enric"]
+            
+        },
+
+        {
+            "id": 5,
+            "nombre": "Proyecto 5",
+            "integrantes": ["Graciela", "Guille", "Jose", "Adrian", "Luis", "Joan"]
+            
+        }
+    ],
+
+    "Aplicaciones": [
+        {
+            "id": 1,
+            "nombre": "Valoración",
+            "idEquipo": 1
+        },
+
+        {
+            "id": 2,
+            "nombre": "Anti-bullying",
+            "idEquipo": 2
+        },
+
+        {
+            "id": 3,
+            "nombre": "Algo de empresas",
+            "idEquipo": 3
+        },
+
+        {
+            "id": 4,
+            "nombre": "Cervezas",
+            "idEquipo": 4
+        },
+
+        {
+            "id": 5,
+            "nombre": "Los de la base de datos",
+            "idEquipo": 5
+        }
+    ],
+
+    "Valoraciones": [
+        {
+            "id": "111111111H",
+            "Creatividad": 1,
+            "Implementacion": 1,
+            "Comunicacion": 1,
+            "idAplicacion": 1
+        }
+    ]
+}
