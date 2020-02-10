@@ -6,6 +6,7 @@ import {
   Text,
   View,
   FlatList,
+  ActivityIndicator
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -16,7 +17,30 @@ export default class LinksScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dataAplicaciones: [],
+      dataEquipos: [],
+      isLoading: false,
+      urlAplicaciones: "http://49819abc.ngrok.io/Aplicaciones",
+      urlEquipos: "http://49819abc.ngrok.io/Equipos",
     }
+  }
+
+  UNSAFE_componentWillMount(){
+    this.getData();
+  }
+
+  getData = () => {
+    this.setState({isLoading: true});
+
+    fetch(this.state.urlAplicaciones)
+    .then(res => res.json())
+    .then(res => {
+
+      this.setState({
+        dataAplicaciones: res,
+
+      });
+    });
   }
 
   static navigationOptions = {
@@ -36,7 +60,7 @@ export default class LinksScreen extends Component {
       <View
         style={{
           height: 1,
-          width: "100%",
+          width: "80%",
         }}
       />
     );
@@ -47,63 +71,20 @@ export default class LinksScreen extends Component {
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
 
-    let data = [{
-      "id":1,
-      "equipo": "Equipo 1",
-      "nombre": "App de cervezas",
-      "descripcion": "wefdfwefwefwer"
-    }, 
-    {
-      "id":2,
-      "equipo": "Equipo 2",
-      "nombre": "Base de datos",
-      "descripcion": "wefdfwefwefwer"
-    }, 
-    {
-      "id":3,
-      "equipo": "Equipo 3",
-      "nombre": "Anti-bullying",
-      "descripcion": "wefdfwefwefwer"
-    },
-    {
-      "id":4,
-      "equipo": "Equipo 4",
-      "nombre": "No lo se",
-      "descripcion": "wefdfwefwefwer"
-    },
-    {
-      "id":5,
-      "equipo": "Equipo 5",
-      "nombre": "Valoracion de apps",
-      "descripcion": "wefdfwefwefwer"
-    },
-    {
-      "id":6,
-      "equipo": "Equipo 6",
-      "nombre": "Upcoming",
-      "descripcion": "wefdfwefwefwer"
-    },
-    {
-      "id":7,
-      "equipo": "Equipo 7",
-      "nombre": "Upcoming",
-      "descripcion": "wefdfwefwefwer"
-    },
-    {
-      "id":8,
-      "equipo": "Equipo 8",
-      "nombre": "Upcoming",
-      "descripcion": "wefdfwefwefwer"
-    },
-    ]
-
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, alignItems:"center", justifyContent: 'center'}}>
+          <ActivityIndicator size="large" animating></ActivityIndicator>
+        </View>
+      )
+    }
     return (
       <View style={styles.mainContainer}>
         <Text>{qr}</Text>
         <View style={styles.flatlistContainer}>
 
           <FlatList
-            data={data}
+            data={this.state.dataAplicaciones}
             numColumns={2}
             ItemSeparatorComponent={this.itemSeparator}
 
