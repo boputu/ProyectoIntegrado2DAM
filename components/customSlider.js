@@ -1,6 +1,7 @@
 //Imports de react-native
 import * as React from 'react';
 import 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
 
 import { View, StyleSheet } from 'react-native';
 import {
@@ -45,7 +46,8 @@ class CustomSlider extends React.Component {
                 <View style={styles.labelContainer}>
                     
                     <View style={styles.line}>
-                        <Text style={styles.label}>{this.props.text}</Text>
+                    <Text style={styles.label}>{this.props.text}</Text>
+
                     </View>
                     
                 </View>
@@ -81,18 +83,20 @@ const styles = StyleSheet.create({
 
     label: {
         marginLeft: 4,
-        color: "#FF0004",
-        fontSize: 25,
-        marginTop: -10
+        color: "black",
+        fontSize: 16,
+        marginTop: -10,
+        fontFamily: 'arvo',
     },
 
     line: {
         borderLeftWidth: 1,
-        borderBottomWidth: 2,
+        borderBottomWidth: 3,
         height: 20,
 
         marginLeft: 20,
-        borderColor: "#FF5E60"
+        borderLeftColor: "red",
+        borderBottomColor:'#e61a31',
     }
 })
 
