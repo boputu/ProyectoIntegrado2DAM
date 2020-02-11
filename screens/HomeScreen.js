@@ -20,8 +20,8 @@ export default class HomeScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
-      urlAplicaciones: "http://49819abc.ngrok.io/Aplicaciones",
-      urlEquipos: "http://49819abc.ngrok.io/Equipos",
+      urlAplicaciones: "http://35.170.62.227:3000/Aplicaciones",
+      urlEquipos: "http://35.170.62.227:3000/Equipos",
     }
   }
 
