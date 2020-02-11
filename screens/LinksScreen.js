@@ -20,16 +20,17 @@ export default class LinksScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
-      urlAplicaciones: "http://49819abc.ngrok.io/Aplicaciones",
-      urlEquipos: "http://49819abc.ngrok.io/Equipos",
+      urlAplicaciones: "http://999eb9b4.ngrok.io/Aplicaciones",
+      urlEquipos: "http://999eb9b4.ngrok.io/Equipos",
     }
   }
 
   UNSAFE_componentWillMount(){
-    this.getData();
+    this.getDataAplicaciones();
+
   }
 
-  getData = () => {
+  getDataAplicaciones = () => {
     this.setState({isLoading: true});
 
     fetch(this.state.urlAplicaciones)
@@ -38,6 +39,20 @@ export default class LinksScreen extends Component {
 
       this.setState({
         dataAplicaciones: res,
+
+      });
+    });
+  }
+
+  getDataEquipos = () => {
+    this.setState({isLoading: true});
+
+    fetch(this.state.urlEquipos)
+    .then(res => res.json())
+    .then(res => {
+
+      this.setState({
+        dataEquipos: res,
 
       });
     });
