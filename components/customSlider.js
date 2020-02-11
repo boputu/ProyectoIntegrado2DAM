@@ -7,22 +7,26 @@ import {
     Text,
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
+import { anyTypeAnnotation } from '@babel/types';
 
 class CustomSlider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             starCount: 3,
-            color: "orange"
+            color: "orange",
+
+            puntuacion: 0,
         };
     }
 
     componentDidMount(){
-        //this.props.pulsado(this.state.starCount);
+        
     }
 
     onStarRatingPress(rating) {
         let color = "orange";
+
         if(rating == 1 || rating == 2){
             color="red";
         }
@@ -34,7 +38,9 @@ class CustomSlider extends React.Component {
         }
         this.setState({
             starCount: rating,
-            color:color
+            color:color,
+
+            puntuacion: rating
         });
     }
 

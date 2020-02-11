@@ -20,14 +20,14 @@ export default class LinksScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
-      urlAplicaciones: "http://999eb9b4.ngrok.io/Aplicaciones",
-      urlEquipos: "http://999eb9b4.ngrok.io/Equipos",
+      urlAplicaciones: "http://b2f3fcaa.ngrok.io/Aplicaciones",
+      urlEquipos: "http://b2f3fcaa.ngrok.io/Equipos",
     }
   }
 
   UNSAFE_componentWillMount(){
     this.getDataAplicaciones();
-
+    this.getDataEquipos();
   }
 
   getDataAplicaciones = () => {
@@ -92,42 +92,44 @@ export default class LinksScreen extends Component {
           <ActivityIndicator size="large" animating></ActivityIndicator>
         </View>
       )
-    }
-    return (
-      <View style={styles.mainContainer}>
-        <Text>{qr}</Text>
-        <View style={styles.flatlistContainer}>
-
-          <FlatList
-            data={this.state.dataAplicaciones}
-            numColumns={2}
-            ItemSeparatorComponent={this.itemSeparator}
-
-            renderItem={({ item, index }) => 
-
-            <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
-              <CasillaApp 
-                equipo={item.equipo}
-                nombre={item.nombre}
-              ></CasillaApp>
-            </View>
-            }
-
-            keyExtractor={item => item.equipo}
-          />
-
-        </View>
-        
-        <View style={styles.buttonContainer}>
+    }else{
+      return (
+        <View style={styles.mainContainer}>
+          <Text>{qr}</Text>
+          <View style={styles.flatlistContainer}>
+  
+            <FlatList
+              data={this.state.dataAplicaciones}
+              numColumns={2}
+              ItemSeparatorComponent={this.itemSeparator}
+  
+              renderItem={({ item, index }) => 
+  
+              <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
+                <CasillaApp 
+                  equipo={item.equipo}
+                  nombre={item.nombre}
+                ></CasillaApp>
+              </View>
+              }
+  
+              keyExtractor={item => item.equipo}
+            />
+  
+          </View>
           
-          <TouchableOpacity style={styles.buttonComplete}>
-            <Text style={styles.textButton}>Completar valoraciones</Text>
-          </TouchableOpacity>
-
+          <View style={styles.buttonContainer}>
+            
+            <TouchableOpacity style={styles.buttonComplete}>
+              <Text style={styles.textButton}>Completar valoraciones</Text>
+            </TouchableOpacity>
+  
+          </View>
+          
         </View>
-        
-      </View>
-    );
+      );
+    }
+    
   }
 }
 
