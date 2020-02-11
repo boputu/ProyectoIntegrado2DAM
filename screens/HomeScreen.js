@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import CasillaApp from '../components/CasillaApp';
 
-export default class HomeScreen extends Component {
+export default class LinksScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -20,16 +20,22 @@ export default class HomeScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
+<<<<<<< HEAD
       urlAplicaciones: "http://35.170.62.227:3000/Aplicaciones",
       urlEquipos: "http://35.170.62.227:3000/Equipos",
+=======
+      urlAplicaciones: "http://b2f3fcaa.ngrok.io/Aplicaciones",
+      urlEquipos: "http://b2f3fcaa.ngrok.io/Equipos",
+>>>>>>> 41998fc9bbd0b71c7d213094281fc559fdeaa61b
     }
   }
 
   UNSAFE_componentWillMount(){
-    this.getData();
+    this.getDataAplicaciones();
+    this.getDataEquipos();
   }
 
-  getData = () => {
+  getDataAplicaciones = () => {
     this.setState({isLoading: true});
 
     fetch(this.state.urlAplicaciones)
@@ -38,6 +44,20 @@ export default class HomeScreen extends Component {
 
       this.setState({
         dataAplicaciones: res,
+
+      });
+    });
+  }
+
+  getDataEquipos = () => {
+    this.setState({isLoading: true});
+
+    fetch(this.state.urlEquipos)
+    .then(res => res.json())
+    .then(res => {
+
+      this.setState({
+        dataEquipos: res,
 
       });
     });
@@ -77,42 +97,44 @@ export default class HomeScreen extends Component {
           <ActivityIndicator size="large" animating></ActivityIndicator>
         </View>
       )
-    }
-    return (
-      <View style={styles.mainContainer}>
-        <Text>{qr}</Text>
-        <View style={styles.flatlistContainer}>
-
-          <FlatList
-            data={this.state.dataAplicaciones}
-            numColumns={2}
-            ItemSeparatorComponent={this.itemSeparator}
-
-            renderItem={({ item, index }) => 
-
-            <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
-              <CasillaApp 
-                equipo={item.equipo}
-                nombre={item.nombre}
-              ></CasillaApp>
-            </View>
-            }
-
-            keyExtractor={item => item.equipo}
-          />
-
-        </View>
-        
-        <View style={styles.buttonContainer}>
+    }else{
+      return (
+        <View style={styles.mainContainer}>
+          <Text>{qr}</Text>
+          <View style={styles.flatlistContainer}>
+  
+            <FlatList
+              data={this.state.dataAplicaciones}
+              numColumns={2}
+              ItemSeparatorComponent={this.itemSeparator}
+  
+              renderItem={({ item, index }) => 
+  
+              <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
+                <CasillaApp 
+                  equipo={item.equipo}
+                  nombre={item.nombre}
+                ></CasillaApp>
+              </View>
+              }
+  
+              keyExtractor={item => item.equipo}
+            />
+  
+          </View>
           
-          <TouchableOpacity style={styles.buttonComplete}>
-            <Text style={styles.textButton}>Completar valoraciones</Text>
-          </TouchableOpacity>
-
+          <View style={styles.buttonContainer}>
+            
+            <TouchableOpacity style={styles.buttonComplete}>
+              <Text style={styles.textButton}>Completar valoraciones</Text>
+            </TouchableOpacity>
+  
+          </View>
+          
         </View>
-        
-      </View>
-    );
+      );
+    }
+    
   }
 }
 
