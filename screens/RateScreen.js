@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
@@ -19,6 +21,7 @@ export default class RateScreen extends Component {
   }
 
   render() {
+    
 
     return (
       <View style={styles.mainContainer}>
@@ -46,15 +49,15 @@ export default class RateScreen extends Component {
         <View style={styles.ratingsContainer}>
 
           <View style={styles.rating}>
-            <CustomSlider text="Atractivo" linea={2000}></CustomSlider>
+            <CustomSlider text="Creatividad e innovación" linea={2000}></CustomSlider>
           </View>
 
           <View style={styles.rating}>
-            <CustomSlider text="Usabilidad"></CustomSlider>
+            <CustomSlider text="Implementación y transferibilidad"></CustomSlider>
           </View>
 
           <View style={styles.rating}>
-            <CustomSlider text="Libre de errores"></CustomSlider>
+            <CustomSlider text="Comunicación y usabilidad"></CustomSlider>
           </View>
 
         </View>
@@ -62,7 +65,8 @@ export default class RateScreen extends Component {
         <View style={styles.labelContainer}>
 
           <View style={styles.line}>
-            <Text style={styles.label}>Feedback</Text>
+          <Text style={styles.label}>Feedback  <Ionicons style={styles.inputIcon} name="ios-thumbs-up" color="grey" size={25} /></Text>
+
           </View>
 
         </View>
@@ -72,16 +76,25 @@ export default class RateScreen extends Component {
           <TextInput
             placeholder="¿Hay algún comentario extra que quieras hacer?"
             placeholderTextColor="red"
-            style={styles.text}
-          ></TextInput>
+            style={styles.text}>
+          </TextInput>
 
         </View>
 
         <View style={styles.buttonContainer}>
+
+      <TouchableOpacity>
+        <LinearGradient 
+          start={[0, 0.5]}
+          end={[1, 0.5]}
+          colors={['orange', 'red']}
+          style={{borderRadius: 5}}>
+        <View style={styles.circleGradient}>
+        <Text style={styles.visit}>Valorar Aplicación   <Ionicons style={styles.inputIcon} name="ios-star" color="green" size={25} /></Text>
+        </View>
+        </LinearGradient>
+      </TouchableOpacity>
           
-          <TouchableOpacity style={styles.buttonComplete}>
-            <Text style={styles.textButton}>Completar valoraciones</Text>
-          </TouchableOpacity>
 
         </View>
         
@@ -92,7 +105,8 @@ export default class RateScreen extends Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#DCDCDC"
   },
 
   appContainer: {
@@ -135,13 +149,16 @@ const styles = StyleSheet.create({
   },
 
   name:{
-    color: "#FF5E60",
+    color: "black",
     fontSize: 30,
+    fontFamily: 'arvo',
   },
 
   team:{
-    color: "#FF5E60",
+    color: "black",
+    opacity: 0.5,
     fontSize: 15,
+    fontFamily: 'arvo',
   },
 
   ratingsContainer: {
@@ -156,8 +173,9 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "red",
-    opacity: 0.6
+    color: "#e61a31",
+    opacity: 0.3,
+    fontFamily: 'arvo',
   },
 
   labelContainer: {
@@ -167,19 +185,23 @@ const styles = StyleSheet.create({
 
   label: {
       marginLeft: 4,
-      color: "#FF0004",
-      fontSize: 25,
-      marginTop: -10
+      color: "black",
+      fontSize: 20,
+      marginTop: -10,
+      fontFamily: 'arvo',
+      opacity: 0.6
   },
+
 
   line: {
     borderLeftWidth: 1,
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
     height: 20,
 
-    marginLeft: 5,
-    borderColor: "#FF5E60"
-  },
+    marginLeft: 20,
+    borderLeftColor: "red",
+    borderBottomColor:'#e61a31',
+},
 
   buttonContainer: {
     flex: 1,
@@ -190,14 +212,32 @@ const styles = StyleSheet.create({
   buttonComplete: {
     width: 350,
     height: 40,
-    backgroundColor: "rgba(255,0,0,1)",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 17,
+
   },
 
   textButton: {
     color: "white",
     fontSize: 25,
+    fontFamily: 'arvo',
   }, 
+
+  visit: {
+    margin: 4,
+    paddingHorizontal: 6,
+    textAlign: "center",
+    backgroundColor: "#DCDCDC",
+    color: 'black',
+    fontSize: 25,
+    fontFamily: 'arvo',
+  },
+
+  circleGradient: {
+    width: 350,
+    height: 40,
+    margin: 1,
+    borderRadius: 5
+  },
+
 })

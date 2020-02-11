@@ -1,62 +1,65 @@
 
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Button,
-  Dimensions,
-  TouchableHighlight,
-  Image,
-  Alert
+  FlatList,
+  ActivityIndicator
 } from 'react-native';
-import Constants from 'expo-constants';
-import * as Permissions from 'expo-permissions';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import CasillaApp from '../components/CasillaApp';
 
-const { width } = Dimensions.get('screen');
-
-export default class HomeScreen extends Component {
+export default class LinksScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      hasCameraPermission: null,
-      scanned: false,
-      qrData: "",
-      rendered: false,
+      dataAplicaciones: [],
+      dataEquipos: [],
+      isLoading: false,
+      urlAplicaciones: "http://b2f3fcaa.ngrok.io/Aplicaciones",
+      urlEquipos: "http://b2f3fcaa.ngrok.io/Equipos",
     }
   }
 
-  async componentDidMount() {
-    this.getPermissionsAsync();
+  UNSAFE_componentWillMount(){
+    this.getDataAplicaciones();
+    this.getDataEquipos();
   }
 
-  renderCamera() {
-    this.setState({ rendered: true });
+  getDataAplicaciones = () => {
+    this.setState({isLoading: true});
+
+    fetch(this.state.urlAplicaciones)
+    .then(res => res.json())
+    .then(res => {
+
+      this.setState({
+        dataAplicaciones: res,
+
+      });
+    });
   }
 
-  aceptar() {
-    const { navigate } = this.props.navigation;
-    if (this.state.qrData == ""){
-      Alert.alert("Introduce o escanea un código QR")
-    }else{
-      navigate('Links', {qr: this.state.qrData});
-    }
-  }
+  getDataEquipos = () => {
+    this.setState({isLoading: true});
 
-  getPermissionsAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === 'granted' });
-  }
+    fetch(this.state.urlEquipos)
+    .then(res => res.json())
+    .then(res => {
 
+      this.setState({
+        dataEquipos: res,
+
+      });
+    });
+  }
 
   static navigationOptions = {
-    title: '',
+    title: "",
     headerStyle: {
       backgroundColor: '#e61a31',
     },
@@ -67,168 +70,97 @@ export default class HomeScreen extends Component {
     },
   };
 
-
+  itemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "80%",
+        }}
+      />
+    );
+  }
 
   render() {
 
-    const { hasCameraPermission, scanned } = this.state;
+    const { navigation } = this.props;
+    const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
 
-    return (
-      <View style={styles.container}>
-        <Image
-          style={{ width: 150, height: 150, marginBottom: 50 }}
-          source={require('../images/florida.png')}
-        />
-        <View style={styles.inputContainer}>
-          <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26} />
-          <TextInput style={styles.inputs}
-            placeholder="Escriba un código"
-            value={this.state.qrData}
-            keyboardType="email-address"
-            underlineColorAndroid='transparent'
-            onChangeText={(qrData) => this.setState({ qrData })} />
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, alignItems:"center", justifyContent: 'center'}}>
+          <ActivityIndicator size="large" animating></ActivityIndicator>
         </View>
-
-        <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
-          onPress={() => { this.renderCamera() }}>
-          <Text style={styles.loginText}>Scanear QR</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight style={[styles.aceptarContainer, styles.aceptarButton]}
-          onPress={() => { this.aceptar() }}>
-          <Text><Ionicons style={styles.inputIcon} name="md-checkmark" color="#a8f748" size={40} /></Text>
-        </TouchableHighlight>
-
-        {this.state.rendered && (
-          <BarCodeScanner
-            onBarCodeScanned={this.handleBarCodeScanned}
-            style={[StyleSheet.absoluteFill, styles.containerCamera]}
-          >
-            <View style={{ ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' }}>
-              <View style={{ width: width / 2, height: width / 2 }}>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                  <View style={styles.leftTop} />
-                  <View style={{ flex: 1 }} />
-                  <View style={styles.rightTop} />
-                </View>
-                <View style={{ flex: 1 }} />
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                  <View style={styles.leftBottom} />
-                  <View style={{ flex: 1 }} />
-                  <View style={styles.rightBottom} />
-                </View>
+      )
+    }else{
+      return (
+        <View style={styles.mainContainer}>
+          <Text>{qr}</Text>
+          <View style={styles.flatlistContainer}>
+  
+            <FlatList
+              data={this.state.dataAplicaciones}
+              numColumns={2}
+              ItemSeparatorComponent={this.itemSeparator}
+  
+              renderItem={({ item, index }) => 
+  
+              <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
+                <CasillaApp 
+                  equipo={item.equipo}
+                  nombre={item.nombre}
+                ></CasillaApp>
               </View>
-            </View>
-          </BarCodeScanner>
-        )}
-
-
-      </View>
-    );
-
+              }
+  
+              keyExtractor={item => item.equipo}
+            />
+  
+          </View>
+          
+          <View style={styles.buttonContainer}>
+            
+            <TouchableOpacity style={styles.buttonComplete}>
+              <Text style={styles.textButton}>Completar valoraciones</Text>
+            </TouchableOpacity>
+  
+          </View>
+          
+        </View>
+      );
+    }
+    
   }
-  handleBarCodeScanned = ({ type, data }) => {
-    const { navigate } = this.props.navigation;
-    this.setState({ scanned: true });
-    this.setState({ rendered: false });
-    navigate('Links', {qr: data});
-
-    alert(`Código escaneado: ${data}`);
-  };
 }
 
 const styles = StyleSheet.create({
-  leftTop: {
-    borderLeftWidth: 3,
-    borderTopWidth: 3,
-    borderColor: 'white',
-    flex: 1,
+  mainContainer: {
+    flex: 1
   },
-  leftBottom: {
-    borderLeftWidth: 3,
-    borderBottomWidth: 3,
-    borderColor: 'white',
+
+  flatlistContainer: {
     flex: 1,
-  },
-  rightTop: {
-    borderRightWidth: 3,
-    borderTopWidth: 3,
-    borderColor: 'white',
-    flex: 1,
-  },
-  rightBottom: {
-    borderRightWidth: 3,
-    borderBottomWidth: 3,
-    borderColor: 'white',
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#DCDCDC',
-  },
-  inputContainer: {
-    borderBottomColor: 'black',
-    borderRightColor: '#e61a31',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 30,
-    borderBottomWidth: 1,
-    borderRightWidth: 5,
-    width: 250,
-    height: 45,
     marginBottom: 20,
-    flexDirection: 'row',
-    alignItems: 'center'
+    backgroundColor: "rgba(255,0,0,1)"
   },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: '#FFFFFF',
-    flex: 1,
+
+  buttonContainer: {
+    flex: 1/5,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  inputIcon: {
-    marginLeft: 15,
-    justifyContent: 'center'
+
+  buttonComplete: {
+    width: 350,
+    height: 40,
+    backgroundColor: "rgba(255,0,0,1)",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 17,
   },
-  scanContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 30,
-  },
-  aceptarContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 5,
-  },
-  loginButton: {
-    backgroundColor: "#2f95dc",
-    borderRightColor: '#2577b0',
-    borderRightWidth: 5,
-    borderLeftColor: '#2577b0',
-    borderLeftWidth: 5,
-  },
-  aceptarButton: {
-    backgroundColor: "#818285",
-    borderRightColor: '#a8f748',
-    borderRightWidth: 5,
-    borderLeftColor: '#a8f748',
-    borderLeftWidth: 5,
-  },
-  loginText: {
-    color: 'white',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#FFDFDF',
-    padding: 10
-  },
+
+  textButton: {
+    color: "white",
+    fontSize: 25,
+  }, 
 })
