@@ -20,13 +20,8 @@ export default class LinksScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
-<<<<<<< HEAD
       urlAplicaciones: "http://35.170.62.227:3000/Aplicaciones",
       urlEquipos: "http://35.170.62.227:3000/Equipos",
-=======
-      urlAplicaciones: "http://b2f3fcaa.ngrok.io/Aplicaciones",
-      urlEquipos: "http://b2f3fcaa.ngrok.io/Equipos",
->>>>>>> 41998fc9bbd0b71c7d213094281fc559fdeaa61b
     }
   }
 
