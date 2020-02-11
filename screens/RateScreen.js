@@ -65,7 +65,8 @@ export default class RateScreen extends Component {
         <View style={styles.labelContainer}>
 
           <View style={styles.line}>
-            <Text style={styles.label}>Feedback</Text>
+          <Text style={styles.label}>Feedback  <Ionicons style={styles.inputIcon} name="ios-thumbs-up" color="grey" size={25} /></Text>
+
           </View>
 
         </View>
@@ -89,7 +90,7 @@ export default class RateScreen extends Component {
           colors={['orange', 'red']}
           style={{borderRadius: 5}}>
         <View style={styles.circleGradient}>
-        <Text style={styles.visit}>Valorar Aplicación   <Ionicons style={styles.inputIcon} name="ios-star" color="orange" size={25} /></Text>
+        <Text style={styles.visit}>Valorar Aplicación   <Ionicons style={styles.inputIcon} name="ios-star" color="green" size={25} /></Text>
         </View>
         </LinearGradient>
       </TouchableOpacity>
@@ -172,8 +173,8 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "red",
-    opacity: 0.6,
+    color: "#e61a31",
+    opacity: 0.3,
     fontFamily: 'arvo',
   },
 
@@ -184,20 +185,23 @@ const styles = StyleSheet.create({
 
   label: {
       marginLeft: 4,
-      color: "#FF0004",
-      fontSize: 25,
+      color: "black",
+      fontSize: 20,
       marginTop: -10,
       fontFamily: 'arvo',
+      opacity: 0.6
   },
+
 
   line: {
     borderLeftWidth: 1,
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
     height: 20,
 
-    marginLeft: 5,
-    borderColor: "#FF5E60"
-  },
+    marginLeft: 20,
+    borderLeftColor: "red",
+    borderBottomColor:'#e61a31',
+},
 
   buttonContainer: {
     flex: 1,
