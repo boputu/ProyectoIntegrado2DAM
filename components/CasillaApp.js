@@ -18,7 +18,7 @@ class CasillaApp extends Component {
             <View style={styles.mainContainer}>
 
               <TouchableOpacity style={styles.itemContainer}
-                
+                onPress={() => this.props.navigation.navigate('Rate', {id: this.props.equipo})}
               >
 
                 <View style={styles.item_LogoContainer}>
