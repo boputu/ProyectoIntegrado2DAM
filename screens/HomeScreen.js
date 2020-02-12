@@ -13,7 +13,9 @@ import {
   Image,
   Alert
 } from 'react-native';
+
 import Constants from 'expo-constants';
+
 import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
