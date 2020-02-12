@@ -14,11 +14,23 @@ class CasillaApp extends Component {
     }
 
     render() {
+
+       let first = this.props.navigation.getParam("first");
+
+
+      if(first = undefined){
+        first = true;
+        let yaVotados = [];
+      }
+      else{
+        let yaVotados = this.props.navigation.getParam("yaVotados");
+      }
+
         return (
             <View style={styles.mainContainer}>
 
               <TouchableOpacity style={styles.itemContainer}
-                onPress={() => this.props.navigation.navigate('Rate', {id: this.props.equipo})}
+                onPress={() => this.props.navigation.navigate('Rate', {id: this.props.equipo, yaVotados: yaVotados, first: first})}
               >
 
                 <View style={styles.item_LogoContainer}>
