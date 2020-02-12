@@ -20,8 +20,8 @@ export default class LinksScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
-      urlAplicaciones: "http://35.170.62.227:3000/Aplicaciones",
-      urlEquipos: "http://35.170.62.227:3000/Equipos",
+      urlAplicaciones: "http://34.236.238.105:3000/Aplicaciones",
+      urlEquipos: "http://34.236.238.105:3000/Equipos",
     }
   }
 
@@ -39,6 +39,7 @@ export default class LinksScreen extends Component {
 
       this.setState({
         dataAplicaciones: res,
+        isLoading: false,
 
       });
     });
@@ -53,7 +54,7 @@ export default class LinksScreen extends Component {
 
       this.setState({
         dataEquipos: res,
-
+        isLoading: false,
       });
     });
   }
@@ -107,8 +108,8 @@ export default class LinksScreen extends Component {
   
               <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
                 <CasillaApp 
-                  equipo={item.equipo}
-                  nombre={item.nombre}
+                  equipo={item.idEquipo}
+                  nombre={item.nombreApp}
                 ></CasillaApp>
               </View>
               }
