@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
@@ -9,6 +10,8 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import AwesomeButton from "react-native-really-awesome-button";
+import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/cartman';
 
 import CasillaApp from '../components/CasillaApp';
 
@@ -75,7 +78,7 @@ export default class LinksScreen extends Component {
     return (
       <View
         style={{
-          height: 1,
+          height: 3,
           width: "80%",
         }}
       />
@@ -121,9 +124,16 @@ export default class LinksScreen extends Component {
           
           <View style={styles.buttonContainer}>
             
-            <TouchableOpacity style={styles.buttonComplete}>
-              <Text style={styles.textButton}>Completar valoraciones</Text>
-            </TouchableOpacity>
+          <AwesomeButtonRick
+          type="secondary"
+      progress
+      onPress={next => {
+        /** Do Something **/
+        next();
+      }}
+    >
+    Completar Valoraciones
+    </AwesomeButtonRick>
   
           </View>
           
@@ -141,27 +151,15 @@ const styles = StyleSheet.create({
 
   flatlistContainer: {
     flex: 1,
-    marginBottom: 20,
-    backgroundColor: "rgba(255,0,0,1)"
+    backgroundColor: "#DCDCDC",
   },
 
   buttonContainer: {
     flex: 1/5,
+    flexDirection:'row',
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: '#DCDCDC'
   },
 
-  buttonComplete: {
-    width: 350,
-    height: 40,
-    backgroundColor: "rgba(255,0,0,1)",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 17,
-  },
-
-  textButton: {
-    color: "white",
-    fontSize: 25,
-  }, 
 })
