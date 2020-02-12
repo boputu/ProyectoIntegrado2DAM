@@ -1,4 +1,4 @@
-
+﻿
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';

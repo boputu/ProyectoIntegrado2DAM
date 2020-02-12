@@ -41,6 +41,7 @@ export default class LinksScreen extends Component {
 
       this.setState({
         dataAplicaciones: res,
+        isLoading: false,
 
       });
     });
@@ -55,7 +56,7 @@ export default class LinksScreen extends Component {
 
       this.setState({
         dataEquipos: res,
-
+        isLoading: false,
       });
     });
   }
@@ -109,8 +110,8 @@ export default class LinksScreen extends Component {
   
               <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
                 <CasillaApp 
-                  equipo={item.equipo}
-                  nombre={item.nombre}
+                  equipo={item.idEquipo}
+                  nombre={item.nombreApp}
                 ></CasillaApp>
               </View>
               }
