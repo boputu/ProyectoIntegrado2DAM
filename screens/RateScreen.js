@@ -12,6 +12,8 @@ import {
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import CustomSlider from '../components/customSlider';
 
+import url from '../constants/Global';
+
 export default class RateScreen extends Component {
 
   constructor(props) {

@@ -12,6 +12,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import CasillaApp from '../components/CasillaApp';
 
+import {url} from '../constants/Global';
+
 export default class LinksScreen extends Component {
 
   constructor(props) {
@@ -20,8 +22,8 @@ export default class LinksScreen extends Component {
       dataAplicaciones: [],
       dataEquipos: [],
       isLoading: false,
-      urlAplicaciones: "http://35.170.62.227:3000/Aplicaciones",
-      urlEquipos: "http://35.170.62.227:3000/Equipos",
+      urlAplicaciones: url + "Aplicaciones",
+      urlEquipos: url + "Equipos",
     }
   }
 
