@@ -5,8 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
+  Modal,
   View,
   FlatList,
+  TouchableHighlight,
   ActivityIndicator
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -27,7 +29,12 @@ export default class LinksScreen extends Component {
       isLoading: false,
       urlAplicaciones: Global.url + "Aplicaciones",
       urlEquipos: Global.url + "Equipos",
+      modalVisible: false,
     }
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   UNSAFE_componentWillMount(){
@@ -102,6 +109,32 @@ export default class LinksScreen extends Component {
       return (
         <View style={styles.mainContainer}>
           <Text>{qr}</Text>
+          <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(true);
+          }}>
+          <Text>Show Modal</Text>
+        </TouchableHighlight>
+          <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}>
+          <View style={{marginTop: 22}}>
+            <View>
+              <Text>Hello World!</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
           <View style={styles.flatlistContainer}>
   
             <FlatList
