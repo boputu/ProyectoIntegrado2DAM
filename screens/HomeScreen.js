@@ -19,7 +19,7 @@ import CasillaApp from '../components/CasillaApp';
 
 import Global from '../constants/Global';
 
-export default class LinksScreen extends Component {
+export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
