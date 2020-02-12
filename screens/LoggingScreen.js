@@ -1,4 +1,4 @@
-
+﻿
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,16 +13,14 @@ import {
   Image,
   Alert
 } from 'react-native';
-
 import Constants from 'expo-constants';
-
 import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 const { width } = Dimensions.get('screen');
 
-export default class HomeScreen extends Component {
+export default class LoggingScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -33,6 +31,18 @@ export default class HomeScreen extends Component {
       rendered: false,
     }
   }
+
+  static navigationOptions = {
+    title: 'Accede!',
+    headerStyle: {
+      backgroundColor: '#e61a31',
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      textAlign: 'center'
+    },
+  };
 
   async componentDidMount() {
     this.getPermissionsAsync();
@@ -47,7 +57,7 @@ export default class HomeScreen extends Component {
     if (this.state.qrData == ""){
       Alert.alert("Introduce o escanea un código QR")
     }else{
-      navigate('Links', {qr: this.state.qrData});
+      navigate('Home', {qr: this.state.qrData});
     }
   }
 
@@ -133,7 +143,7 @@ export default class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     this.setState({ scanned: true });
     this.setState({ rendered: false });
-    navigate('Links', {qr: data});
+    navigate('Home', {qr: data});
 
     alert(`Código escaneado: ${data}`);
   };
