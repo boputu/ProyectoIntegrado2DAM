@@ -20,8 +20,6 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 
 const { width } = Dimensions.get('screen');
 
-const url = "http://35.170.62.227:3000/";
-
 export default class LoggingScreen extends Component {
 
   constructor(props) {
