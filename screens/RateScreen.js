@@ -19,30 +19,42 @@ export default class RateScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dataEquipo: null,
+      isLoading: true,
+      integrantes: ""
     }
   }
 
+
   getIntegrantes(id) {
-    fetch(Global.url + "/Equipos/" + id)
+    fetch(Global.url + "Equipos/" + id)
       .then(res => res.json())
       .then(res => {
-
         this.setState({
-          integrantes: res.integrantes,
+          dataEquipo: res,
           isLoading: false,
-
         });
+        let integrantes = "\n";
+        this.state.dataEquipo.integrantes.forEach(integrante => {
+          integrantes += integrante + ", ";
+        });
+        this.setState({ integrantes: integrantes });
       });
   }
 
+  componentWillMount() {
+    let id = this.props.navigation.getParam("id");
+    this.getIntegrantes(id);
+  }
+
   render() {
-    this.getIntegrantes();
     if (this.state.isLoading) {
       return (
         <View><Text>Cargando</Text></View>
       );
     }
     else {
+
       return (
         <View style={styles.mainContainer}>
 
@@ -59,7 +71,8 @@ export default class RateScreen extends Component {
               </View>
 
               <View style={styles.teamContainer}>
-                <Text style={styles.team}>Equipo {this.props.navigation.getParam("id")} {this.state.integrantes}</Text>
+                <Text style={styles.team}>Equipo {this.props.navigation.getParam("id")}</Text>
+                <Text style={{opacity:0.5, color:"#e61a31"}}> {this.state.integrantes} </Text>
               </View>
 
             </View>
