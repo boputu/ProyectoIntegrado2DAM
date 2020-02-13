@@ -33,6 +33,8 @@ export default class HomeScreen extends Component {
     }
   }
 
+  
+
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
@@ -71,18 +73,6 @@ export default class HomeScreen extends Component {
     });
   }
 
-  static navigationOptions = {
-    title: "",
-    headerStyle: {
-      backgroundColor: '#e61a31',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
-  };
-
   itemSeparator = () => {
     return (
       <View
@@ -93,6 +83,22 @@ export default class HomeScreen extends Component {
       />
     );
   }
+
+  static navigationOptions = ({ navigation }) => {
+    let qr = navigation.state.params.qr;
+    return {
+      title: qr,
+      headerRight: (<Ionicons style={{paddingRight:100}}name="ios-qr-scanner" color='yellow' size={30}/>),
+      headerStyle: {
+        backgroundColor: '#e61a31',
+      },
+      headerTintColor: 'white',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        textAlign: 'center'
+      },
+    }
+  };
 
   render() {
 
@@ -108,7 +114,6 @@ export default class HomeScreen extends Component {
     }else{
       return (
         <View style={styles.mainContainer}>
-          <Text>{qr}</Text>
           <TouchableHighlight
           onPress={() => {
             this.setModalVisible(true);
@@ -187,7 +192,7 @@ const styles = StyleSheet.create({
 
   flatlistContainer: {
     flex: 1,
-    backgroundColor: "#DCDCDC",
+    backgroundColor: "#DCDCDC"
   },
 
   buttonContainer: {

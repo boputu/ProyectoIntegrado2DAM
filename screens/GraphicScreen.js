@@ -1,85 +1,109 @@
 
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
+
+import * as Progress from 'react-native-progress';
+
 import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
+  ScrollView,
   Dimensions,
   FlatList,
 } from 'react-native';
 
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";
 
 export default class GraphicScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      id: "test"
+      progress: 0,
+      indeterminate: true,
     }
   }
 
   render() {
 
-    const star = <Ionicons name="ios-qr-scanner" size={26} />
-    const config = {
-      // data needed to calculate the number of lines to render
-      data: [3,4,5,6],
-      // width of your chart
-      width: 100,
-      // height of your chart
-      height: 20,
-    }
-
-
+    const colors={
+      Robotic:'#1b4f72',
+      BeeKeen:'#70E2F3',
+      MareenaBeerFestival:'#f6e8cb',
+      FloridaRatings:'#e61a31',
+      AppAUCO:'#111BB0'
+    };
 
     return (
       <View style={styles.mainContainer}>
-        <View style={styles.chart1}>
-          <LineChart
-            data={{
-              labels: ["P1", "P2", "P3", "P4", "P5"],
-              datasets: [
-                {
-                  data: [1,2,3,4,2]
-                }
-              ]         }}
-            width={Dimensions.get("window").width - 40} // from react-native
-            height={220}
-            yAxisLabel={star}
-            renderVerticalLabels={config}
-            chartConfig={{
-              //backgroundColor: "blue",
-              backgroundGradientFrom: "#e61a31",
-              backgroundGradientTo: "white",
-              decimalPlaces: 0, // optional, defaults to 2dp
-              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-              style: {
-                borderRadius: 16,
-              },
-              propsForDots: {
-                r: "6",
-                strokeWidth: "2",
-                stroke: "#ffa726"
-              }
-            }}
-            bezier
-            style={{
-              marginVertical: 8,
-              borderRadius: 16
-            }}
-          />
+        <Text style={styles.title}>Media general</Text>
+
+<SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+      <Text style={styles.label}>Robotic</Text>
+        <Progress.Bar
+          styles={{margin:10}}
+          color={colors.Robotic}
+          width={null}
+          progress={0.9}
+        />
+        <View style={styles.ratings}>
+        <Text >Número de votos: </Text>
+        <Text>Media: </Text>
         </View>
+
+        <Text style={styles.label}>BeeKeen</Text>
+        <Progress.Bar
+          styles={{margin:10}}
+          color={colors.BeeKeen}
+          width={null}
+          progress={0.5}
+        />
+        <View style={styles.ratings}>
+        <Text >Número de votos: </Text>
+        <Text>Media: </Text>
+        </View>
+
+        <Text style={styles.label}>MareenaBeerFestival</Text>
+        <Progress.Bar
+          styles={{margin:10}}
+          color={colors.MareenaBeerFestival}
+          width={null}
+          progress={0.9}
+        />
+        <View style={styles.ratings}>
+        <Text >Número de votos: </Text>
+        <Text>Media: </Text>
+        </View>
+
+        <Text style={styles.label}>FloridaRatings</Text>
+        <Progress.Bar
+          styles={{margin:10}}
+          color={colors.FloridaRatings}
+          width={null}
+          progress={0.5}
+        />
+        <View style={styles.ratings}>
+        <Text >Número de votos: </Text>
+        <Text>Media: </Text>
+        </View>
+
+        <Text style={styles.label}>APP AUCO</Text>
+        <Progress.Bar
+          styles={{margin:10}}
+          color={colors.AppAUCO}
+          width={null}
+          progress={0.9}
+        />
+        <View style={styles.ratings}>
+        <Text >Número de votos: </Text>
+        <Text>Media: </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+
       </View>
     );
 
@@ -91,35 +115,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#DCDCDC',
   },
-
-  flatlistContainer: {
+  container: {
     flex: 1,
-    marginBottom: 20,
-    backgroundColor: "rgba(255,0,0,1)"
-  },
+    marginTop: 20,
+    marginLeft:30,
+    marginRight:30
 
-  buttonContainer: {
-    flex: 1 / 5,
-    justifyContent: "center",
-    alignItems: "center",
   },
-
-  buttonComplete: {
-    width: 350,
-    height: 40,
-    backgroundColor: "rgba(255,0,0,1)",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 17,
+  title: {
+    fontSize:30,
+    textAlign:'center',
+    marginTop: 10,
+    fontFamily: 'arvo',
   },
-
-  textButton: {
-    color: "white",
-    fontSize: 25,
-  },
-  chart1: {
+  label: {
+    fontWeight: 'bold',
+    fontSize:20,
     marginTop:20,
-    justifyContent: "center",
-    alignItems: "center",
+    fontFamily: 'arvo',
+  },
+  ratings: {
+    marginTop:20,
   }
 })
