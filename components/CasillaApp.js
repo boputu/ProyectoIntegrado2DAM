@@ -14,7 +14,16 @@ class CasillaApp extends Component {
     this.state={yaVotados:[]}
   }
 
+  /*componentDidUpdate(prevProps){
+    //alert("didupdtae");
+    if (this.props.navigation.getParam("recargado") !== prevProps.navigation.getParam("recargado")) {
+      this.yaVotado();
+      //this.props.yaVotado(this.yaVotado());
+    }
+  }*/
+
   yaVotado(){
+    //alert("ya votado");
     let disabled = false;
     this.state.yaVotados.forEach(yaVotado => {
       if (this.props.equipo == yaVotado) {
@@ -26,10 +35,13 @@ class CasillaApp extends Component {
 
   componentDidMount(){
     this.yaVotado();
-   // this.props.recargar();
+    //this.props.yaVotado(this.yaVotado());
   }
 
   render() {
+    //lert("render casilla");
+    //alert("Equipo " + this.props.equipo);
+
     let yaVotados;
     let disabled;
     let first = this.props.navigation.getParam("first", true);
@@ -42,10 +54,10 @@ class CasillaApp extends Component {
 
     if(this.state.disabled == true){
       return (
-        <View style={styles.mainContainer}>
+        <View style={styles.mainContainer} style={{opacity:0.5}}>
   
           <TouchableOpacity style={styles.itemContainer}
-            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, yaVotados: this.state.yaVotados })}
+            onPress={() => alert("Proyecto ya votado")}
           >
   
             <View style={styles.item_LogoContainer}>
@@ -59,7 +71,7 @@ class CasillaApp extends Component {
               </Text>
   
               <Text style={styles.textTeam}>
-                {this.props.equipo} disabled
+                {this.props.equipo}
               </Text>
 
               <Text style={styles.textDescription}>
@@ -78,7 +90,7 @@ class CasillaApp extends Component {
         <View style={styles.mainContainer}>
   
           <TouchableOpacity style={styles.itemContainer}
-            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, yaVotados: this.state.yaVotados })}
+            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR') })}
           >
   
             <View style={styles.item_LogoContainer}>
