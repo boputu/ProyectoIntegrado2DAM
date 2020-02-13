@@ -47,6 +47,14 @@ export default class RateScreen extends Component {
     this.getIntegrantes(id);
   }
 
+  valorateApp(id) {
+    //let first = this.props.navigation.getParam("first");
+    let yaVotados = this.props.navigation.getParam("yaVotados");
+    yaVotados.push(id);
+    //alert("Despues de push" + yaVotados);
+    this.props.navigation.navigate('Home', { yaVotados: yaVotados, first: false, recargado: false});
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -54,7 +62,6 @@ export default class RateScreen extends Component {
       );
     }
     else {
-
       return (
         <View style={styles.mainContainer}>
 
@@ -72,7 +79,7 @@ export default class RateScreen extends Component {
 
               <View style={styles.teamContainer}>
                 <Text style={styles.team}>Equipo {this.props.navigation.getParam("id")}</Text>
-                <Text style={{opacity:0.5, color:"#e61a31"}}> {this.state.integrantes} </Text>
+                <Text style={{ opacity: 0.5, color: "#e61a31" }}> {this.state.integrantes} </Text>
               </View>
 
             </View>
@@ -116,7 +123,7 @@ export default class RateScreen extends Component {
 
           <View style={styles.buttonContainer}>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.valorateApp(this.props.navigation.getParam("id"))}>
               <LinearGradient
                 start={[0, 0.5]}
                 end={[1, 0.5]}

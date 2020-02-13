@@ -25,11 +25,15 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       dataAplicaciones: [],
-      dataEquipos: [],
       isLoading: false,
       urlAplicaciones: Global.url + "Aplicaciones",
-      urlEquipos: Global.url + "Equipos",
       modalVisible: false,
+    }
+  }
+  componentDidUpdate(prevProps){
+    alert("didupdtae");
+    if (this.props.navigation.getParam("recargado") !== prevProps.navigation.getParam("recargado")) {
+      this.getDataAplicaciones();
     }
   }
 
@@ -40,8 +44,8 @@ export default class HomeScreen extends Component {
   }
 
   UNSAFE_componentWillMount(){
+    //alert("willmount home");
     this.getDataAplicaciones();
-    this.getDataEquipos();
   }
 
   getDataAplicaciones = () => {
@@ -59,19 +63,6 @@ export default class HomeScreen extends Component {
     });
   }
 
-  getDataEquipos = () => {
-    this.setState({isLoading: true});
-
-    fetch(this.state.urlEquipos)
-    .then(res => res.json())
-    .then(res => {
-
-      this.setState({
-        dataEquipos: res,
-        isLoading: false,
-      });
-    });
-  }
 
   itemSeparator = () => {
     return (
@@ -101,9 +92,9 @@ export default class HomeScreen extends Component {
   };
 
   render() {
-
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
+
 
     if(this.state.isLoading){
       return(
@@ -125,7 +116,7 @@ export default class HomeScreen extends Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            //Alert.alert('Modal has been closed.');
           }}>
           <View style={{marginTop: 22}}>
             <View>
@@ -153,7 +144,9 @@ export default class HomeScreen extends Component {
                 <CasillaApp 
                   equipo={item.idEquipo}
                   nombre={item.nombreApp}
+                  descripcion={item.descripcion}
                   navigation={this.props.navigation}
+                  
                 ></CasillaApp>
               </View>
               }
