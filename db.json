@@ -2,68 +2,79 @@
     "Equipos": [
         {
             "id": 1,
-            "nombreEquipo": "Proyecto 1",
-            "integrantes": ["Aldimir", "Borja", "Rubén", "Sergio", "Javi", "Carlos"]
-            
+            "nombreEquipo": "Equipo 1",
+            "integrantes": ["Javier Cánovas", "Jose Sánchez", 
+                "Jaume Navarro", "Juan Tárrega", 
+                "Tomas Olmeda", "Enric Navarro"]
         },
-
+        
         {
             "id": 2,
-            "nombreEquipo": "Proyecto 2",
-            "integrantes": ["Jose", "Josep", "Cristina", "Sergio", "Fran", "Cristobal"]
-            
+            "nombreEquipo": "Equipo 2",
+            "integrantes": ["Graciela Zamora", "Guillermo Martínez", 
+                "Jose A. Delgado", "Adrián Cervera", 
+                "Luis A. Contreras", "Joan Banyuls"]
         },
 
         {
             "id": 3,
-            "nombreEquipo": "Proyecto 3",
-            "integrantes": ["Fran", "Alvaro", "Sergio", "Pepe", "Gloria"]
-            
+            "nombreEquipo": "Equipo 3",
+            "integrantes": ["Francisco Lobo", "Álvaro Argüelles", 
+                "Sergio Girona", "Jose Monleón", 
+                "Gloria Sedó"]
         },
 
         {
             "id": 4,
-            "nombreEquipo": "Proyecto 4",
-            "integrantes": ["Xavo", "Jose", "Jaume", "Juan", "Tomas", "Enric"]
-            
+            "nombreEquipo": "Equipo 4",
+            "integrantes": ["Jose Olmos", "Josep Hernández", 
+                "Cristina González", "Sergio Torromé", 
+                "Francisco Lopez"]
         },
 
         {
             "id": 5,
-            "nombreEquipo": "Proyecto 5",
-            "integrantes": ["Graciela", "Guille", "Jose", "Adrian", "Luis", "Joan"]
-            
+            "nombreEquipo": "Equipo 5",
+            "integrantes": ["Aldimir Aleksandrov", 
+                "Borja Pulido", "Rubén Martínez", 
+                "Sergio Quesada", "Javier Botia", 
+                "Carlos Tamarit"]
         }
     ],
 
     "Aplicaciones": [
         {
             "id": 1,
-            "nombreApp": "Valoración",
+            "nombreApp": "Marina Craft Beer",
+            "descripcion": "Aplicación para el festival MareenaBeer que permite administrar las cervezas usadas con sus respectivas marcas.",
             "idEquipo": 1
         },
 
         {
             "id": 2,
-            "nombreApp": "Anti-bullying",
+            "nombreApp": "Robotic",
+            "descripcion": "Aplicación diseñada para mostrar los parámetros de grupos de máquinas del grado de robótica de una forma visual.",
             "idEquipo": 2
         },
 
         {
             "id": 3,
-            "nombreApp": "Algo de empresas",
+            "nombreApp": "BeKeen",
+            "descripcion": "Aplicación de gestión para la asignación de alumnos a empresas.",
             "idEquipo": 3
         },
 
         {
             "id": 4,
-            "nombreApp": "Cervezas",
+            "nombreApp": "APP AUCO",
+            "descripcion": "Sistema de comunicación entre alumnos y profesores con la finalidad de reportar casos de bullying de forma fácil y anonima.",
             "idEquipo": 4
         },
 
         {
             "id": 5,
-            "nombreApp": "Los de la base de datos",
+            "nombreApp": "Florida Ratings",
+            "descripcion": "Aplicación destinada a la valoración de los distintos proyectos de Florida Expo.",
             "idEquipo": 5
         }
     ],
