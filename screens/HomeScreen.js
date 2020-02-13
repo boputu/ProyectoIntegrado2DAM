@@ -33,8 +33,9 @@ export default class HomeScreen extends Component {
     }
   }
   componentDidUpdate(prevProps){
-    alert("didupdtae");
+    //alert("didupdtae");
     if (this.props.navigation.getParam("recargado") !== prevProps.navigation.getParam("recargado")) {
+      this.props.navigation.setParams({recargado: undefined});
       this.getDataAplicaciones();
     }
   }
@@ -102,6 +103,8 @@ export default class HomeScreen extends Component {
   }
 
   render() {
+    //alert("render home");
+
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
 
@@ -156,7 +159,7 @@ export default class HomeScreen extends Component {
                   equipo={item.idEquipo}
                   nombre={item.nombreApp}
                   navigation={this.props.navigation}
-                  
+                  //yaVotado={funcion => this.state.yaVotado = funcion}
                 ></CasillaApp>
               </View>
               }

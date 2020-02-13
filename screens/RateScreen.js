@@ -21,10 +21,10 @@ export default class RateScreen extends Component {
     this.state = {
       dataEquipo: null,
       isLoading: true,
-      integrantes: ""
+      integrantes: "",
+      valoracion: {},
     }
   }
-
 
   getIntegrantes(id) {
     fetch(Global.url + "Equipos/" + id)
@@ -52,7 +52,9 @@ export default class RateScreen extends Component {
     let yaVotados = this.props.navigation.getParam("yaVotados");
     yaVotados.push(id);
     //alert("Despues de push" + yaVotados);
-    this.props.navigation.navigate('Home', { yaVotados: yaVotados, first: false, recargado: false});
+    this.state.valoracion = {id:this.props.navigation.getParam("idUsu"), Creatividad:this.state.valoracionCre, Implementacion:this.state.valoracionImp, Comunicacion:this.state.valoracionCom, idAplicacion:id};
+    this.props.navigation.navigate('Home', { yaVotados: yaVotados, first: false, recargado: false, valoracion:this.state.valoracion});
+    alert(this.state.valoracion.Implementacion);
   }
 
   render() {
@@ -89,15 +91,18 @@ export default class RateScreen extends Component {
           <View style={styles.ratingsContainer}>
 
             <View style={styles.rating}>
-              <CustomSlider text="Creatividad e innovación" linea={2000}></CustomSlider>
+              <CustomSlider setValoracion={(valoracionCre) => this.setState({valoracionCre: valoracionCre})} text="Creatividad e innovación" linea={2000}></CustomSlider>
+              <Text>{this.state.valoracionCre}</Text>
             </View>
 
             <View style={styles.rating}>
-              <CustomSlider text="Implementación y transferibilidad"></CustomSlider>
+              <CustomSlider setValoracion={(valoracionImp) => this.setState({valoracionImp: valoracionImp})} text="Implementación y transferibilidad"></CustomSlider>
+              <Text>{this.state.valoracionImp}</Text>
             </View>
 
             <View style={styles.rating}>
-              <CustomSlider text="Comunicación y usabilidad"></CustomSlider>
+              <CustomSlider setValoracion={(valoracionCom) => this.setState({valoracionCom: valoracionCom})} text="Comunicación y usabilidad"></CustomSlider>
+              <Text>{this.state.valoracionCom}</Text>
             </View>
 
           </View>
