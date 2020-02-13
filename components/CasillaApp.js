@@ -61,6 +61,10 @@ class CasillaApp extends Component {
               <Text style={styles.textTeam}>
                 {this.props.equipo} disabled
               </Text>
+
+              <Text style={styles.textDescription}>
+                {this.props.descripcion}
+              </Text>
   
             </View>
   
@@ -89,6 +93,10 @@ class CasillaApp extends Component {
   
               <Text style={styles.textTeam}>
                 {this.props.equipo}
+              </Text>
+
+              <Text style={styles.textDescripcion}>
+                {this.props.descripcion}
               </Text>
   
             </View>
