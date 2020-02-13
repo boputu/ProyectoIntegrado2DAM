@@ -30,12 +30,19 @@ export default class HomeScreen extends Component {
       modalVisible: false,
     }
   }
+  componentDidUpdate(prevProps){
+    alert("didupdtae");
+    if (this.props.navigation.getParam("recargado") !== prevProps.navigation.getParam("recargado")) {
+      this.getDataAplicaciones();
+    }
+  }
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
   UNSAFE_componentWillMount(){
+    //alert("willmount home");
     this.getDataAplicaciones();
   }
 
@@ -78,9 +85,9 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
+
 
     if(this.state.isLoading){
       return(
@@ -103,7 +110,7 @@ export default class HomeScreen extends Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            //Alert.alert('Modal has been closed.');
           }}>
           <View style={{marginTop: 22}}>
             <View>
@@ -133,6 +140,7 @@ export default class HomeScreen extends Component {
                   nombre={item.nombreApp}
                   descripcion={item.descripcion}
                   navigation={this.props.navigation}
+                  
                 ></CasillaApp>
               </View>
               }

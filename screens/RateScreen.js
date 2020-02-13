@@ -48,12 +48,11 @@ export default class RateScreen extends Component {
   }
 
   valorateApp(id) {
-    let first = this.props.navigation.getParam("first");
+    //let first = this.props.navigation.getParam("first");
     let yaVotados = this.props.navigation.getParam("yaVotados");
     yaVotados.push(id);
-    alert("Despues de push" + yaVotados);
-    first = false;
-    this.props.navigation.navigate('Home', { yaVotados: yaVotados, first: first });
+    //alert("Despues de push" + yaVotados);
+    this.props.navigation.navigate('Home', { yaVotados: yaVotados, first: false, recargado: false});
   }
 
   render() {
