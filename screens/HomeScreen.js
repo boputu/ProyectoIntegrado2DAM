@@ -25,10 +25,8 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       dataAplicaciones: [],
-      dataEquipos: [],
       isLoading: false,
       urlAplicaciones: Global.url + "Aplicaciones",
-      urlEquipos: Global.url + "Equipos",
       modalVisible: false,
     }
   }
@@ -39,7 +37,6 @@ export default class HomeScreen extends Component {
 
   UNSAFE_componentWillMount(){
     this.getDataAplicaciones();
-    this.getDataEquipos();
   }
 
   getDataAplicaciones = () => {
@@ -53,20 +50,6 @@ export default class HomeScreen extends Component {
         dataAplicaciones: res,
         isLoading: false,
 
-      });
-    });
-  }
-
-  getDataEquipos = () => {
-    this.setState({isLoading: true});
-
-    fetch(this.state.urlEquipos)
-    .then(res => res.json())
-    .then(res => {
-
-      this.setState({
-        dataEquipos: res,
-        isLoading: false,
       });
     });
   }
@@ -148,6 +131,7 @@ export default class HomeScreen extends Component {
                 <CasillaApp 
                   equipo={item.idEquipo}
                   nombre={item.nombreApp}
+                  descripcion={item.descripcion}
                   navigation={this.props.navigation}
                 ></CasillaApp>
               </View>

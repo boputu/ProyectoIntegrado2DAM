@@ -47,6 +47,10 @@ class CasillaApp extends Component {
                     {this.props.equipo}
                   </Text>
 
+                  <Text style={styles.textDescription}>
+                    {this.props.descripcion}
+                  </Text>
+
                 </View>
 
               </TouchableOpacity>
