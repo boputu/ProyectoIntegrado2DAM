@@ -5,7 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
   Text,
-  Modal,
   View,
   FlatList,
   TouchableHighlight,
@@ -18,6 +17,7 @@ import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/car
 import CasillaApp from '../components/CasillaApp';
 
 import Global from '../constants/Global';
+//import console = require('console');
 
 export default class HomeScreen extends Component {
 
@@ -38,11 +38,6 @@ export default class HomeScreen extends Component {
     }
   }
 
-  
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
 
   UNSAFE_componentWillMount(){
     //alert("willmount home");
@@ -95,6 +90,15 @@ export default class HomeScreen extends Component {
   render() {
     //alert("render home");
 
+    let first = this.props.navigation.getParam("first", true);
+    if (first) {
+      this.state.valoraciones = [];
+    }
+    else {
+      this.state.valoraciones = this.props.navigation.getParam("valoraciones");
+        //console.log(this.state.valoraciones);
+    }
+
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
 
@@ -108,32 +112,6 @@ export default class HomeScreen extends Component {
     }else{
       return (
         <View style={styles.mainContainer}>
-          <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}>
-          <Text>Show Modal</Text>
-        </TouchableHighlight>
-          <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            //Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 22}}>
-            <View>
-              <Text>Hello World!</Text>
-
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
           <View style={styles.flatlistContainer}>
   
             <FlatList
@@ -149,6 +127,7 @@ export default class HomeScreen extends Component {
                   nombre={item.nombreApp}
                   descripcion={item.descripcion}
                   navigation={this.props.navigation}
+                  valoraciones={this.state.valoraciones}
                   //yaVotado={funcion => this.state.yaVotado = funcion}
                 ></CasillaApp>
               </View>

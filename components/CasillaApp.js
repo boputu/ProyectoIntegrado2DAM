@@ -42,19 +42,25 @@ class CasillaApp extends Component {
     //lert("render casilla");
     //alert("Equipo " + this.props.equipo);
 
-    let yaVotados;
-    let disabled;
+    /*let yaVotados;
+    let valoraciones;
+    let disabled;*/
     let first = this.props.navigation.getParam("first", true);
     if (first) {
       this.state.yaVotados = [];
+      //this.state.valoraciones = [];
     }
     else {
       this.state.yaVotados = this.props.navigation.getParam("yaVotados");
+      //this.state.valoraciones = this.props.navigation.getParam("valoraciones");
+      //if(this.state.valoraciones[2] != undefined){
+      // alert(this.state.valoraciones[2].Implementacion);
+      //}
     }
 
     if(this.state.disabled == true){
       return (
-        <View style={styles.mainContainer} style={{opacity:0.5}}>
+        <View style={styles.mainContainer} style={{opacity:0.3}}>
   
           <TouchableOpacity style={styles.itemContainer}
             onPress={() => alert("Proyecto ya votado")}
@@ -90,7 +96,7 @@ class CasillaApp extends Component {
         <View style={styles.mainContainer}>
   
           <TouchableOpacity style={styles.itemContainer}
-            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR') })}
+            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
           >
   
             <View style={styles.item_LogoContainer}>
