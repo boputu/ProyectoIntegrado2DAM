@@ -18,6 +18,7 @@ import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/car
 import CasillaApp from '../components/CasillaApp';
 
 import Global from '../constants/Global';
+//import console = require('console');
 
 export default class HomeScreen extends Component {
 
@@ -95,6 +96,15 @@ export default class HomeScreen extends Component {
   render() {
     //alert("render home");
 
+    let first = this.props.navigation.getParam("first", true);
+    if (first) {
+      this.state.valoraciones = [];
+    }
+    else {
+      this.state.valoraciones = this.props.navigation.getParam("valoraciones");
+        //console.log(this.state.valoraciones);
+    }
+
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
 
@@ -149,6 +159,7 @@ export default class HomeScreen extends Component {
                   nombre={item.nombreApp}
                   descripcion={item.descripcion}
                   navigation={this.props.navigation}
+                  valoraciones={this.state.valoraciones}
                   //yaVotado={funcion => this.state.yaVotado = funcion}
                 ></CasillaApp>
               </View>
