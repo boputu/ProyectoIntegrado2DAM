@@ -32,18 +32,6 @@ export default class LoggingScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Accede!',
-    headerStyle: {
-      backgroundColor: '#e61a31',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
-  };
-
   async componentDidMount() {
     this.getPermissionsAsync();
   }

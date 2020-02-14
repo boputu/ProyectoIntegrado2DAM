@@ -30,12 +30,22 @@ export default class HomeScreen extends Component {
       modalVisible: false,
     }
   }
+  componentDidUpdate(prevProps){
+    //alert("didupdtae");
+    if (this.props.navigation.getParam("recargado") !== prevProps.navigation.getParam("recargado")) {
+      this.props.navigation.setParams({recargado: undefined});
+      this.getDataAplicaciones();
+    }
+  }
+
+  
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
   UNSAFE_componentWillMount(){
+    //alert("willmount home");
     this.getDataAplicaciones();
   }
 
@@ -54,17 +64,6 @@ export default class HomeScreen extends Component {
     });
   }
 
-  static navigationOptions = {
-    title: "",
-    headerStyle: {
-      backgroundColor: '#e61a31',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
-  };
 
   itemSeparator = () => {
     return (
@@ -77,10 +76,28 @@ export default class HomeScreen extends Component {
     );
   }
 
+  static navigationOptions = ({ navigation }) => {
+    let qr = navigation.state.params.qr;
+    return {
+      title: qr,
+      headerRight: (<Ionicons style={{paddingRight:100}}name="ios-qr-scanner" color='yellow' size={30}/>),
+      headerStyle: {
+        backgroundColor: '#e61a31',
+      },
+      headerTintColor: 'white',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        textAlign: 'center'
+      },
+    }
+  };
+
   render() {
+    //alert("render home");
 
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
+
 
     if(this.state.isLoading){
       return(
@@ -91,7 +108,6 @@ export default class HomeScreen extends Component {
     }else{
       return (
         <View style={styles.mainContainer}>
-          <Text>{qr}</Text>
           <TouchableHighlight
           onPress={() => {
             this.setModalVisible(true);
@@ -103,7 +119,7 @@ export default class HomeScreen extends Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            //Alert.alert('Modal has been closed.');
           }}>
           <View style={{marginTop: 22}}>
             <View>
@@ -133,6 +149,7 @@ export default class HomeScreen extends Component {
                   nombre={item.nombreApp}
                   descripcion={item.descripcion}
                   navigation={this.props.navigation}
+                  //yaVotado={funcion => this.state.yaVotado = funcion}
                 ></CasillaApp>
               </View>
               }
@@ -171,7 +188,7 @@ const styles = StyleSheet.create({
 
   flatlistContainer: {
     flex: 1,
-    backgroundColor: "#DCDCDC",
+    backgroundColor: "#DCDCDC"
   },
 
   buttonContainer: {

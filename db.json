@@ -125,6 +125,48 @@
         {
             "id": "12645644F",
             "Creatividad": 1,
+            "Implementacion": 2,
+            "Comunicacion": 4,
+            "idAplicacion": 1            
+        },
+        {
+            "id": "53875848G",
+            "Creatividad": 5,
+            "Implementacion": 1,
+            "Comunicacion": 2,
+            "idAplicacion": 2            
+        },
+        {
+            "id": "53875848G",
+            "Creatividad": 4,
+            "Implementacion": 2,
+            "Comunicacion": 5,
+            "idAplicacion": 3           
+        },
+        {
+            "id": "53875848G",
+            "Creatividad": 4,
+            "Implementacion": 1,
+            "Comunicacion": 3,
+            "idAplicacion": 4          
+        },
+        {
+            "id": "53875848G",
+            "Creatividad": 4,
+            "Implementacion": 2,
+            "Comunicacion": 2,
+            "idAplicacion": 5           
+        },
+        {
+            "id": "12645644F",
+            "Creatividad": 2,
+            "Implementacion": 2,
+            "Comunicacion": 5,
+            "idAplicacion": 1            
+        },
+        {
+            "id": "12645644F",
+            "Creatividad": 1,
             "Implementacion": 1,
             "Comunicacion": 4,
             "idAplicacion": 2            
