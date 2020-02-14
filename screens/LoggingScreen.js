@@ -7,13 +7,13 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  KeyboardAvoidingView,
   Dimensions,
   TouchableHighlight,
   Image,
   Alert
 } from 'react-native';
-import Constants from 'expo-constants';
+
 import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
@@ -45,7 +45,7 @@ export default class LoggingScreen extends Component {
     if (this.state.qrData == ""){
       Alert.alert("Introduce o escanea un código QR")
     }else{
-      navigate('Home', {qr: this.state.qrData});
+      navigate('Graphic', {qr: this.state.qrData});
     }
   }
 
@@ -53,7 +53,6 @@ export default class LoggingScreen extends Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
   }
-
 
   static navigationOptions = {
     title: '',
@@ -67,63 +66,66 @@ export default class LoggingScreen extends Component {
     },
   };
 
-
-
   render() {
 
     const { hasCameraPermission, scanned } = this.state;
 
     return (
-      <View style={styles.container}>
-        <Image
-          style={{ width: 150, height: 150, marginBottom: 50 }}
-          source={require('../images/florida.png')}
-        />
-        <View style={styles.inputContainer}>
-          <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26} />
-          <TextInput style={styles.inputs}
-            placeholder="Escriba un código"
-            value={this.state.qrData}
-            keyboardType="email-address"
-            underlineColorAndroid='transparent'
-            onChangeText={(qrData) => this.setState({ qrData })} />
-        </View>
+      <KeyboardAvoidingView style={styles.mainContainer} behavior="padding" enabled>
 
-        <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
-          onPress={() => { this.renderCamera() }}>
-          <Text style={styles.loginText}>Scanear QR</Text>
-        </TouchableHighlight>
+        <View style={styles.container}>
 
-        <TouchableHighlight style={[styles.aceptarContainer, styles.aceptarButton]}
-          onPress={() => { this.aceptar() }}>
-          <Text><Ionicons style={styles.inputIcon} name="md-checkmark" color="#a8f748" size={40} /></Text>
-        </TouchableHighlight>
+          <Image
+            style={{ width: 150, height: 150, marginBottom: 50 }}
+            source={require('../images/florida.png')}
+          />
 
-        {this.state.rendered && (
-          <BarCodeScanner
-            onBarCodeScanned={this.handleBarCodeScanned}
-            style={[StyleSheet.absoluteFill, styles.containerCamera]}
-          >
-            <View style={{ ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' }}>
-              <View style={{ width: width / 2, height: width / 2 }}>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                  <View style={styles.leftTop} />
+          <View style={styles.inputContainer}>
+            <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26} />
+            <TextInput style={styles.inputs}
+              placeholder="Escriba un código"
+              value={this.state.qrData}
+              keyboardType="email-address"
+              underlineColorAndroid='transparent'
+              onChangeText={(qrData) => this.setState({ qrData })} />
+          </View>
+
+          <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
+            onPress={() => { this.renderCamera() }}>
+            <Text style={styles.loginText}>Scanear QR</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight style={[styles.aceptarContainer, styles.aceptarButton]}
+            onPress={() => { this.aceptar() }}>
+            <Text><Ionicons style={styles.inputIcon} name="md-checkmark" color="#a8f748" size={40} /></Text>
+          </TouchableHighlight>
+
+          {this.state.rendered && (
+            <BarCodeScanner
+              onBarCodeScanned={this.handleBarCodeScanned}
+              style={[StyleSheet.absoluteFill, styles.containerCamera]}
+            >
+              <View style={{ ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ width: width / 2, height: width / 2 }}>
+                  <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={styles.leftTop} />
+                    <View style={{ flex: 1 }} />
+                    <View style={styles.rightTop} />
+                  </View>
                   <View style={{ flex: 1 }} />
-                  <View style={styles.rightTop} />
-                </View>
-                <View style={{ flex: 1 }} />
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                  <View style={styles.leftBottom} />
-                  <View style={{ flex: 1 }} />
-                  <View style={styles.rightBottom} />
+                  <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={styles.leftBottom} />
+                    <View style={{ flex: 1 }} />
+                    <View style={styles.rightBottom} />
+                  </View>
                 </View>
               </View>
-            </View>
-          </BarCodeScanner>
-        )}
-
+            </BarCodeScanner>
+          )}
 
       </View>
+
+      </KeyboardAvoidingView>
     );
 
   }
@@ -138,6 +140,11 @@ export default class LoggingScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    
+  },
+
   leftTop: {
     borderLeftWidth: 3,
     borderTopWidth: 3,
@@ -162,12 +169,14 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     flex: 1,
   },
+
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#DCDCDC',
   },
+
   inputContainer: {
     borderBottomColor: 'black',
     borderRightColor: '#e61a31',

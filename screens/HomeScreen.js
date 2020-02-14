@@ -162,15 +162,15 @@ export default class HomeScreen extends Component {
           <View style={styles.buttonContainer}>
             
           <AwesomeButtonRick
-          type="secondary"
-      progress
-      onPress={next => {
-        /** Do Something **/
-        next();
-      }}
-    >
-    Completar Valoraciones
-    </AwesomeButtonRick>
+            type="secondary"
+            progress
+            onPress={next => {
+              /** Do Something **/
+              next();
+            }}
+          >
+            Completar Valoraciones
+          </AwesomeButtonRick>
   
           </View>
           
