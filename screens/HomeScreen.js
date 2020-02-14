@@ -18,7 +18,6 @@ import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/car
 import CasillaApp from '../components/CasillaApp';
 
 import Global from '../constants/Global';
-//import console = require('console');
 
 export default class HomeScreen extends Component {
 
@@ -28,41 +27,68 @@ export default class HomeScreen extends Component {
       dataAplicaciones: [],
       isLoading: false,
       urlAplicaciones: Global.url + "Aplicaciones",
+      urlValoraciones: Global.url + "Valoraciones",
       modalVisible: false,
     }
   }
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps) {
     //alert("didupdtae");
     if (this.props.navigation.getParam("recargado") !== prevProps.navigation.getParam("recargado")) {
-      this.props.navigation.setParams({recargado: undefined});
+      this.props.navigation.setParams({ recargado: undefined });
       this.getDataAplicaciones();
     }
   }
 
-  
+
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({ modalVisible: visible });
   }
 
-  UNSAFE_componentWillMount(){
+  UNSAFE_componentWillMount() {
     //alert("willmount home");
     this.getDataAplicaciones();
   }
 
   getDataAplicaciones = () => {
-    this.setState({isLoading: true});
+    this.setState({ isLoading: true });
 
     fetch(this.state.urlAplicaciones)
-    .then(res => res.json())
-    .then(res => {
+      .then(res => res.json())
+      .then(res => {
 
-      this.setState({
-        dataAplicaciones: res,
-        isLoading: false,
+        this.setState({
+          dataAplicaciones: res,
+          isLoading: false,
 
+        });
       });
-    });
+  }
+
+  sendValoration() {
+    fetch(this.state.urlValoraciones, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(this.state.valoraciones), // data can be `string` or {object}!
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error haciendo POST");
+        }
+      })
+      .then(respuestaJSON => {
+        console.log(respuestaJSON);
+        alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
+
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
+      });
+
   }
 
 
@@ -81,7 +107,7 @@ export default class HomeScreen extends Component {
     let qr = navigation.state.params.qr;
     return {
       title: qr,
-      headerRight: (<Ionicons style={{paddingRight:100}}name="ios-qr-scanner" color='yellow' size={30}/>),
+      headerRight: (<Ionicons style={{ paddingRight: 100 }} name="ios-qr-scanner" color='yellow' size={30} />),
       headerStyle: {
         backgroundColor: '#e61a31',
       },
@@ -102,93 +128,105 @@ export default class HomeScreen extends Component {
     }
     else {
       this.state.valoraciones = this.props.navigation.getParam("valoraciones");
-        //console.log(this.state.valoraciones);
+      //alert(this.state.dataAplicaciones.length);
+
+      if (this.state.valoraciones.length >= this.state.dataAplicaciones.length) {
+        //alert("Enviar");
+      }
     }
 
     const { navigation } = this.props;
     const qr = JSON.stringify(navigation.getParam('qr', 'NO-QR'));
 
 
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, alignItems:"center", justifyContent: 'center'}}>
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: 'center' }}>
           <ActivityIndicator size="large" animating></ActivityIndicator>
         </View>
       )
-    }else{
+    } else {
       return (
         <View style={styles.mainContainer}>
           <TouchableHighlight
-          onPress={() => {
-            this.setModalVisible(true);
-          }}>
-          <Text>Show Modal</Text>
-        </TouchableHighlight>
+            onPress={() => {
+              this.setModalVisible(true);
+            }}>
+            <Text>Show Modal</Text>
+          </TouchableHighlight>
           <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            //Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 22}}>
-            <View>
-              <Text>Hello World!</Text>
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              //Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{ marginTop: 22 }}>
+              <View>
+                <Text>Hello World!</Text>
 
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}>
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
+              </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
           <View style={styles.flatlistContainer}>
-  
+
             <FlatList
               data={this.state.dataAplicaciones}
               numColumns={2}
               ItemSeparatorComponent={this.itemSeparator}
-  
-              renderItem={({ item, index }) => 
-  
-              <View style={[{ flex: 1, backgroundColor: "white" }, index%2==0 ? { marginRight: 0.5 } : { marginLeft: 0.5 } ]}>
-                <CasillaApp 
-                  equipo={item.idEquipo}
-                  nombre={item.nombreApp}
-                  descripcion={item.descripcion}
-                  navigation={this.props.navigation}
-                  valoraciones={this.state.valoraciones}
+
+              renderItem={({ item, index }) =>
+
+                <View style={[{ flex: 1, backgroundColor: "white" }, index % 2 == 0 ? { marginRight: 0.5 } : { marginLeft: 0.5 }]}>
+                  <CasillaApp
+                    equipo={item.idEquipo}
+                    nombre={item.nombreApp}
+                    descripcion={item.descripcion}
+                    navigation={this.props.navigation}
+                    valoraciones={this.state.valoraciones}
                   //yaVotado={funcion => this.state.yaVotado = funcion}
-                ></CasillaApp>
-              </View>
+                  ></CasillaApp>
+                </View>
               }
-  
+
               keyExtractor={item => item.equipo}
             />
-  
+
           </View>
-          
+
           <View style={styles.buttonContainer}>
-            
-          <AwesomeButtonRick
-          type="secondary"
-      progress
-      onPress={next => {
-        /** Do Something **/
-        next();
-      }}
-    >
-    Completar Valoraciones
+
+            <AwesomeButtonRick
+              type="secondary"
+              progress
+              onPress={next => {
+                /** Do Something **/
+                if (!first) {
+                  if (this.state.valoraciones.length >= this.state.dataAplicaciones.length) {
+                    this.sendValoration();
+                  }
+                  else {
+                    alert("Aun no has votado todos los proyectos");
+                  }
+                }
+                next();
+              }}
+            >
+              Completar Valoraciones
     </AwesomeButtonRick>
-  
+
           </View>
-          
+
         </View>
       );
     }
-    
+
   }
 }
 
@@ -203,8 +241,8 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    flex: 1/5,
-    flexDirection:'row',
+    flex: 1 / 5,
+    flexDirection: 'row',
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: '#DCDCDC'
