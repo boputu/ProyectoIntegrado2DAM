@@ -15,6 +15,7 @@ import {
   FlatList,
 } from 'react-native';
 
+import Global from '../constants/Global';
 
 export default class GraphicScreen extends Component {
 
@@ -23,10 +24,222 @@ export default class GraphicScreen extends Component {
     this.state = {
       progress: 0,
       indeterminate: true,
+      urlValoraciones: Global.url + "Valoraciones",
+      valoracionesMarinaBeer: undefined,
+      valoracionesRobotic: undefined,
+      valoracionesBeeKeen: undefined,
+      valoracionesAUCO: undefined,
+      valoracionesFlorida: undefined,
     }
   }
 
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData() {
+    fetch(this.state.urlValoraciones + "?idAplicacion=1")
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error conectando a https://jsonplaceholder.typicode.com");
+        }
+      })
+      .then(respuestaJSON => {
+        console.log(respuestaJSON);
+        this.setState({ valoracionesMarinaBeer: respuestaJSON })
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
+      });
+
+
+
+    fetch(this.state.urlValoraciones + "?idAplicacion=2")
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error conectando a https://jsonplaceholder.typicode.com");
+        }
+      })
+      .then(respuestaJSON => {
+        console.log(respuestaJSON);
+        this.setState({ valoracionesRobotic: respuestaJSON })
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
+      });
+
+
+
+    fetch(this.state.urlValoraciones + "?idAplicacion=3")
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error conectando a https://jsonplaceholder.typicode.com");
+        }
+      })
+      .then(respuestaJSON => {
+        console.log(respuestaJSON);
+        this.setState({ valoracionesBeeKeen: respuestaJSON })
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
+      });
+
+
+
+    fetch(this.state.urlValoraciones + "?idAplicacion=4")
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error conectando a https://jsonplaceholder.typicode.com");
+        }
+      })
+      .then(respuestaJSON => {
+        console.log(respuestaJSON);
+        this.setState({ valoracionesAUCO: respuestaJSON })
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
+      });
+
+
+
+    fetch(this.state.urlValoraciones + "?idAplicacion=5")
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error conectando a https://jsonplaceholder.typicode.com");
+        }
+      })
+      .then(respuestaJSON => {
+        console.log(respuestaJSON);
+        this.setState({ valoracionesFlorida: respuestaJSON })
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
+      });
+  }
+
   render() {
+    //Robotic
+    let ciRobotic = 0;
+    if (this.state.valoracionesRobotic != undefined) {
+      this.state.valoracionesRobotic.forEach(element => {
+        ciRobotic += element.Creatividad;
+      });
+    }
+
+    let itRobotic = 0;
+    if (this.state.valoracionesRobotic != undefined) {
+      this.state.valoracionesRobotic.forEach(element => {
+        itRobotic += element.Implementacion;
+      });
+    }
+
+    let cuRobotic = 0;
+    if (this.state.valoracionesRobotic != undefined) {
+      this.state.valoracionesRobotic.forEach(element => {
+        cuRobotic += element.Comunicacion;
+      });
+    }
+
+    //BeeKeen
+    let ciBeeKeen = 0;
+    if (this.state.valoracionesBeeKeen != undefined) {
+      this.state.valoracionesBeeKeen.forEach(element => {
+        ciBeeKeen += element.Creatividad;
+      });
+    }
+
+    let itBeeKeen = 0;
+    if (this.state.valoracionesBeeKeen != undefined) {
+      this.state.valoracionesBeeKeen.forEach(element => {
+        itBeeKeen += element.Implementacion;
+      });
+    }
+
+    let cuBeeKeen = 0;
+    if (this.state.valoracionesBeeKeen != undefined) {
+      this.state.valoracionesBeeKeen.forEach(element => {
+        cuBeeKeen += element.Comunicacion;
+      });
+    }
+
+
+    //MarinaBeer
+    let ciMarinaBeer = 0;
+    if (this.state.valoracionesMarinaBeer != undefined) {
+      this.state.valoracionesMarinaBeer.forEach(element => {
+        ciMarinaBeer += element.Creatividad;
+      });
+    }
+
+    let itMarinaBeer = 0;
+    if (this.state.valoracionesMarinaBeer != undefined) {
+      this.state.valoracionesMarinaBeer.forEach(element => {
+        itMarinaBeer += element.Implementacion;
+      });
+    }
+
+    let cuMarinaBeer = 0;
+    if (this.state.valoracionesMarinaBeer != undefined) {
+      this.state.valoracionesMarinaBeer.forEach(element => {
+        cuMarinaBeer += element.Comunicacion;
+      });
+    }
+
+    //Florida
+    let ciFlorida = 0;
+    if (this.state.valoracionesFlorida != undefined) {
+      this.state.valoracionesFlorida.forEach(element => {
+        ciFlorida += element.Creatividad;
+      });
+    }
+
+    let itFlorida = 0;
+    if (this.state.valoracionesFlorida != undefined) {
+      this.state.valoracionesFlorida.forEach(element => {
+        itFlorida += element.Implementacion;
+      });
+    }
+
+    let cuFlorida = 0;
+    if (this.state.valoracionesFlorida != undefined) {
+      this.state.valoracionesFlorida.forEach(element => {
+        cuFlorida += element.Comunicacion;
+      });
+    }
+
+
+    //AUCO
+    let ciAUCO = 0;
+    if (this.state.valoracionesAUCO != undefined) {
+      this.state.valoracionesAUCO.forEach(element => {
+        ciAUCO += element.Creatividad;
+      });
+    }
+
+    let itAUCO = 0;
+    if (this.state.valoracionesAUCO != undefined) {
+      this.state.valoracionesAUCO.forEach(element => {
+        itAUCO += element.Implementacion;
+      });
+    }
+
+    let cuAUCO = 0;
+    if (this.state.valoracionesAUCO != undefined) {
+      this.state.valoracionesAUCO.forEach(element => {
+        cuAUCO += element.Comunicacion;
+      });
+    }
+
 
     const colors = {
       Robotic: '#1b4f72',
@@ -36,32 +249,20 @@ export default class GraphicScreen extends Component {
       AppAUCO: '#111BB0'
     };
 
+    if (this.state.valoracionesMarinaBeer != undefined && this.state.valoracionesRobotic != undefined && this.state.valoracionesBeeKeen != undefined && this.state.valoracionesAUCO != undefined && this.state.valoracionesFlorida != undefined) {
 
-    return (
-      <View style={styles.mainContainer}>
-        <Text style={styles.title}>Media General  <Ionicons name="ios-stats" color='black' size={25} /></Text>
+      return (
+        <View style={styles.mainContainer}>
+          <Text style={styles.title}>Media General  <Ionicons name="ios-stats" color='black' size={25} /></Text>
 
-        <SafeAreaView style={styles.container}>
+          <SafeAreaView style={styles.container}>
 
-          <ScrollView style={styles.scrollView}>
+            <ScrollView style={styles.scrollView}>
 
-            <Text style={styles.label}>Robotic  <Ionicons name="ios-speedometer" color={colors.Robotic} size={25} /></Text>
-            <View style={styles.StatsContainer}>
-              <Text>Creatividad e innovación</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <Progress.Bar
-              styles={{ margin: 10 }}
-              color={colors.Robotic}
-              width={null}
-              height={15}
-              progress={0.2}
-            />
-
-            <View style={styles.margin}>
+              <Text style={styles.label}>Robotic  <Ionicons name="ios-speedometer" color={colors.Robotic} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Implementación y transferibilidad</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text>Creatividad e innovación</Text>
+                <Text style={styles.totalRate}>{ciRobotic}</Text>
               </View>
               <Progress.Bar
                 styles={{ margin: 10 }}
@@ -70,72 +271,58 @@ export default class GraphicScreen extends Component {
                 height={15}
                 progress={0.2}
               />
-            </View>
+
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.totalRate}>{itRobotic}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.Robotic}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
 
 
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Comunicación y usabilidad</Text>
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.totalRate}>{cuRobotic}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.Robotic}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Total de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
               </View>
-              <Progress.Bar
-                styles={{ margin: 10 }}
-                color={colors.Robotic}
-                width={null}
-                height={15}
-                progress={0.2}
-              />
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Total de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Media de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-
-            <View
-              style={{
-                marginTop: 15,
-                borderBottomColor: 'black',
-                borderBottomWidth: 1,
-              }}
-            />
-
-
-
-            <Text style={styles.label}>BeeKeen  <Ionicons name="ios-people" color={colors.BeeKeen} size={25} /></Text>
-            <View style={styles.StatsContainer}>
-              <Text>Creatividad e innovación</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <Progress.Bar
-              styles={{ margin: 10 }}
-              color={colors.BeeKeen}
-              width={null}
-              height={15}
-              progress={0.2}
-            />
-
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Implementación y transferibilidad</Text>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Media de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
               </View>
-              <Progress.Bar
-                styles={{ margin: 10 }}
-                color={colors.BeeKeen}
-                width={null}
-                height={15}
-                progress={0.2}
-              />
-            </View>
 
-            <View style={styles.margin}>
+              <View
+                style={{
+                  marginTop: 15,
+                  borderBottomColor: 'black',
+                  borderBottomWidth: 1,
+                }}
+              />
+
+
+
+              <Text style={styles.label}>BeeKeen  <Ionicons name="ios-people" color={colors.BeeKeen} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Comunicación y usabilidad</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text>Creatividad e innovación</Text>
+                <Text style={styles.totalRate}>{ciBeeKeen}</Text>
               </View>
               <Progress.Bar
                 styles={{ margin: 10 }}
@@ -144,41 +331,55 @@ export default class GraphicScreen extends Component {
                 height={15}
                 progress={0.2}
               />
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Total de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Media de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
 
-            <View
-              style={{
-                marginTop: 15,
-                borderBottomColor: 'black',
-                borderBottomWidth: 1,
-              }}
-            />
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.totalRate}>{itBeeKeen}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.BeeKeen}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
 
-            <Text style={styles.label}>MareenaBeerFestival  <Ionicons name="ios-beer" color={colors.MareenaBeerFestival} size={25} /></Text>
-            <View style={styles.StatsContainer}>
-              <Text>Creatividad e innovación</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <Progress.Bar
-              styles={{ margin: 10 }}
-              color={colors.MareenaBeerFestival}
-              width={null}
-              height={15}
-              progress={0.2}
-            />
-
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Implementación y transferibilidad</Text>
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.totalRate}>{cuBeeKeen}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.BeeKeen}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Total de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Media de votos:</Text>
+                <Text style={styles.totalRate}>50</Text>
+              </View>
+
+              <View
+                style={{
+                  marginTop: 15,
+                  borderBottomColor: 'black',
+                  borderBottomWidth: 1,
+                }}
+              />
+
+              <Text style={styles.label}>MareenaBeerFestival  <Ionicons name="ios-beer" color={colors.MareenaBeerFestival} size={25} /></Text>
+              <View style={styles.StatsContainer}>
+                <Text>Creatividad e innovación</Text>
+                <Text style={styles.totalRate}>{ciMarinaBeer}</Text>
               </View>
               <Progress.Bar
                 styles={{ margin: 10 }}
@@ -187,69 +388,55 @@ export default class GraphicScreen extends Component {
                 height={15}
                 progress={0.2}
               />
-            </View>
 
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Comunicación y usabilidad</Text>
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.totalRate}>{itMarinaBeer}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.MareenaBeerFestival}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.totalRate}>{cuMarinaBeer}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.MareenaBeerFestival}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Total de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
               </View>
-              <Progress.Bar
-                styles={{ margin: 10 }}
-                color={colors.MareenaBeerFestival}
-                width={null}
-                height={15}
-                progress={0.2}
-              />
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Total de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Media de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-
-            <View
-              style={{
-                marginTop: 15,
-                borderBottomColor: 'black',
-                borderBottomWidth: 1,
-              }}
-            />
-
-            <Text style={styles.label}>FloridaRatings  <Ionicons name="ios-star" color={colors.FloridaRatings} size={25} /></Text>
-            <View style={styles.StatsContainer}>
-              <Text>Creatividad e innovación</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <Progress.Bar
-              styles={{ margin: 10 }}
-              color={colors.FloridaRatings}
-              width={null}
-              height={15}
-              progress={0.2}
-            />
-
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Implementación y transferibilidad</Text>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Media de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
               </View>
-              <Progress.Bar
-                styles={{ margin: 10 }}
-                color={colors.FloridaRatings}
-                width={null}
-                height={15}
-                progress={0.2}
-              />
-            </View>
 
-            <View style={styles.margin}>
+              <View
+                style={{
+                  marginTop: 15,
+                  borderBottomColor: 'black',
+                  borderBottomWidth: 1,
+                }}
+              />
+
+              <Text style={styles.label}>FloridaRatings  <Ionicons name="ios-star" color={colors.FloridaRatings} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Comunicación y usabilidad</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text>Creatividad e innovación</Text>
+                <Text style={styles.totalRate}>{ciFlorida}</Text>
               </View>
               <Progress.Bar
                 styles={{ margin: 10 }}
@@ -258,42 +445,56 @@ export default class GraphicScreen extends Component {
                 height={15}
                 progress={0.2}
               />
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Total de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Media de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
 
-            <View
-              style={{
-                marginTop: 15,
-                borderBottomColor: 'black',
-                borderBottomWidth: 1,
-              }}
-            />
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.totalRate}>{itFlorida}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.FloridaRatings}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
 
-
-            <Text style={styles.label}>App AUCO  <Ionicons name="ios-hand" color={colors.AppAUCO} size={25} /></Text>
-            <View style={styles.StatsContainer}>
-              <Text>Creatividad e innovación</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <Progress.Bar
-              styles={{ margin: 10 }}
-              color={colors.AppAUCO}
-              width={null}
-              height={15}
-              progress={0.2}
-            />
-
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Implementación y transferibilidad</Text>
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.totalRate}>{cuFlorida}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.FloridaRatings}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Total de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Media de votos:</Text>
+                <Text style={styles.totalRate}>50</Text>
+              </View>
+
+              <View
+                style={{
+                  marginTop: 15,
+                  borderBottomColor: 'black',
+                  borderBottomWidth: 1,
+                }}
+              />
+
+
+              <Text style={styles.label}>App AUCO  <Ionicons name="ios-hand" color={colors.AppAUCO} size={25} /></Text>
+              <View style={styles.StatsContainer}>
+                <Text>Creatividad e innovación</Text>
+                <Text style={styles.totalRate}>{ciAUCO}</Text>
               </View>
               <Progress.Bar
                 styles={{ margin: 10 }}
@@ -302,35 +503,55 @@ export default class GraphicScreen extends Component {
                 height={15}
                 progress={0.2}
               />
-            </View>
 
-            <View style={styles.margin}>
-              <View style={styles.StatsContainer}>
-                <Text>Comunicación y usabilidad</Text>
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.totalRate}>{itAUCO}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.AppAUCO}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+
+              <View style={styles.margin}>
+                <View style={styles.StatsContainer}>
+                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.totalRate}>{cuAUCO}</Text>
+                </View>
+                <Progress.Bar
+                  styles={{ margin: 10 }}
+                  color={colors.AppAUCO}
+                  width={null}
+                  height={15}
+                  progress={0.2}
+                />
+              </View>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Total de votos:</Text>
                 <Text style={styles.totalRate}>50</Text>
               </View>
-              <Progress.Bar
-                styles={{ margin: 10 }}
-                color={colors.AppAUCO}
-                width={null}
-                height={15}
-                progress={0.2}
-              />
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Total de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-            <View style={[styles.StatsContainer, styles.margin]}>
-              <Text>Media de votos:</Text>
-              <Text style={styles.totalRate}>50</Text>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+              <View style={[styles.StatsContainer, styles.margin]}>
+                <Text>Media de votos:</Text>
+                <Text style={styles.totalRate}>50</Text>
+              </View>
+            </ScrollView>
+          </SafeAreaView>
 
-      </View>
-    );
-
+        </View>
+      );
+    }
+    else {
+      return (
+        <View>
+          <Text>Cargando...</Text>
+        </View>
+      );
+    }
   }
 }
 
