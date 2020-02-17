@@ -47,28 +47,34 @@ export default class LoggingScreen extends Component {
       .then(res => res.json())
       .then(res => {
 
-
-        this.state.accepted = true;
-        res.forEach(valoracion => {
-          if (valoracion[0] != undefined) {
-            if (valoracion[0].id == this.state.qrData) {
-              this.state.accepted = false;
+        alert(this.state.qrURL);
+        if (this.state.qrURL == "www.floridauniversitaria.es") {
+          this.state.accepted = true;
+          res.forEach(valoracion => {
+            if (valoracion[0] != undefined) {
+              if (valoracion[0].id == this.state.qrTEL) {
+                this.state.accepted = false;
+              }
+            }
+          });
+  
+  
+          if (this.state.accepted) {
+            const { navigate } = this.props.navigation;
+            if (this.state.qrTEL == "") {
+              Alert.alert("Introduce o escanea un código QR")
+            } else {
+              navigate('Graphic', { qr: this.state.qrTEL });
             }
           }
-        });
-
-
-        if (this.state.accepted) {
-          const { navigate } = this.props.navigation;
-          if (this.state.qrData == "") {
-            Alert.alert("Introduce o escanea un código QR")
-          } else {
-            navigate('Graphic', { qr: this.state.qrData });
+          else {
+            alert("Ya ha votado");
           }
         }
-        else {
-          alert("Ya ha votado");
-        }
+        else{
+          alert("No permiso");
+          //Comprobar aqui con los codigos que nos dara manel
+        }        
       });
   }
 
@@ -157,10 +163,14 @@ export default class LoggingScreen extends Component {
     const { navigate } = this.props.navigation;
     this.setState({ scanned: true });
     this.setState({ rendered: false });
-    navigate('Home', { qr: data });
+    //navigate('Home', { qr: data });
 
-    this.state.qrData = data;
-    //this.aceptar();
+    this.state.qrURL = data.substring(154, 181);
+    this.state.qrTEL = data.substring(42, 51);
+
+
+    this.aceptar();
+
     /*let url = "";
     let corretoCount = 0;
     let correcto = false;
@@ -200,7 +210,6 @@ export default class LoggingScreen extends Component {
       }
       letra = "";
     }*/
-    alert(dataJSON);
   };
 }
 
