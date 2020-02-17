@@ -29,6 +29,8 @@ export default class LoggingScreen extends Component {
       scanned: false,
       qrData: "",
       rendered: false,
+      urlValoraciones: "http://34.239.146.234:3000/Valoraciones",
+      accepted: undefined
     }
   }
 
@@ -41,12 +43,33 @@ export default class LoggingScreen extends Component {
   }
 
   aceptar() {
-    const { navigate } = this.props.navigation;
-    if (this.state.qrData == ""){
-      Alert.alert("Introduce o escanea un código QR")
-    }else{
-      navigate('Graphic', {qr: this.state.qrData});
-    }
+    fetch(this.state.urlValoraciones)
+      .then(res => res.json())
+      .then(res => {
+
+
+        this.state.accepted = true;
+        res.forEach(valoracion => {
+          if (valoracion[0] != undefined) {
+            if (valoracion[0].id == this.state.qrData) {
+              this.state.accepted = false;
+            }
+          }
+        });
+
+
+        if (this.state.accepted) {
+          const { navigate } = this.props.navigation;
+          if (this.state.qrData == "") {
+            Alert.alert("Introduce o escanea un código QR")
+          } else {
+            navigate('Graphic', { qr: this.state.qrData });
+          }
+        }
+        else {
+          alert("Ya ha votado");
+        }
+      });
   }
 
   getPermissionsAsync = async () => {
@@ -104,6 +127,7 @@ export default class LoggingScreen extends Component {
             <BarCodeScanner
               onBarCodeScanned={this.handleBarCodeScanned}
               style={[StyleSheet.absoluteFill, styles.containerCamera]}
+              barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
             >
               <View style={{ ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={{ width: width / 2, height: width / 2 }}>
@@ -123,7 +147,7 @@ export default class LoggingScreen extends Component {
             </BarCodeScanner>
           )}
 
-      </View>
+        </View>
 
       </KeyboardAvoidingView>
     );
@@ -133,16 +157,57 @@ export default class LoggingScreen extends Component {
     const { navigate } = this.props.navigation;
     this.setState({ scanned: true });
     this.setState({ rendered: false });
-    navigate('Home', {qr: data});
+    navigate('Home', { qr: data });
 
-    alert(`Código escaneado: ${data}`);
+    this.state.qrData = data;
+    //this.aceptar();
+    /*let url = "";
+    let corretoCount = 0;
+    let correcto = false;
+    let dosP = false;
+    let cuentaLetras = 27;
+    let letra = "";
+    for (let i = 0; i <= data.length; i++) {
+      letra = data[i];
+      alert(letra);
+      if (letra == "U") {
+        corretoCount++;
+      }
+      else {
+        corretoCount = 0;
+      }
+      if (letra == "R" && corretoCount == 1) {
+        corretoCount++;
+      }
+      else {
+        corretoCount = 0;
+      }
+      if (letra == "L" && corretoCount == 2) {
+        correcto = true;
+      }
+      else {
+        corretoCount = 0;
+      }
+      if (correcto == true) {
+        if (dosP == false) {
+          dosP = true;
+        }
+        else {
+          if (cuentaLetras >= 0) {
+            url += letra;
+          }
+        }
+      }
+      letra = "";
+    }*/
+    alert(dataJSON);
   };
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    
+
   },
 
   leftTop: {
