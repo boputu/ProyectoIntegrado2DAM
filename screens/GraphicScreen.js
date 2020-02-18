@@ -150,6 +150,14 @@ export default class GraphicScreen extends Component {
       });
     }
 
+    let ciRoboticBar = ciRobotic/100;
+    let itRoboticBar = itRobotic/100;
+    let cuRoboticBar = cuRobotic/100;
+
+    let mediaRobotic = (ciRobotic+itRobotic+cuRobotic)/3;
+    mediaRobotic = mediaRobotic.toFixed(1);
+    let totalRobotic = ciRobotic+itRobotic+cuRobotic;
+
     //BeeKeen
     let ciBeeKeen = 0;
     if (this.state.valoracionesBeeKeen != undefined) {
@@ -171,6 +179,14 @@ export default class GraphicScreen extends Component {
         cuBeeKeen += element.Comunicacion;
       });
     }
+
+
+    let ciBeeKeenBar = ciBeeKeen/100;
+    let itBeeKeenBar = itBeeKeen/100;
+    let cuBeeKeenBar = cuBeeKeen/100;
+    let mediaBeeKeen = (ciBeeKeen+itBeeKeen+cuBeeKeen)/3;
+    mediaBeeKeen = mediaBeeKeen.toFixed(1);
+    let totalBeeKeen = ciBeeKeen+itBeeKeen+cuBeeKeen;
 
 
     //MarinaBeer
@@ -195,6 +211,14 @@ export default class GraphicScreen extends Component {
       });
     }
 
+    let ciMarinaBeerBar = ciMarinaBeer/100;
+    let itMarinaBeerBar = itMarinaBeer/100;
+    let cuMarinaBeerBar = cuMarinaBeer/100;
+
+    let mediaMarinaBeer = (ciMarinaBeer+itMarinaBeer+cuMarinaBeer)/3;
+    mediaMarinaBeer = mediaMarinaBeer.toFixed(1);
+    let totalMarinaBeer = ciMarinaBeer+itMarinaBeer+cuMarinaBeer;
+
     //Florida
     let ciFlorida = 0;
     if (this.state.valoracionesFlorida != undefined) {
@@ -216,6 +240,15 @@ export default class GraphicScreen extends Component {
         cuFlorida += element.Comunicacion;
       });
     }
+
+    
+    let ciFloridaBar = ciFlorida/100;
+    let itFloridaBar = itFlorida/100;
+    let cuFloridaBar = cuFlorida/100;
+
+    let mediaFlorida = (ciFlorida+itFlorida+cuFlorida)/3;
+    mediaFlorida = mediaFlorida.toFixed(1);
+    let totalFlorida = ciFlorida+itFlorida+cuFlorida;
 
 
     //AUCO
@@ -240,6 +273,14 @@ export default class GraphicScreen extends Component {
       });
     }
 
+    let ciAUCOBar = ciAUCO/100;
+    let itAUCOBar = itAUCO/100;
+    let cuAUCOBar = cuAUCO/100;
+
+    let mediaAUCO = (ciAUCO+itAUCO+cuAUCO)/3;
+    mediaAUCO = mediaAUCO.toFixed(1);
+    let totalAUCO = ciAUCO+itAUCO+cuAUCO;
+
 
     const colors = {
       Robotic: '#1b4f72',
@@ -261,7 +302,7 @@ export default class GraphicScreen extends Component {
 
               <Text style={styles.label}>Robotic  <Ionicons name="ios-speedometer" color={colors.Robotic} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Creatividad e innovación</Text>
+                <Text style={styles.label3}>Creatividad e innovación</Text>
                 <Text style={styles.totalRate}>{ciRobotic}</Text>
               </View>
               <Progress.Bar
@@ -269,12 +310,12 @@ export default class GraphicScreen extends Component {
                 color={colors.Robotic}
                 width={null}
                 height={15}
-                progress={0.2}
+                progress={ciRoboticBar}
               />
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.label3}>Implementación y transferibilidad</Text>
                   <Text style={styles.totalRate}>{itRobotic}</Text>
                 </View>
                 <Progress.Bar
@@ -282,14 +323,14 @@ export default class GraphicScreen extends Component {
                   color={colors.Robotic}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={itRoboticBar}
                 />
               </View>
 
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.label3}>Comunicación y usabilidad</Text>
                   <Text style={styles.totalRate}>{cuRobotic}</Text>
                 </View>
                 <Progress.Bar
@@ -297,16 +338,16 @@ export default class GraphicScreen extends Component {
                   color={colors.Robotic}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={cuRoboticBar}
                 />
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Total de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Total de votos:</Text>
+      <Text style={styles.totalRate}>{totalRobotic}</Text>
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Media de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Media de votos:</Text>
+      <Text style={styles.totalRate}>{mediaRobotic}</Text>
               </View>
 
               <View
@@ -321,7 +362,7 @@ export default class GraphicScreen extends Component {
 
               <Text style={styles.label}>BeeKeen  <Ionicons name="ios-people" color={colors.BeeKeen} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Creatividad e innovación</Text>
+                <Text style={styles.label3}>Creatividad e innovación</Text>
                 <Text style={styles.totalRate}>{ciBeeKeen}</Text>
               </View>
               <Progress.Bar
@@ -329,12 +370,12 @@ export default class GraphicScreen extends Component {
                 color={colors.BeeKeen}
                 width={null}
                 height={15}
-                progress={0.2}
+                progress={ciBeeKeenBar}
               />
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.label3}>Implementación y transferibilidad</Text>
                   <Text style={styles.totalRate}>{itBeeKeen}</Text>
                 </View>
                 <Progress.Bar
@@ -342,13 +383,13 @@ export default class GraphicScreen extends Component {
                   color={colors.BeeKeen}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={itBeeKeenBar}
                 />
               </View>
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.label3}>Comunicación y usabilidad</Text>
                   <Text style={styles.totalRate}>{cuBeeKeen}</Text>
                 </View>
                 <Progress.Bar
@@ -356,16 +397,16 @@ export default class GraphicScreen extends Component {
                   color={colors.BeeKeen}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={cuBeeKeenBar}
                 />
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Total de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Total de votos:</Text>
+                <Text style={styles.totalRate}>{totalBeeKeen}</Text>
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Media de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Media de votos:</Text>
+                <Text style={styles.totalRate}>{mediaBeeKeen}</Text>
               </View>
 
               <View
@@ -378,7 +419,7 @@ export default class GraphicScreen extends Component {
 
               <Text style={styles.label}>MareenaBeerFestival  <Ionicons name="ios-beer" color={colors.MareenaBeerFestival} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Creatividad e innovación</Text>
+                <Text style={styles.label3}>Creatividad e innovación</Text>
                 <Text style={styles.totalRate}>{ciMarinaBeer}</Text>
               </View>
               <Progress.Bar
@@ -386,12 +427,12 @@ export default class GraphicScreen extends Component {
                 color={colors.MareenaBeerFestival}
                 width={null}
                 height={15}
-                progress={0.2}
+                progress={ciMarinaBeerBar}
               />
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.label3}>Implementación y transferibilidad</Text>
                   <Text style={styles.totalRate}>{itMarinaBeer}</Text>
                 </View>
                 <Progress.Bar
@@ -399,13 +440,13 @@ export default class GraphicScreen extends Component {
                   color={colors.MareenaBeerFestival}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={itMarinaBeerBar}
                 />
               </View>
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.label3}>Comunicación y usabilidad</Text>
                   <Text style={styles.totalRate}>{cuMarinaBeer}</Text>
                 </View>
                 <Progress.Bar
@@ -413,16 +454,16 @@ export default class GraphicScreen extends Component {
                   color={colors.MareenaBeerFestival}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={cuMarinaBeerBar}
                 />
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Total de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Total de votos:</Text>
+                <Text style={styles.totalRate}>{totalMarinaBeer}</Text>
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Media de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Media de votos:</Text>
+                <Text style={styles.totalRate}>{mediaMarinaBeer}</Text>
               </View>
 
               <View
@@ -435,7 +476,7 @@ export default class GraphicScreen extends Component {
 
               <Text style={styles.label}>FloridaRatings  <Ionicons name="ios-star" color={colors.FloridaRatings} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Creatividad e innovación</Text>
+                <Text style={styles.label3}>Creatividad e innovación</Text>
                 <Text style={styles.totalRate}>{ciFlorida}</Text>
               </View>
               <Progress.Bar
@@ -443,12 +484,12 @@ export default class GraphicScreen extends Component {
                 color={colors.FloridaRatings}
                 width={null}
                 height={15}
-                progress={0.2}
+                progress={ciFloridaBar}
               />
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.label3}>Implementación y transferibilidad</Text>
                   <Text style={styles.totalRate}>{itFlorida}</Text>
                 </View>
                 <Progress.Bar
@@ -456,13 +497,13 @@ export default class GraphicScreen extends Component {
                   color={colors.FloridaRatings}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={itFloridaBar}
                 />
               </View>
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.label3}>Comunicación y usabilidad</Text>
                   <Text style={styles.totalRate}>{cuFlorida}</Text>
                 </View>
                 <Progress.Bar
@@ -470,16 +511,16 @@ export default class GraphicScreen extends Component {
                   color={colors.FloridaRatings}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={cuFloridaBar}
                 />
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Total de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Total de votos:</Text>
+                <Text style={styles.totalRate}>{totalFlorida}</Text>
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Media de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Media de votos:</Text>
+                <Text style={styles.totalRate}>{mediaFlorida}</Text>
               </View>
 
               <View
@@ -493,7 +534,7 @@ export default class GraphicScreen extends Component {
 
               <Text style={styles.label}>App AUCO  <Ionicons name="ios-hand" color={colors.AppAUCO} size={25} /></Text>
               <View style={styles.StatsContainer}>
-                <Text>Creatividad e innovación</Text>
+                <Text style={styles.label3}>Creatividad e innovación</Text>
                 <Text style={styles.totalRate}>{ciAUCO}</Text>
               </View>
               <Progress.Bar
@@ -501,12 +542,12 @@ export default class GraphicScreen extends Component {
                 color={colors.AppAUCO}
                 width={null}
                 height={15}
-                progress={0.2}
+                progress={ciAUCOBar}
               />
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Implementación y transferibilidad</Text>
+                  <Text style={styles.label3}>Implementación y transferibilidad</Text>
                   <Text style={styles.totalRate}>{itAUCO}</Text>
                 </View>
                 <Progress.Bar
@@ -514,13 +555,13 @@ export default class GraphicScreen extends Component {
                   color={colors.AppAUCO}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={itAUCOBar}
                 />
               </View>
 
               <View style={styles.margin}>
                 <View style={styles.StatsContainer}>
-                  <Text>Comunicación y usabilidad</Text>
+                  <Text style={styles.label3}>Comunicación y usabilidad</Text>
                   <Text style={styles.totalRate}>{cuAUCO}</Text>
                 </View>
                 <Progress.Bar
@@ -528,16 +569,16 @@ export default class GraphicScreen extends Component {
                   color={colors.AppAUCO}
                   width={null}
                   height={15}
-                  progress={0.2}
+                  progress={cuAUCOBar}
                 />
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Total de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+              <Text style={styles.label2}>Total de votos:</Text>
+                <Text style={styles.totalRate}>{totalAUCO}</Text>
               </View>
               <View style={[styles.StatsContainer, styles.margin]}>
-                <Text>Media de votos:</Text>
-                <Text style={styles.totalRate}>50</Text>
+                <Text style={styles.label2}>Media de votos:</Text>
+                <Text style={styles.totalRate}>{mediaAUCO}</Text>
               </View>
             </ScrollView>
           </SafeAreaView>
@@ -595,6 +636,15 @@ const styles = StyleSheet.create({
     fontFamily: 'arvo',
     marginBottom: 10
   },
+
+  label2:{
+    fontWeight:'bold'
+  },
+
+  label3:{
+    fontFamily:'arvo'
+  },
+
   totalRate: {
     fontSize: 15,
     opacity: 0.3,

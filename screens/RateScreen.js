@@ -94,17 +94,14 @@ export default class RateScreen extends Component {
 
             <View style={styles.rating}>
               <CustomSlider setValoracion={(valoracionCre) => this.setState({valoracionCre: valoracionCre})} text="Creatividad e innovación" linea={2000}></CustomSlider>
-              <Text>{this.state.valoracionCre}</Text>
             </View>
 
             <View style={styles.rating}>
               <CustomSlider setValoracion={(valoracionImp) => this.setState({valoracionImp: valoracionImp})} text="Implementación y transferibilidad"></CustomSlider>
-              <Text>{this.state.valoracionImp}</Text>
             </View>
 
             <View style={styles.rating}>
               <CustomSlider setValoracion={(valoracionCom) => this.setState({valoracionCom: valoracionCom})} text="Comunicación y usabilidad"></CustomSlider>
-              <Text>{this.state.valoracionCom}</Text>
             </View>
 
           </View>

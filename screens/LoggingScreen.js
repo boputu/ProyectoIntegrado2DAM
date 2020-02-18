@@ -64,7 +64,7 @@ export default class LoggingScreen extends Component {
             if (this.state.qrTEL == "") {
               Alert.alert("Introduce o escanea un código QR")
             } else {
-              navigate('Graphic', { qr: this.state.qrTEL });
+              navigate('Home', { qr: this.state.qrTEL });
             }
           }
           else {
