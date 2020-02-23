@@ -72,8 +72,10 @@ export default class LoggingScreen extends Component {
           }
         }
         else{
-          alert("No permiso");
+          this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
+          //alert("No permiso");
           //Comprobar aqui con los codigos que nos dara manel
+
         }        
       });
   }

@@ -7,11 +7,16 @@ import {
   Image,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
+import { Overlay } from 'react-native-elements';
 
 class CasillaApp extends Component {
   constructor(props) {
     super(props);
-    this.state={yaVotados:[]}
+    this.state={
+      yaVotados:[],
+      isVisible: false,
+    }
   }
 
   /*componentDidUpdate(prevProps){
@@ -21,6 +26,10 @@ class CasillaApp extends Component {
       //this.props.yaVotado(this.yaVotado());
     }
   }*/
+
+  toggleOverlay = () => {
+    this.setState({isVisible: !this.state.isVisible});
+  };
 
   yaVotado(){
     //alert("ya votado");
@@ -82,7 +91,7 @@ class CasillaApp extends Component {
 
               <Text style={styles.textDescription}>
                 {this.props.descripcion}
-              </Text>
+              </Text> 
   
             </View>
   
@@ -103,23 +112,43 @@ class CasillaApp extends Component {
               <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
             </View>
   
+          </TouchableOpacity>
+
             <View style={styles.item_DescriptionContainer}>
   
-              <Text style={styles.textName}>
-                {this.props.nombre}
-              </Text>
-  
-              <Text style={styles.textTeam}>
-                {this.props.equipo}
-              </Text>
+              <View style={styles.nameContainer}>
 
-              <Text style={styles.textDescripcion}>
-                {this.props.descripcion}
-              </Text>
-  
+                <Text style={styles.textName}>
+                  {this.props.nombre}
+                </Text>
+
+              </View>
+
+              <TouchableOpacity
+                style={styles.overlayButton}
+                onPress={this.toggleOverlay}>
+                <Ionicons style={styles.icon} name="information-variant" />
+              </TouchableOpacity>
+
+              <Overlay
+                isVisible={this.state.isVisible}
+                onBackdropPress={this.toggleOverlay}
+                height="auto"
+                >
+                <View>
+                  <Text style={styles.textOverlay}>
+                    {this.props.descripcion}
+                  </Text>
+                </View>
+              </Overlay>
+
             </View>
   
-          </TouchableOpacity>
+            <View style={styles.teamContainer}>
+              <Text style={styles.textTeam}>
+                2º Desarrollo de Aplicaciones Multiplataform
+              </Text>
+            </View>
   
         </View>
       );
@@ -152,6 +181,7 @@ const styles = StyleSheet.create({
 
   item_DescriptionContainer: {
     flex: 1 / 3,
+    flexDirection:  "row",
     justifyContent: 'center',
     alignItems: "center",
 
@@ -169,6 +199,43 @@ const styles = StyleSheet.create({
     color: "#FF5E60",
     fontSize: 15,
 
+    textAlign: "center",
+
     marginTop: 3
   },
+
+  icon: {
+    fontSize: 30,
+    color: 'black',
+  },
+
+  nameContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginLeft: 5,
+  },
+
+  overlayButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 30,
+    width: 30,
+
+    marginRight: 5,
+  },
+
+  teamContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginBottom: 10,
+  },
+
+  textOverlay: {
+    color: "#FF5E60",
+    fontSize: 17,
+  }
 })

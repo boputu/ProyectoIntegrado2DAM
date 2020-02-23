@@ -17,6 +17,7 @@ import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/car
 import CasillaApp from '../components/CasillaApp';
 
 import Global from '../constants/Global';
+import { red } from 'react-native-redash';
 
 export default class HomeScreen extends Component {
 
@@ -90,7 +91,7 @@ export default class HomeScreen extends Component {
     return (
       <View
         style={{
-          height: 3,
+          height: 1,
           width: "80%",
         }}
       />
@@ -153,7 +154,6 @@ export default class HomeScreen extends Component {
 
                 <View style={[{ flex: 1, backgroundColor: "white" }, index % 2 == 0 ? { marginRight: 0.5 } : { marginLeft: 0.5 }]}>
                   <CasillaApp
-                    equipo={item.idEquipo}
                     nombre={item.nombreApp}
                     descripcion={item.descripcion}
                     navigation={this.props.navigation}
@@ -172,9 +172,9 @@ export default class HomeScreen extends Component {
 
             <AwesomeButtonRick
               type="secondary"
+              stretch="true"
               progress
               onPress={next => {
-                /** Do Something **/
                 if (!first) {
                   if (this.state.valoraciones.length >= this.state.dataAplicaciones.length) {
                     this.sendValoration();
@@ -187,7 +187,7 @@ export default class HomeScreen extends Component {
               }}
             >
               Completar Valoraciones
-    </AwesomeButtonRick>
+            </AwesomeButtonRick>
 
           </View>
 
@@ -205,15 +205,14 @@ const styles = StyleSheet.create({
 
   flatlistContainer: {
     flex: 1,
-    backgroundColor: "#DCDCDC"
+    backgroundColor: 'red',
   },
 
   buttonContainer: {
-    flex: 1 / 5,
+    flex: 1/6,
     flexDirection: 'row',
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#DCDCDC'
   },
 
 })
