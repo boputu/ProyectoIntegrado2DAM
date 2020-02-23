@@ -73,7 +73,7 @@ export default class LoggingScreen extends Component {
           }
         }
         else{
-          this.props.navigation.navigate('Graphic', { qr: this.state.qrTEL });
+          this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
           //alert("No permiso");
           //Comprobar aqui con los codigos que nos dara manel
 

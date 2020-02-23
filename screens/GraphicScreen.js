@@ -86,8 +86,8 @@ export default class GraphicScreen extends Component {
           }
         }
       });
+      console.log(this.state.valoraciones);
 
-      
     })
     .catch(error => console.log(error))
 
