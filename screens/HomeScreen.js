@@ -55,7 +55,6 @@ export default class HomeScreen extends Component {
         this.setState({
           dataAplicaciones: res,
           isLoading: false,
-
         });
       });
   }

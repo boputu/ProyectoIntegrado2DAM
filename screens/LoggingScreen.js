@@ -17,6 +17,7 @@ import {
 import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import Global from '../constants/Global';
 
 const { width } = Dimensions.get('screen');
 
@@ -29,7 +30,7 @@ export default class LoggingScreen extends Component {
       scanned: false,
       qrData: "",
       rendered: false,
-      urlValoraciones: "http://34.239.146.234:3000/Valoraciones",
+      urlValoraciones: Global.url + "Valoraciones",
       accepted: undefined
     }
   }
@@ -72,7 +73,7 @@ export default class LoggingScreen extends Component {
           }
         }
         else{
-          this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
+          this.props.navigation.navigate('Graphic', { qr: this.state.qrTEL });
           //alert("No permiso");
           //Comprobar aqui con los codigos que nos dara manel
 
@@ -169,7 +170,6 @@ export default class LoggingScreen extends Component {
 
     this.state.qrURL = data.substring(154, 181);
     this.state.qrTEL = data.substring(42, 51);
-
 
     this.aceptar();
 
