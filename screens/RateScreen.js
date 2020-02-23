@@ -9,7 +9,7 @@ import {
   View,
   Image
 } from 'react-native';
-import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
+import { TouchableOpacity, TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
 import CustomSlider from '../components/customSlider';
 
 import Global from '../constants/Global';
@@ -20,13 +20,14 @@ export default class RateScreen extends Component {
     super(props);
     this.state = {
       dataEquipo: null,
+      dataImagenes: null,
       isLoading: true,
       integrantes: "",
       valoracion: {},
     }
   }
 
-  getIntegrantes(id) {
+  getData(id) {
     fetch(Global.url + "Equipos/" + id)
       .then(res => res.json())
       .then(res => {
@@ -34,17 +35,26 @@ export default class RateScreen extends Component {
           dataEquipo: res,
           isLoading: false,
         });
-        let integrantes = "\n";
+        let integrantes = "";
         this.state.dataEquipo.integrantes.forEach(integrante => {
-          integrantes += integrante + ", ";
+          integrantes += integrante + "\n";
         });
         this.setState({ integrantes: integrantes });
+      });
+
+      fetch(Global.url + "Imagenes?idEquipo=" + id)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          dataImagenes: res,
+          isLoading: false,
+        });
       });
   }
 
   componentWillMount() {
     let id = this.props.navigation.getParam("id");
-    this.getIntegrantes(id);
+    this.getData(id);
   }
 
   valorateApp(id) {
@@ -71,19 +81,21 @@ export default class RateScreen extends Component {
 
           <View style={styles.appContainer}>
 
-            <View style={styles.app_LogoContainer}>
-              <Image source={require('../images/LogoApp.png')} style={styles.image}></Image>
-            </View>
+
+            <Image source={{uri: "https://i.imgur.com/Qv4S7p7.png"}}
+            style={styles.image}></Image>
+
 
             <View style={styles.app_DescriptionContainer}>
 
-              <View style={styles.nameContainer}>
-                <Text style={styles.name}>Cervezas</Text>
-              </View>
+              <Text style={styles.name}>{this.props.navigation.getParam("nombre")}</Text>
 
               <View style={styles.teamContainer}>
-                <Text style={styles.team}>Equipo {this.props.navigation.getParam("id")}</Text>
-                <Text style={{ opacity: 0.5, color: "#e61a31" }}> {this.state.integrantes} </Text>
+                
+                <ScrollView>
+                  <Text style={styles.team}>{this.state.integrantes}</Text>
+                </ScrollView>
+                
               </View>
 
             </View>
@@ -155,41 +167,39 @@ const styles = StyleSheet.create({
   },
 
   appContainer: {
-    flex: 2,
+    flex: 3,
     flexDirection: "row",
-    marginBottom: 20,
+    marginBottom: 30,
+    borderWidth: 1
   },
 
   app_LogoContainer: {
-    flex: 1 / 2,
-    marginLeft: 30,
-    marginRight: 15,
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 10,
 
     justifyContent: 'center',
     alignItems: "center",
+
+    borderWidth: 1
   },
 
   image: {
-    width: "80%",
-    resizeMode: "contain"
+    width: "40%",
+    resizeMode: "contain",
+    padding: 20
+
   },
 
   app_DescriptionContainer: {
-    flex: 1 / 2,
-    marginRight: 30,
-    marginLeft: 15,
+    flex: 2,
+    marginRight: 10,
 
-    alignItems: "center"
-  },
-
-  nameContainer: {
-    flex: 1 / 2,
-    justifyContent: "flex-end"
+    borderWidth: 1
   },
 
   teamContainer: {
-    flex: 1 / 2,
-
+    flex: 1,
     marginTop: 5,
   },
 
@@ -197,6 +207,9 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 30,
     fontFamily: 'arvo',
+    textAlign: "center",
+
+    marginVertical: 10,
   },
 
   team: {
@@ -204,6 +217,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     fontSize: 15,
     fontFamily: 'arvo',
+    textAlign: "center",
   },
 
   ratingsContainer: {

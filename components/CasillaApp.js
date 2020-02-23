@@ -105,14 +105,12 @@ class CasillaApp extends Component {
         <View style={styles.mainContainer}>
   
           <TouchableOpacity style={styles.itemContainer}
-            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
+            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.idEquipo, nombre: this.props.nombre, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
           >
   
             <View style={styles.item_LogoContainer}>
               <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
             </View>
-  
-          </TouchableOpacity>
 
             <View style={styles.item_DescriptionContainer}>
   
@@ -146,10 +144,12 @@ class CasillaApp extends Component {
   
             <View style={styles.teamContainer}>
               <Text style={styles.textTeam}>
-                2º Desarrollo de Aplicaciones Multiplataform
+                {this.props.familia}
               </Text>
             </View>
   
+          </TouchableOpacity>
+
         </View>
       );
     }
@@ -168,9 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 10,
+    marginTop: 15
   },
 
   item_LogoContainer: {
