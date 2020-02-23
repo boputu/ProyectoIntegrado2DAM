@@ -30,11 +30,14 @@ export default class GraphicScreen extends Component {
       indeterminate: true,
       urlValoraciones: Global.url + "Valoraciones",
       countUsers: 1,
+      valoraciones: undefined,
+      /*
       valoracionesMarinaBeer: undefined,
       valoracionesRobotic: undefined,
       valoracionesBeeKeen: undefined,
       valoracionesAUCO: undefined,
       valoracionesFlorida: undefined,
+      */
     }
   }
 
@@ -361,7 +364,7 @@ export default class GraphicScreen extends Component {
       AppAUCO: '#111BB0'
     };
 
-    if (this.state.valoracionesMarinaBeer != undefined && this.state.valoracionesRobotic != undefined && this.state.valoracionesBeeKeen != undefined && this.state.valoracionesAUCO != undefined && this.state.valoracionesFlorida != undefined) {
+    if (this.state.valoraciones != undefined) {
 
       return (
         <View style={styles.mainContainer}>
@@ -377,28 +380,28 @@ export default class GraphicScreen extends Component {
               nombreApp={'test'}
 
               //Puntuación creatividad e innovacion
-              ci={20}
+              ci={this.state.valoraciones.creatividad}
 
               //Barra progreso creatividad e innovación / 100
-              ciBar={0.2}
+              ciBar={0.20}
 
               //Puntuación implementación y transferibilidad
-              it={12}
+              it={this.state.valoraciones.implementacion}
 
               //Barra progreso implementación y transferibilidad / 100
-              itBar={0.12}
+              itBar={0.6}
 
               //Puntuación comunicación y usabilidad
-              cu={6}
+              cu={this.state.valoraciones.comunicacion}
 
               //Barra progreso comunicación y usabilidad / 100
-              cuBar={0.06}
+              cuBar={0.8}
 
               //Suma de ci,it,cu
-              total={50}
+              total={this.state.valoraciones.creatividad+this.state.valoraciones.implementacion+this.state.valoraciones.comunicacion}
 
               //Suma de ci,it,cu / 3
-              media={20.0}
+              media={(this.state.valoraciones.creatividad+this.state.valoraciones.implementacion+this.state.valoraciones.comunicacion)/3}
               />
 
             </ScrollView>
