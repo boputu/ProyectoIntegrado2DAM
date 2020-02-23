@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 
 import Global from '../constants/Global';
+import { element } from 'prop-types';
 
 export default class GraphicScreen extends Component {
 
@@ -42,7 +43,55 @@ export default class GraphicScreen extends Component {
   }
 
   getData() {
-    fetch(this.state.urlValoraciones + "?idAplicacion=1")
+
+    fetch(this.state.urlValoraciones)
+    .then(respuesta => {
+      if(respuesta.ok){
+        return respuesta.json();
+      }
+      else{
+        console.log("Error")
+      }
+    })
+    .then(respuestaJSON => {
+      respuestaJSON.forEach(valoracion => {
+        if(this.state.valoraciones == undefined){
+          this.setState({valoraciones: [{idApp:valoracion.idAplicacion, creatividad:valoracion.Creatividad, implementacion:valoracion.Implementacion, comunicacion:valoracion.Comunicacion}]})
+        }
+        else{
+          let appRegistrada = false;
+          this.state.valoraciones.forEach(element => {
+            if(valoracion.idAplicacion == element.idApp){
+              appRegistrada = true;
+            }
+          });
+
+          if(appRegistrada == true){
+            let pos = 0;
+            let posActual = 0;
+            this.state.valoraciones.forEach(element => {
+              if(element.idAplicacion == element.idApp){
+                pos = posActual;
+              }
+              posActual++;
+            });
+
+            this.state.valoraciones[pos].creatividad = (this.state.valoraciones[pos].creatividad + valoracion.Creatividad) / 2;
+            this.state.valoraciones[pos].implementacion = (this.state.valoraciones[pos].implementacion + valoracion.Implementacion) / 2;
+            this.state.valoraciones[pos].comunicacion = (this.state.valoraciones[pos].comunicacion + valoracion.Comunicacion) / 2;
+            this.forceUpdate();
+          }
+          else{
+            this.state.valoraciones.push({idApp:valoracion.idAplicacion, creatividad:valoracion.Creatividad, implementacion:valoracion.Implementacion, comunicacion:valoracion.Comunicacion});
+          }
+        }
+      });
+
+      
+    })
+    .catch(error => console.log(error))
+
+    /*fetch(this.state.urlValoraciones + "?idAplicacion=1")
       .then((respuesta) => {
         if (respuesta.ok) {
           return respuesta.json();
@@ -130,7 +179,7 @@ export default class GraphicScreen extends Component {
       })
       .catch(error => {
         console.log("Error de red: " + error);
-      });
+      });*/
   }
 
   
@@ -149,6 +198,7 @@ export default class GraphicScreen extends Component {
   };
 
   render() {
+    /*
     //Robotic
     let ciRobotic = 0;
     if (this.state.valoracionesRobotic != undefined) {
@@ -301,7 +351,7 @@ export default class GraphicScreen extends Component {
     let mediaAUCO = (ciAUCO+itAUCO+cuAUCO)/3;
     mediaAUCO = mediaAUCO.toFixed(1);
     let totalAUCO = ciAUCO+itAUCO+cuAUCO;
-
+    */
 
     const colors = {
       Robotic: '#1b4f72',
