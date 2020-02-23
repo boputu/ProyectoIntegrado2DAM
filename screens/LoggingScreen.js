@@ -18,6 +18,7 @@ import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Global from '../constants/Global';
+import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman'
 
 const { width } = Dimensions.get('screen');
 
@@ -127,10 +128,14 @@ export default class LoggingScreen extends Component {
             <Text style={styles.loginText}>Scanear QR</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight style={[styles.aceptarContainer, styles.aceptarButton]}
-            onPress={() => { this.aceptar() }}>
-            <Text><Ionicons style={styles.inputIcon} name="md-checkmark" color="#a8f748" size={40} /></Text>
-          </TouchableHighlight>
+          <AwesomeButtonCartman
+            type="secondary"
+            common
+            width={250}
+            onPress={() => { this.aceptar() }}
+          >
+            <Ionicons style={styles.inputIcon} name="md-checkmark" color='white' size={40} />
+          </AwesomeButtonCartman>
 
           {this.state.rendered && (
             <BarCodeScanner
@@ -257,9 +262,9 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderRightColor: '#e61a31',
     backgroundColor: '#FFFFFF',
-    borderRadius: 30,
+    borderRadius: 20,
     borderBottomWidth: 1,
-    borderRightWidth: 5,
+    borderRightWidth: 3,
     width: 250,
     height: 45,
     marginBottom: 20,
@@ -283,7 +288,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     width: 250,
-    borderRadius: 30,
+    borderRadius: 20,
   },
   aceptarContainer: {
     height: 45,

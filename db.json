@@ -3,79 +3,300 @@
         {
             "id": 1,
             "nombreEquipo": "Equipo 1",
-            "integrantes": ["Javier Cánovas", "Jose Sánchez", 
-                "Jaume Navarro", "Juan Tárrega", 
-                "Tomas Olmeda", "Enric Navarro"]
+            "integrantes": [
+                "Javier Cánovas",
+                "Jose Sánchez",
+                "Jaume Navarro",
+                "Juan Tárrega",
+                "Tomas Olmeda",
+                "Enric Navarro"
+            ]
         },
-        
         {
             "id": 2,
             "nombreEquipo": "Equipo 2",
-            "integrantes": ["Graciela Zamora", "Guillermo Martínez", 
-                "Jose A. Delgado", "Adrián Cervera", 
-                "Luis A. Contreras", "Joan Banyuls"]
+            "integrantes": [
+                "Graciela Zamora",
+                "Guillermo Martínez",
+                "Jose A. Delgado",
+                "Adrián Cervera",
+                "Luis A. Contreras",
+                "Joan Banyuls"
+            ]
         },
-
         {
             "id": 3,
             "nombreEquipo": "Equipo 3",
-            "integrantes": ["Francisco Lobo", "Álvaro Argüelles", 
-                "Sergio Girona", "Jose Monleón", 
-                "Gloria Sedó"]
+            "integrantes": [
+                "Francisco Lobo",
+                "Álvaro Argüelles",
+                "Sergio Girona",
+                "Jose Monleón",
+                "Gloria Sedó"
+            ]
         },
-
         {
             "id": 4,
             "nombreEquipo": "Equipo 4",
-            "integrantes": ["Jose Olmos", "Josep Hernández", 
-                "Cristina González", "Sergio Torromé", 
-                "Francisco Lopez"]
+            "integrantes": [
+                "Jose Olmos",
+                "Josep Hernández",
+                "Cristina González",
+                "Sergio Torromé",
+                "Francisco Lopez"
+            ]
         },
-
         {
             "id": 5,
             "nombreEquipo": "Equipo 5",
-            "integrantes": ["Aldimir Aleksandrov", 
-                "Borja Pulido", "Rubén Martínez", 
-                "Sergio Quesada", "Javier Botia", 
-                "Carlos Tamarit"]
+            "integrantes": [
+                "Aldimir Aleksandrov",
+                "Borja Pulido",
+                "Rubén Martínez",
+                "Sergio Quesada",
+                "Javier Botia",
+                "Carlos Tamarit"
+            ]
+        },
+        {
+            "id": 6,
+            "nombreEquipo": "Equipo 6",
+            "integrantes": [
+                "Francisco Granados Pozuelo",
+                "Francisco Javier Pardal Rodriguez",
+                "Jose Antonio Rodriguez Navas"
+            ]
+        },
+        {
+            "id": 7,
+            "nombreEquipo": "Equipo 7",
+            "integrantes": [
+                "Alexander Merino Navarro",
+                "Víctor Guerrero López",
+                "Sergio Bayarri Álvarez",
+                "Salva Zaragozá Martinez",
+                "Abel Sanmartín Riera",
+                "Vicente Francés Calero",
+                "David Climent Llorens",
+                "Matías Cocco Sauan",
+                "Victor Chover",
+                "Jose Manuel Borrego Romero",
+                "Victor Chover Ibanyez",
+                "Adrian Soria Gil",
+                "Borja Cosme"
+            ]
+        },
+        {
+            "id": 8,
+            "nombreEquipo": "Equipo 8",
+            "integrantes": [
+                "Francisco Ortiz Astogra",
+                "Jesus Montesinos Soriano",
+                "Alejandro Perez Folgado",
+                "Gabriel Pastor Bonillo",
+                "Yehosua Gimeno Fortuny"
+            ]
+        },
+        {
+            "id": 9,
+            "nombreEquipo": "Equipo 9",
+            "integrantes": [
+                "Antonio Fernandez",
+                "Miguel Tarín",
+                "Hector Ávila",
+                "Gisela Arcon",
+                "Claudia Camps"
+            ]
+        },
+        {
+            "id": 10,
+            "nombreEquipo": "Equipo 10",
+            "integrantes": [
+                "Vicente Moscardó",
+                "Desireé Navarrete",
+                "Sarah Saleh Jansen",
+                "Juan Antonio Muñoz",
+                "Miguel Ángel Bueno",
+                "Juan Carlos Carrasco"
+            ]
+        },
+        {
+            "id": 11,
+            "nombreEquipo": "Equipo 11",
+            "integrantes": [
+                "Adrián Alabarta Castilla",
+                "Julio Candel Iglesias",
+                "Alejandro Santos Carrillo",
+                "Alex Martínez Torres",
+                "Lydia Marín Picazo",
+                "Jose Martínez"
+            ]
+        },
+        {
+            "id": 12,
+            "nombreEquipo": "Equipo 12",
+            "integrantes": [
+                "Victoria Valenciano Morales",
+                "Marina Pascual Sanz",
+                "María Emilia Ruíz Hervás",
+                "Gerardo Renart Ruiz"
+            ]
+        },
+        {
+            "id": 13,
+            "nombreEquipo": "Equipo 13",
+            "integrantes": [
+                "Carla Castellote",
+                "Enya Marí",
+                "Sandra Ruiz",
+                "Jorge Pérez",
+                "Sandra Torán",
+                "Annam Anwar",
+                "Javier Saurat",
+                "Jose María Salvador",
+                "Sandra Civera",
+                "Natalia Zamorano",
+                "David Carrasco"
+            ]
+        },
+        {
+            "id": 14,
+            "nombreEquipo": "Equipo 14",
+            "integrantes": [
+                "MARIA MIRA"
+            ]
+        },
+        {
+            "id": 15,
+            "nombreEquipo": "Equipo 15",
+            "integrantes": [
+                "SANTIAGO MARTINEZ"
+            ]
+        },
+        {
+            "id": 16,
+            "nombreEquipo": "Equipo 16",
+            "integrantes": [
+                "María Jesús Tarín Debon",
+                "Andrea Puchalt Ghidoni",
+                "María Ramón Tort",
+                "Noelia Gomara Anyon",
+                "Paula Marí Pons"
+            ]
         }
     ],
-
     "Aplicaciones": [
         {
             "id": 1,
             "nombreApp": "Marina Craft Beer",
             "descripcion": "Aplicación para el festival MareenaBeer que permite administrar las cervezas usadas con sus respectivas marcas.",
+            "familiaProfesional": "DAM",
             "idEquipo": 1
         },
-
         {
             "id": 2,
-            "nombreApp": "Robotic",
+            "nombreApp": "CapBot Monitor",
             "descripcion": "Aplicación diseñada para mostrar los parámetros de grupos de máquinas del grado de robótica de una forma visual.",
+            "familiaProfesional": "DAM",
             "idEquipo": 2
         },
-
         {
             "id": 3,
             "nombreApp": "BeKeen",
-            "descripcion": "Aplicación de gestión para la asignación de alumnos a empresas.",
+            "descripcion": "BeKeen es la aplicación de gestión eficiente para la asignación de alumnos a empresas pudiendo acceder a toda la información de forma rápida y fácil. Con un solo click podrás consultar cuáles de tus alumnos están en la empresa seleccionada, valorar las empresas y dejar reseñas para futuras selecciones. Todo eso te espera en BeKeen, ¿A qué esperas para dejar de usar un Excel?",
+            "familiaProfesional": "DAM",
             "idEquipo": 3
         },
-
         {
             "id": 4,
             "nombreApp": "APP AUCO",
-            "descripcion": "Sistema de comunicación entre alumnos y profesores con la finalidad de reportar casos de bullying de forma fácil y anonima.",
+            "descripcion": "Consta de un sistema de comunicación entre alumnos y profesores, con la finalidad de reportar casos de bullying, de esta manera, los alumnos por medio de un sistema de reportes y formularios pueden denunciar a través de la aplicación un caso de bullying, el objetivo de esta aplicación es de reducir e incluso eliminar los casos de bullying en los institutos, ofreciendo a los alumnos una herramienta para reportar dichos casos de forma fácil y anonima.",
+            "familiaProfesional": "DAM",
             "idEquipo": 4
         },
-
         {
             "id": 5,
-            "nombreApp": "Florida Ratings",
+            "nombreApp": "Rate it!",
             "descripcion": "Aplicación destinada a la valoración de los distintos proyectos de Florida Expo.",
+            "familiaProfesional": "DAM",
             "idEquipo": 5
+        },
+        {
+            "id": 6,
+            "nombreApp": "JJP AUTOMATION",
+            "descripcion": "Ensambladora de piezas 3D. Lo que pretende es mejorar un proceso industrial de ensamblaje de dos piezas y automatizar un proceso de fabricación haciendo que un mismo operario pueda trabajar con varias máquinas a la vez, mejorando en productividad, tiempo y coste.",
+            "familiaProfesional": "Mecatrónica",
+            "idEquipo": 6
+        },
+        {
+            "id": 7,
+            "nombreApp": "Reciclando el mundo.",
+            "descripcion": "Maqueta formada por 3 grandes partes: Trituradora, robot y almacén, y extrusora. El fin de este proyecto es reciclar tapones de plástico convirtiéndolos en filamento para impresión 3D, dandoles así una segunda vida y contribuyendo a reducir el impacto medioambiental producido por el exceso de plásticos.",
+            "familiaProfesional": "Automatización y Robótica industrial",
+            "idEquipo": 7
+        },
+        {
+            "id": 8,
+            "nombreApp": "SYSVAL",
+            "descripcion": "Implantación, mantenimiento y desarrollo de sistemas informáticos para tu empresa",
+            "familiaProfesional": "ASIR",
+            "idEquipo": 8
+        },
+        {
+            "id": 9,
+            "nombreApp": "L'horta Mágica",
+            "descripcion": "Serie de animación 2D",
+            "familiaProfesional": "Animación 3D y Videojuegos",
+            "idEquipo": 9
+        },
+        {
+            "id": 10,
+            "nombreApp": "Daemon Game (PS4)",
+            "descripcion": "Juego 3D para PS4 de acción y aventura con mecánicas de hack and slash, plataformas y enemigos en modo horda.",
+            "familiaProfesional": "Animación 3D y Videojuegos",
+            "idEquipo": 10
+        },
+        {
+            "id": 11,
+            "nombreApp": "Lost Bullet",
+            "descripcion": "Cinemática disruptiva, basada en la Segunda Guerra Mundial y vivida en primera persona.",
+            "familiaProfesional": "Animación 3D y Videojuegos",
+            "idEquipo": 11
+        },
+        {
+            "id": 12,
+            "nombreApp": "Abacus",
+            "descripcion": "Tras realizar varios estudios en cuanto a la distribución en tienda de la empresa Abacus, hemos logrado desarrollar una mejora a diversos problemas presentes en la tienda. Nuestras mejoras tratan de eliminar zonas no concurridas por los clientes, sustituyéndolas por zonas interactivas en las cuales los clientes puedan probar los diferentes productos a la venta. Estos productos, siendo lo más respetuosos posible con el medio ambiente, sirven de entretenimiento para los niños, creando un entorno tanto de ocio como educativo; entorno en el cual los niños pueden entretenerse mientras los padres realizan sus compras",
+            "familiaProfesional": "GVEC",
+            "idEquipo": 12
+        },
+        {
+            "id": 13,
+            "nombreApp": "AAVV (Agencia de Viajes Escuela)",
+            "descripcion": "El Proyecto Integrado del Grado en Turismo consiste en una Agencia de Viajes Escuela que da soporte y asesoramiento en los viajes de estudios que se organizan en Florida Universitària.",
+            "familiaProfesional": "Turismo",
+            "idEquipo": 13
+        },
+        {
+            "id": 14,
+            "nombreApp": "ECOMERCA",
+            "descripcion": "Creación de comunidades y ciudades sostenibles",
+            "familiaProfesional": "AFI",
+            "idEquipo": 14
+        },
+        {
+            "id": 15,
+            "nombreApp": "ECHO LIGHTNING",
+            "descripcion": "Adoptar medidas urgentes para combatir el cambio climático y sus efectos",
+            "familiaProfesional": "AFI",
+            "idEquipo": 15
+        },
+        {
+            "id": 16,
+            "nombreApp": "Helpfood",
+            "descripcion": "Somos una organización sin ánimo de lucro, con el objetivo de disminuir el hambre. Nuestra organización cuenta con voluntarios y sus aportaciones.",
+            "familiaProfesional": "AFI",
+            "idEquipo": 16
         }
     ],
 
@@ -85,112 +306,146 @@
             "Creatividad": 1,
             "Implementacion": 2,
             "Comunicacion": 4,
-            "idAplicacion": 1            
+            "idAplicacion": 1
         },
         {
             "id": "53875848G",
             "Creatividad": 5,
             "Implementacion": 1,
             "Comunicacion": 2,
-            "idAplicacion": 2            
+            "idAplicacion": 2
         },
         {
             "id": "53875848G",
             "Creatividad": 4,
             "Implementacion": 2,
             "Comunicacion": 5,
-            "idAplicacion": 3           
+            "idAplicacion": 3
         },
         {
             "id": "53875848G",
             "Creatividad": 4,
             "Implementacion": 1,
             "Comunicacion": 3,
-            "idAplicacion": 4          
+            "idAplicacion": 4
         },
         {
             "id": "53875848G",
             "Creatividad": 4,
             "Implementacion": 2,
             "Comunicacion": 2,
-            "idAplicacion": 5           
+            "idAplicacion": 5
         },
         {
             "id": "12645644F",
             "Creatividad": 2,
             "Implementacion": 2,
             "Comunicacion": 5,
-            "idAplicacion": 1            
-        },
-        {
-            "id": "12645644F",
-            "Creatividad": 1,
-            "Implementacion": 2,
-            "Comunicacion": 4,
-            "idAplicacion": 1            
-        },
-        {
-            "id": "53875848G",
-            "Creatividad": 5,
-            "Implementacion": 1,
-            "Comunicacion": 2,
-            "idAplicacion": 2            
-        },
-        {
-            "id": "53875848G",
-            "Creatividad": 4,
-            "Implementacion": 2,
-            "Comunicacion": 5,
-            "idAplicacion": 3           
-        },
-        {
-            "id": "53875848G",
-            "Creatividad": 4,
-            "Implementacion": 1,
-            "Comunicacion": 3,
-            "idAplicacion": 4          
-        },
-        {
-            "id": "53875848G",
-            "Creatividad": 4,
-            "Implementacion": 2,
-            "Comunicacion": 2,
-            "idAplicacion": 5           
-        },
-        {
-            "id": "12645644F",
-            "Creatividad": 2,
-            "Implementacion": 2,
-            "Comunicacion": 5,
-            "idAplicacion": 1            
+            "idAplicacion": 1
         },
         {
             "id": "12645644F",
             "Creatividad": 1,
             "Implementacion": 1,
             "Comunicacion": 4,
-            "idAplicacion": 2            
+            "idAplicacion": 2
         },
         {
             "id": "12645644F",
             "Creatividad": 3,
             "Implementacion": 2,
             "Comunicacion": 1,
-            "idAplicacion": 3           
+            "idAplicacion": 3
         },
         {
             "id": "12645644F",
             "Creatividad": 1,
             "Implementacion": 1,
             "Comunicacion": 5,
-            "idAplicacion": 4          
+            "idAplicacion": 4
         },
         {
             "id": "12645644F",
             "Creatividad": 3,
             "Implementacion": 2,
             "Comunicacion": 2,
-            "idAplicacion": 5           
+            "idAplicacion": 5
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 4
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 2
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 1
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 3
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 5
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 4
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 2
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 1
+        },
+        {
+            "id": "H",
+            "Creatividad": 3,
+            "Implementacion": 3,
+            "Comunicacion": 3,
+            "idAplicacion": 3
+        }
+
+    ],
+    "Imagenes": [
+        {
+            "url": "https://i.imgur.com/1Lisqti.jpg",
+            "idEquipo": 1
         }
     ]
 }
