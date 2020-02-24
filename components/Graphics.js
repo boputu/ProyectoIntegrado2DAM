@@ -4,7 +4,16 @@ import 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import * as Progress from 'react-native-progress';
 
-import { View, Text, StyleSheet } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    SafeAreaView,
+    ScrollView,
+    Dimensions,
+    FlatList,
+} from 'react-native';
+
 import { anyTypeAnnotation } from '@babel/types';
 
 class Graphics extends React.Component {
@@ -15,15 +24,18 @@ class Graphics extends React.Component {
     render() {
         return (
 
+
+
             <View>
-                <Text style={styles.label}>{this.props.nombreApp}  <Ionicons name="ios-speedometer" color='red' size={25} /></Text>
+
+                <Text style={styles.label}>{this.props.nombreApp}  <Ionicons name="md-stats" color='grey' size={25} /></Text>
                 <View style={styles.StatsContainer}>
                     <Text style={styles.label3}>Creatividad e innovación</Text>
-                    <Text style={styles.totalRate}>{this.props.ci}</Text>
+                    <Text style={styles.totalRate}>{this.props.ci} <Ionicons name="ios-star" color='black' size={15} /></Text>
                 </View>
                 <Progress.Bar
                     styles={{ margin: 10 }}
-                    color={'red'}
+                    color={this.props.colorBarCi}
                     width={null}
                     height={15}
                     progress={this.props.ciBar}
@@ -32,11 +44,11 @@ class Graphics extends React.Component {
                 <View style={styles.margin}>
                     <View style={styles.StatsContainer}>
                         <Text style={styles.label3}>Implementación y transferibilidad</Text>
-                        <Text style={styles.totalRate}>{this.props.it}</Text>
+                        <Text style={styles.totalRate}>{this.props.it} <Ionicons name="ios-star" color='black' size={15} /></Text>
                     </View>
                     <Progress.Bar
                         styles={{ margin: 10 }}
-                        color={'red'}
+                        color={this.props.colorBarIt}
                         width={null}
                         height={15}
                         progress={this.props.itBar}
@@ -47,11 +59,11 @@ class Graphics extends React.Component {
                 <View style={styles.margin}>
                     <View style={styles.StatsContainer}>
                         <Text style={styles.label3}>Comunicación y usabilidad</Text>
-                        <Text style={styles.totalRate}>{this.props.cu}</Text>
+                        <Text style={styles.totalRate}>{this.props.cu} <Ionicons name="ios-star" color='black' size={15} /></Text>
                     </View>
                     <Progress.Bar
                         styles={{ margin: 10 }}
-                        color={'red'}
+                        color={this.props.colorBarCu}
                         width={null}
                         height={15}
                         progress={this.props.cuBar}
@@ -60,11 +72,11 @@ class Graphics extends React.Component {
                 {/*<View style={[styles.StatsContainer, styles.margin]}>
                     <Text style={styles.label2}>Total de votos:</Text>
                     <Text style={styles.totalRate}>{this.props.total}</Text>
-                </View>
+                </View>*/}
                 <View style={[styles.StatsContainer, styles.margin]}>
                     <Text style={styles.label2}>Media de votos:</Text>
                     <Text style={styles.totalRate}>{this.props.media}</Text>
-                </View>*/}
+                </View>
 
                 <View
                     style={{
@@ -73,6 +85,7 @@ class Graphics extends React.Component {
                         borderBottomWidth: 1,
                     }}
                 />
+
             </View>
         );
     }
@@ -148,6 +161,7 @@ const styles = StyleSheet.create({
         marginTop: 15
     }
 })
+
 
 
 export default Graphics;
