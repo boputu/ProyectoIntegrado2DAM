@@ -151,7 +151,7 @@ class CasillaApp extends Component {
                 style={styles.overlayButton}
                 onPress={this.toggleOverlay}
                 >
-                <Ionicons style={styles.icon} name="md-information"/>
+                <Ionicons style={styles.icon} name="md-information-circle"/>
               </TouchableOpacity>
 
               <Overlay
@@ -223,8 +223,8 @@ const styles = StyleSheet.create({
   icon: {
     justifyContent: "center",
     alignItems: "center",
-    fontSize: 40,
-    color: 'red',
+    fontSize: 30,
+    color: 'grey',
     opacity: 0.7
   },
 

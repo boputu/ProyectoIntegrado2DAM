@@ -29,6 +29,18 @@ export default class RateScreen extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: 'Valora la App!',
+    headerStyle: {
+      backgroundColor: '#e61a31',
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      textAlign: 'center'
+    },
+  };
+
   getData(id) {
     this.setState({isLoading: true})
     fetch(Global.url + "Equipos/" + id)
@@ -48,13 +60,14 @@ export default class RateScreen extends Component {
 
   getImagen(id){
     this.setState({isLoading: true})
-    fetch(Global.url + "Imagenes?idEquipo=" + id)
+    fetch(Global.url + "Imagenes/" + id)
       .then(res => res.json())
       .then(res => {
         this.setState({
           urlImagen: res,
           isLoading: false,
         });
+        console.log(Global.url + "Imagenes/" + id);
       });
   }
 
@@ -85,7 +98,6 @@ export default class RateScreen extends Component {
       )
     }
     else {
-      console.log(this.state.urlImagen);
       return (
         <View style={styles.mainContainer}>
 
