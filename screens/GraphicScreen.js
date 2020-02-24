@@ -14,6 +14,7 @@ import {
   View,
   SafeAreaView,
   ScrollView,
+  TouchableHighlight,
   Dimensions,
   FlatList,
 } from 'react-native';
@@ -399,7 +400,6 @@ export default class GraphicScreen extends Component {
 
       return (
 
-
         <View style={styles.mainContainer}>
           <Text style={styles.title}>Media General  <Ionicons name="ios-stats" color='black' size={25} /></Text>
 
@@ -414,40 +414,40 @@ export default class GraphicScreen extends Component {
 
                   let colorCi;
 
-                  if(item.creatividad.toFixed(1) == 1 || item.creatividad.toFixed(1) == 2){
-                      colorCi="red";
+                  if (item.creatividad.toFixed(1) == 1 || item.creatividad.toFixed(1) == 2) {
+                    colorCi = "red";
                   }
-                  if(item.creatividad.toFixed(1) == 3){
-                      colorCi="orange";
+                  if (item.creatividad.toFixed(1) == 3) {
+                    colorCi = "orange";
                   }
-                  if(item.creatividad.toFixed(1) == 5 || item.creatividad.toFixed(1) == 4){
-                      colorCi="green";
+                  if (item.creatividad.toFixed(1) == 5 || item.creatividad.toFixed(1) == 4) {
+                    colorCi = "green";
                   }
 
-                  
+
                   let colorIt;
 
-                  if(item.implementacion.toFixed(1) == 1 || item.implementacion.toFixed(1) == 2){
-                      colorIt="red";
+                  if (item.implementacion.toFixed(1) == 1 || item.implementacion.toFixed(1) == 2) {
+                    colorIt = "red";
                   }
-                  if(item.implementacion.toFixed(1) == 3){
-                      colorIt="orange";
+                  if (item.implementacion.toFixed(1) == 3) {
+                    colorIt = "orange";
                   }
-                  if(item.implementacion.toFixed(1) == 5 || item.implementacion.toFixed(1) == 4){
-                      colorIt="green";
+                  if (item.implementacion.toFixed(1) == 5 || item.implementacion.toFixed(1) == 4) {
+                    colorIt = "green";
                   }
 
-                  
+
                   let colorCu;
 
-                  if(item.comunicacion.toFixed(1) == 1 || item.comunicacion.toFixed(1) == 2){
-                      colorCu="red";
+                  if (item.comunicacion.toFixed(1) == 1 || item.comunicacion.toFixed(1) == 2) {
+                    colorCu = "red";
                   }
-                  if(item.comunicacion.toFixed(1) == 3){
-                      colorCu="orange";
+                  if (item.comunicacion.toFixed(1) == 3) {
+                    colorCu = "orange";
                   }
-                  if(item.comunicacion.toFixed(1) == 5 || item.comunicacion.toFixed(1) == 4){
-                      colorCu="green";
+                  if (item.comunicacion.toFixed(1) == 5 || item.comunicacion.toFixed(1) == 4) {
+                    colorCu = "green";
                   }
 
                   return (
@@ -455,7 +455,6 @@ export default class GraphicScreen extends Component {
                     <Graphics
                       //Nombre de todas las apps
                       nombreApp={item.nombreApp}
-
 
                       //Color barra CI
                       colorBarCi={colorCi}
@@ -539,6 +538,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
     fontFamily: 'arvo',
+  },
+
+  scanContainer: {
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 20,
+  },
+
+  loginButton: {
+    backgroundColor: "#2f95dc",
+    borderRightColor: '#2577b0',
+    borderRightWidth: 5,
+    borderLeftColor: '#2577b0',
+    borderLeftWidth: 5,
   },
 
   countUsers: {
