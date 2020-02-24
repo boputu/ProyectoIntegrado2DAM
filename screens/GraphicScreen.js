@@ -17,6 +17,7 @@ import {
   TouchableHighlight,
   Dimensions,
   FlatList,
+  ActivityIndicator
 } from 'react-native';
 
 import Global from '../constants/Global';
@@ -501,8 +502,8 @@ export default class GraphicScreen extends Component {
     }
     else {
       return (
-        <View>
-          <Text>Cargando...</Text>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: 'center' }}>
+          <ActivityIndicator size="large" animating></ActivityIndicator>
         </View>
       );
     }

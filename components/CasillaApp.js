@@ -69,7 +69,7 @@ class CasillaApp extends Component {
 
     if(this.state.disabled == true){
       return (
-        <View style={styles.mainContainer} style={{opacity:0.3}}>
+        <View style={styles.mainContainer} style={{opacity:0.5}}>
   
           <TouchableOpacity style={styles.itemContainer}
             onPress={() => alert("Proyecto ya votado")}
@@ -78,24 +78,43 @@ class CasillaApp extends Component {
             <View style={styles.item_LogoContainer}>
               <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
             </View>
-  
+
+          </TouchableOpacity>
+
             <View style={styles.item_DescriptionContainer}>
   
               <Text style={styles.textName}>
                 {this.props.nombre}
               </Text>
-  
-              <Text style={styles.textTeam}>
-                {this.props.equipo}
-              </Text>
 
-              <Text style={styles.textDescription}>
-                {this.props.descripcion}
-              </Text> 
+              <Text style={styles.textTeam}>
+                {this.props.familia}
+              </Text>
   
             </View>
   
-          </TouchableOpacity>
+            <View style={styles.overlayContainer}>
+
+              <TouchableOpacity
+                style={styles.overlayButton}
+                onPress={this.toggleOverlay}
+                >
+                <Ionicons style={styles.icon} name="md-information"/>
+              </TouchableOpacity>
+
+              <Overlay
+                isVisible={this.state.isVisible}
+                onBackdropPress={this.toggleOverlay}
+                height="auto"
+                >
+                <View>
+                  <Text style={styles.textOverlay}>
+                    {this.props.descripcion}
+                  </Text>
+                </View>
+              </Overlay>
+
+            </View> 
   
         </View>
       );
