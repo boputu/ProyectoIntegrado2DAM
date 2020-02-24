@@ -7,17 +7,14 @@ import {
   Text,
   View,
   FlatList,
-  TouchableHighlight,
   ActivityIndicator
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import AwesomeButton from "react-native-really-awesome-button";
+
 import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/cartman';
 
 import CasillaApp from '../components/CasillaApp';
 
 import Global from '../constants/Global';
-import { red } from 'react-native-redash';
 
 export default class HomeScreen extends Component {
 

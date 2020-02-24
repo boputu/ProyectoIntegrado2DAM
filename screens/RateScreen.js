@@ -7,10 +7,12 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ActivityIndicator
 } from 'react-native';
 import { TouchableOpacity, TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
 import CustomSlider from '../components/customSlider';
+
 
 import Global from '../constants/Global';
 
@@ -20,7 +22,7 @@ export default class RateScreen extends Component {
     super(props);
     this.state = {
       dataEquipo: null,
-      dataImagenes: null,
+      urlImagen: "",
       isLoading: true,
       integrantes: "",
       valoracion: {},
@@ -28,6 +30,7 @@ export default class RateScreen extends Component {
   }
 
   getData(id) {
+    this.setState({isLoading: true})
     fetch(Global.url + "Equipos/" + id)
       .then(res => res.json())
       .then(res => {
@@ -41,12 +44,15 @@ export default class RateScreen extends Component {
         });
         this.setState({ integrantes: integrantes });
       });
+  }
 
-      fetch(Global.url + "Imagenes?idEquipo=" + id)
+  getImagen(id){
+    this.setState({isLoading: true})
+    fetch(Global.url + "Imagenes?idEquipo=" + id)
       .then(res => res.json())
       .then(res => {
         this.setState({
-          dataImagenes: res,
+          urlImagen: res,
           isLoading: false,
         });
       });
@@ -55,6 +61,7 @@ export default class RateScreen extends Component {
   componentWillMount() {
     let id = this.props.navigation.getParam("id");
     this.getData(id);
+    this.getImagen(id);
   }
 
   valorateApp(id) {
@@ -72,8 +79,10 @@ export default class RateScreen extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View><Text>Cargando</Text></View>
-      );
+        <View style={{ flex: 1, alignItems: "center", justifyContent: 'center' }}>
+          <ActivityIndicator size="large" animating></ActivityIndicator>
+        </View>
+      )
     }
     else {
       return (
@@ -81,10 +90,8 @@ export default class RateScreen extends Component {
 
           <View style={styles.appContainer}>
 
-
-            <Image source={{uri: "https://i.imgur.com/Qv4S7p7.png"}}
+            <Image source={{uri: this.state.urlImagen.url}}
             style={styles.image}></Image>
-
 
             <View style={styles.app_DescriptionContainer}>
 
