@@ -105,27 +105,34 @@ class CasillaApp extends Component {
         <View style={styles.mainContainer}>
   
           <TouchableOpacity style={styles.itemContainer}
-            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.idEquipo, nombre: this.props.nombre, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
+            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, nombre: this.props.nombre, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
           >
   
             <View style={styles.item_LogoContainer}>
               <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
             </View>
 
+          </TouchableOpacity>
+
             <View style={styles.item_DescriptionContainer}>
   
-              <View style={styles.nameContainer}>
+              <Text style={styles.textName}>
+                {this.props.nombre}
+              </Text>
 
-                <Text style={styles.textName}>
-                  {this.props.nombre}
-                </Text>
+              <Text style={styles.textTeam}>
+                {this.props.familia}
+              </Text>
 
-              </View>
+            </View>
+
+            <View style={styles.overlayContainer}>
 
               <TouchableOpacity
                 style={styles.overlayButton}
-                onPress={this.toggleOverlay}>
-                <Ionicons style={styles.icon} name="ios-information-circle" />
+                onPress={this.toggleOverlay}
+                >
+                <Ionicons style={styles.icon} name="md-information"/>
               </TouchableOpacity>
 
               <Overlay
@@ -140,15 +147,7 @@ class CasillaApp extends Component {
                 </View>
               </Overlay>
 
-            </View>
-  
-            <View style={styles.teamContainer}>
-              <Text style={styles.textTeam}>
-                {this.props.familia}
-              </Text>
-            </View>
-  
-          </TouchableOpacity>
+            </View> 
 
         </View>
       );
@@ -162,13 +161,14 @@ export default CasillaApp;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    backgroundColor: "#ebebeb",
   },
 
   itemContainer: {
     justifyContent: "center",
     alignItems: "center",
 
-    marginTop: 15
+    marginTop: 15,
   },
 
   item_LogoContainer: {
@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
 
   item_DescriptionContainer: {
     flex: 1 / 3,
-    flexDirection:  "row",
     justifyContent: 'center',
     alignItems: "center",
 
@@ -203,9 +202,11 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    fontSize: 30,
-    color: 'black',
-    opacity: 0.5
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 40,
+    color: 'red',
+    opacity: 0.7
   },
 
   nameContainer: {
@@ -214,6 +215,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
 
     marginLeft: 5,
+  },
+
+  overlayContainer: {
+    position: "absolute",
+
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   overlayButton: {

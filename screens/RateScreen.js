@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { TouchableOpacity, TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
 import CustomSlider from '../components/customSlider';
-
+import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman';
 
 import Global from '../constants/Global';
 
@@ -147,18 +147,16 @@ export default class RateScreen extends Component {
 
           <View style={styles.buttonContainer}>
 
-            <TouchableOpacity onPress={() => this.valorateApp(this.props.navigation.getParam("id"))}>
+            <AwesomeButtonCartman onPress={() => this.valorateApp(this.props.navigation.getParam("id"))}>
               <LinearGradient
                 start={[0, 0.5]}
                 end={[1, 0.5]}
-                colors={['orange', 'red']}
-                style={{ borderRadius: 5 }}>
+                colors={['orange', 'red']}>
                 <View style={styles.circleGradient}>
-                  <Text style={styles.visit}>Valorar Aplicación   <Ionicons style={styles.inputIcon} name="ios-star" color="green" size={25} /></Text>
+                  <Text style={styles.visit}>Valorar Aplicación   <Ionicons name="ios-star" color="white" size={30} /></Text>
                 </View>
               </LinearGradient>
-            </TouchableOpacity>
-
+            </AwesomeButtonCartman>
 
           </View>
 
@@ -171,14 +169,13 @@ export default class RateScreen extends Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: "#DCDCDC"
+    backgroundColor: "#ebebeb"
   },
 
   appContainer: {
     flex: 3,
     flexDirection: "row",
     marginBottom: 30,
-    borderWidth: 1
   },
 
   app_LogoContainer: {
@@ -188,12 +185,10 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: "center",
-
-    borderWidth: 1
   },
 
   image: {
-    width: "40%",
+    width: "45%",
     resizeMode: "contain",
     padding: 20
 
@@ -203,7 +198,8 @@ const styles = StyleSheet.create({
     flex: 2,
     marginRight: 10,
 
-    borderWidth: 1
+    borderLeftColor: 'red',
+    borderLeftWidth: 1
   },
 
   teamContainer: {
@@ -274,6 +270,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+
+    marginBottom: 20
   },
 
   buttonComplete: {
@@ -294,8 +292,7 @@ const styles = StyleSheet.create({
     margin: 4,
     paddingHorizontal: 6,
     textAlign: "center",
-    backgroundColor: "#DCDCDC",
-    color: 'black',
+    color: 'white',
     fontSize: 25,
     fontFamily: 'arvo',
   },
@@ -304,7 +301,6 @@ const styles = StyleSheet.create({
     width: 350,
     height: 40,
     margin: 1,
-    borderRadius: 5
   },
 
 })

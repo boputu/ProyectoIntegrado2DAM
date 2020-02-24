@@ -10,7 +10,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import AwesomeButtonRick from 'react-native-really-awesome-button/src/themes/cartman';
+import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman';
 
 import CasillaApp from '../components/CasillaApp';
 
@@ -168,7 +168,7 @@ export default class HomeScreen extends Component {
 
           <View style={styles.buttonContainer}>
 
-            <AwesomeButtonRick
+            <AwesomeButtonCartman
               type="secondary"
               stretch="true"
               progress
@@ -185,7 +185,7 @@ export default class HomeScreen extends Component {
               }}
             >
               Completar Valoraciones
-            </AwesomeButtonRick>
+            </AwesomeButtonCartman>
 
           </View>
 
@@ -211,6 +211,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "center",
     alignItems: "center",
+
+    backgroundColor: "#ebebeb",
   },
 
 })
