@@ -154,7 +154,7 @@ export default class HomeScreen extends Component {
                 <View style={[{ flex: 1, backgroundColor: "white" }, index % 2 == 0 ? { marginRight: 0.5 } : { marginLeft: 0.5 }]}>
                   <CasillaApp
                     nombre={item.nombreApp}
-                    idEquipo={item.idEquipo}
+                    equipo={item.idEquipo}
                     familia={item.familiaProfesional}
                     descripcion={item.descripcion}
                     navigation={this.props.navigation}
