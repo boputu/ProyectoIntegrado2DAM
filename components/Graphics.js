@@ -57,14 +57,14 @@ class Graphics extends React.Component {
                         progress={this.props.cuBar}
                     />
                 </View>
-                <View style={[styles.StatsContainer, styles.margin]}>
+                {/*<View style={[styles.StatsContainer, styles.margin]}>
                     <Text style={styles.label2}>Total de votos:</Text>
                     <Text style={styles.totalRate}>{this.props.total}</Text>
                 </View>
                 <View style={[styles.StatsContainer, styles.margin]}>
                     <Text style={styles.label2}>Media de votos:</Text>
                     <Text style={styles.totalRate}>{this.props.media}</Text>
-                </View>
+                </View>*/}
 
                 <View
                     style={{

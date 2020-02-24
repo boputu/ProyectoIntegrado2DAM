@@ -29,6 +29,7 @@ export default class GraphicScreen extends Component {
       progress: 0,
       indeterminate: true,
       urlValoraciones: Global.url + "Valoraciones",
+      urlAplicaciones: Global.url + "Aplicaciones",
       countUsers: 1,
       valoraciones: undefined,
       /*
@@ -46,6 +47,20 @@ export default class GraphicScreen extends Component {
   }
 
   getData() {
+    fetch(this.state.urlAplicaciones)
+    .then(respuesta => {
+      if(respuesta.ok){
+        return respuesta.json();
+      }
+      else{
+        console.log("Error")
+      }
+    })
+    .then(respuestaJSON => {
+      this.setState({aplicaciones: respuestaJSON})
+    })
+    .catch(error => console.log(error))
+
 
     fetch(this.state.urlValoraciones)
     .then(respuesta => {
@@ -59,7 +74,13 @@ export default class GraphicScreen extends Component {
     .then(respuestaJSON => {
       respuestaJSON.forEach(valoracion => {
         if(this.state.valoraciones == undefined){
-          this.setState({valoraciones: [{idApp:valoracion.idAplicacion, creatividad:valoracion.Creatividad, implementacion:valoracion.Implementacion, comunicacion:valoracion.Comunicacion}]})
+          let nombreApp = "";
+          this.state.aplicaciones.forEach(aplicacion => {
+            if(aplicacion.id == valoracion.idAplicacion){
+              nombreApp = aplicacion.nombreApp;
+            }
+          });
+          this.setState({valoraciones: [{idApp:valoracion.idAplicacion, nombreApp: nombreApp, creatividad:valoracion.Creatividad, implementacion:valoracion.Implementacion, comunicacion:valoracion.Comunicacion}]})
         }
         else{
           let appRegistrada = false;
@@ -85,7 +106,13 @@ export default class GraphicScreen extends Component {
             this.forceUpdate();
           }
           else{
-            this.state.valoraciones.push({idApp:valoracion.idAplicacion, creatividad:valoracion.Creatividad, implementacion:valoracion.Implementacion, comunicacion:valoracion.Comunicacion});
+          let nombreApp = "";
+          this.state.aplicaciones.forEach(aplicacion => {
+            if(aplicacion.id == valoracion.idAplicacion){
+              nombreApp = aplicacion.nombreApp;
+            }
+          });
+            this.state.valoraciones.push({idApp:valoracion.idAplicacion, nombreApp: nombreApp, creatividad:valoracion.Creatividad, implementacion:valoracion.Implementacion, comunicacion:valoracion.Comunicacion});
           }
         }
       });
@@ -368,7 +395,7 @@ export default class GraphicScreen extends Component {
 
       return (
         <View style={styles.mainContainer}>
-          <Text style={styles.title}>Media General  <Ionicons name="ios-stats" color='black' size={25} /></Text>
+          {/*<Text style={styles.title}>Media General  <Ionicons name="ios-stats" color='black' size={25} /></Text>
           <Text style={styles.countUsers}>Han votado {this.state.countUsers} usuarios  <Ionicons name="ios-man" color='black' size={14} /></Text>
 
           <SafeAreaView style={styles.container}>
@@ -405,9 +432,43 @@ export default class GraphicScreen extends Component {
               />
 
             </ScrollView>
-          </SafeAreaView>
+      </SafeAreaView>*/}
 
-        </View>
+      <FlatList
+      data={this.state.valoraciones}
+      renderItem={({item}) => (
+      <Graphics
+        //Nombre de todas las apps
+        nombreApp={item.nombreApp}
+
+        //Puntuación creatividad e innovacion
+        ci={this.state.valoraciones.creatividad}
+
+        //Barra progreso creatividad e innovación / 100
+        ciBar={item.creatividad/5}
+
+        //Puntuación implementación y transferibilidad
+        it={this.state.valoraciones.implementacion}
+
+        //Barra progreso implementación y transferibilidad / 100
+        itBar={item.implementacion/5}
+
+        //Puntuación comunicación y usabilidad
+        cu={this.state.valoraciones.comunicacion}
+
+        //Barra progreso comunicación y usabilidad / 100
+        cuBar={item.comunicacion/5}
+
+        //Suma de ci,it,cu
+        total={this.state.valoraciones.creatividad+this.state.valoraciones.implementacion+this.state.valoraciones.comunicacion}
+
+        //Suma de ci,it,cu / 3
+        media={(this.state.valoraciones.creatividad+this.state.valoraciones.implementacion+this.state.valoraciones.comunicacion)/3}
+        />
+        )}
+      />
+
+      </View>
       );
     }
     else {
