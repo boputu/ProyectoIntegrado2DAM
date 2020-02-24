@@ -85,6 +85,7 @@ export default class RateScreen extends Component {
       )
     }
     else {
+      console.log(this.state.urlImagen);
       return (
         <View style={styles.mainContainer}>
 

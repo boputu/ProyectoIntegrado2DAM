@@ -59,8 +59,8 @@ export default class LoggingScreen extends Component {
               }
             }
           });
-  
-  
+
+
           if (this.state.accepted) {
             const { navigate } = this.props.navigation;
             if (this.state.qrTEL == "") {
@@ -73,12 +73,12 @@ export default class LoggingScreen extends Component {
             alert("Ya ha votado");
           }
         }
-        else{
+        else {
           this.props.navigation.navigate('Graphic', { qr: this.state.qrTEL });
           //alert("No permiso");
           //Comprobar aqui con los codigos que nos dara manel
 
-        }        
+        }
       });
   }
 
@@ -88,7 +88,7 @@ export default class LoggingScreen extends Component {
   }
 
   static navigationOptions = {
-    title: '',
+    title: 'Rate it!',
     headerStyle: {
       backgroundColor: '#e61a31',
     },
@@ -109,33 +109,18 @@ export default class LoggingScreen extends Component {
         <View style={styles.container}>
 
           <Image
-            style={{ width: 150, height: 150, marginBottom: 50 }}
+            style={{ width: 400, height: 150, marginBottom: 50 }}
             source={require('../images/florida.png')}
           />
-
-          <View style={styles.inputContainer}>
-            <Ionicons style={styles.inputIcon} name="ios-qr-scanner" size={26} />
-            <TextInput style={styles.inputs}
-              placeholder="Escriba un código"
-              value={this.state.qrData}
-              keyboardType="email-address"
-              underlineColorAndroid='transparent'
-              onChangeText={(qrData) => this.setState({ qrData })} />
-          </View>
-
           <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
             onPress={() => { this.renderCamera() }}>
-            <Text style={styles.loginText}>Scanear QR</Text>
+            <Text style={styles.loginText}>Scanear QR <Ionicons name="ios-barcode" color='white' size={18} /></Text>
           </TouchableHighlight>
 
-          <AwesomeButtonCartman
-            type="secondary"
-            common
-            width={250}
-            onPress={() => { this.aceptar() }}
-          >
-            <Ionicons style={styles.inputIcon} name="md-checkmark" color='white' size={40} />
-          </AwesomeButtonCartman>
+          <TouchableHighlight style={[styles.scanContainer, styles.graphicButton]}
+            onPress={() => { this.props.navigation.navigate('Graphic') }}>
+            <Text style={styles.loginText}>Consultar gráficos <Ionicons name="ios-stats" color='white' size={20} /></Text>
+          </TouchableHighlight>
 
           {this.state.rendered && (
             <BarCodeScanner
@@ -306,6 +291,16 @@ const styles = StyleSheet.create({
     borderLeftColor: '#2577b0',
     borderLeftWidth: 5,
   },
+
+  graphicButton: {
+    backgroundColor: "grey",
+    borderRightColor: '#e61a31',
+    borderRightWidth: 5,
+    borderLeftColor: '#e61a31',
+    borderLeftWidth: 5,
+  },
+
+
   aceptarButton: {
     backgroundColor: "#818285",
     borderRightColor: '#a8f748',
@@ -315,6 +310,8 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: 'white',
+    fontSize: 18,
+    fontFamily:'arvo'
   },
   button: {
     alignItems: 'center',
