@@ -105,7 +105,7 @@ class CasillaApp extends Component {
         <View style={styles.mainContainer}>
   
           <TouchableOpacity style={styles.itemContainer}
-            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.idEquipo, nombre: this.props.nombre, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
+            onPress={() => this.props.navigation.navigate('Rate', { id: this.props.equipo, nombre: this.props.nombre, yaVotados: this.state.yaVotados, idUsu:this.props.navigation.getParam('qr', 'NO-QR'), valoraciones: this.props.valoraciones })}
           >
   
             <View style={styles.item_LogoContainer}>

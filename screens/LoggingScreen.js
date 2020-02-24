@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   KeyboardAvoidingView,
   Dimensions,
   TouchableHighlight,
@@ -18,7 +17,6 @@ import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Global from '../constants/Global';
-import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman'
 
 const { width } = Dimensions.get('screen');
 
@@ -60,7 +58,6 @@ export default class LoggingScreen extends Component {
             }
           });
 
-
           if (this.state.accepted) {
             const { navigate } = this.props.navigation;
             if (this.state.qrTEL == "") {
@@ -74,7 +71,7 @@ export default class LoggingScreen extends Component {
           }
         }
         else {
-          this.props.navigation.navigate('Graphic', { qr: this.state.qrTEL });
+          this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
           //alert("No permiso");
           //Comprobar aqui con los codigos que nos dara manel
 
@@ -109,17 +106,17 @@ export default class LoggingScreen extends Component {
         <View style={styles.container}>
 
           <Image
-            style={{ width: 400, height: 150, marginBottom: 50 }}
+            style={{ width: 300, height: 150, marginBottom: 50, resizeMode: "contain"}}
             source={require('../images/florida.png')}
           />
           <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
             onPress={() => { this.renderCamera() }}>
-            <Text style={styles.loginText}>Scanear QR <Ionicons name="ios-barcode" color='white' size={18} /></Text>
+            <Text style={styles.loginText}>Escanear QR   <Ionicons name="ios-barcode" color='white' size={25} /></Text>
           </TouchableHighlight>
 
           <TouchableHighlight style={[styles.scanContainer, styles.graphicButton]}
             onPress={() => { this.props.navigation.navigate('Graphic') }}>
-            <Text style={styles.loginText}>Consultar gráficos <Ionicons name="ios-stats" color='white' size={20} /></Text>
+            <Text style={styles.loginText}>Consultar gráficos   <Ionicons name="ios-stats" color='white' size={25} /></Text>
           </TouchableHighlight>
 
           {this.state.rendered && (
