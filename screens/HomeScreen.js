@@ -98,7 +98,7 @@ export default class HomeScreen extends Component {
     let qr = navigation.state.params.qr;
     return {
       title: qr,
-      headerRight: (<Ionicons style={{ paddingRight: 100 }} name="ios-qr-scanner" color='yellow' size={30} />),
+      headerRight: (<Ionicons style={{ paddingRight: 150 }} name="ios-qr-scanner" color='yellow' size={30} />),
       headerStyle: {
         backgroundColor: '#e61a31',
       },
