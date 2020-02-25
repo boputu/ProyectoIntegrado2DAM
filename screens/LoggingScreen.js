@@ -42,12 +42,14 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: true });
   }
 
-  aceptar(url,tel) {
+  aceptar(url, tel,data) {
     fetch(this.state.urlValoraciones)
       .then(res => res.json())
       .then(res => {
 
         console.log(url);
+        console.log(tel);
+
         if (url == "www.floridauniversitaria.es") {
           this.state.accepted = true;
           res.forEach(valoracion => {
@@ -63,7 +65,7 @@ export default class LoggingScreen extends Component {
             if (tel == "") {
               Alert.alert("Escanea un código QR")
             } else {
-              navigate('Home', { qr: tel });
+              //navigate('Home', { qr: tel });
             }
           }
           else {
@@ -106,7 +108,7 @@ export default class LoggingScreen extends Component {
         <View style={styles.container}>
 
           <Image
-            style={{ width: 300, height: 150, marginBottom: 50, resizeMode: "contain"}}
+            style={{ width: 300, height: 150, marginBottom: 50, resizeMode: "contain" }}
             source={require('../images/florida.png')}
           />
           <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
@@ -158,7 +160,7 @@ export default class LoggingScreen extends Component {
     this.state.qrURL = data.substring(161, 188);
     this.state.qrTEL = data.substring(42, 51);
 
-    this.aceptar(this.state.qrURL,this.state.qrTEL);
+    this.aceptar(this.state.qrURL, this.state.qrTEL,data);
 
     /*let url = "";
     let corretoCount = 0;
@@ -308,7 +310,7 @@ const styles = StyleSheet.create({
   loginText: {
     color: 'white',
     fontSize: 18,
-    fontFamily:'arvo'
+    fontFamily: 'arvo'
   },
   button: {
     alignItems: 'center',
