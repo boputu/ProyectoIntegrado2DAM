@@ -28,6 +28,7 @@ export default class HomeScreen extends Component {
       urlImagenes: Global.url + "Imagenes",
       imagenes:[],
       modalVisible: false,
+      valoracionesJSON:""
     }
   }
   componentDidUpdate(prevProps) {
@@ -58,10 +59,15 @@ export default class HomeScreen extends Component {
   }
 
   sendValoration() {
-    this.state.valoraciones.array.forEach(valoracion => {
+
+      this.state.valoraciones.forEach(valoracion => {
+        this.state.valoracionesJSON+=valoracion+",";
+      });
+      alert(this.state.valoracionesJSON.toString());
+
       fetch(this.state.urlValoraciones, {
         method: 'POST', // or 'PUT'
-        body: JSON.stringify(valoracion), // data can be `string` or {object}!
+        body: JSON.stringify(this.state.valoraciones), // data can be `string` or {object}!
         headers: {
           'Content-Type': 'application/json'
         }
@@ -81,9 +87,6 @@ export default class HomeScreen extends Component {
         .catch(error => {
           console.log("Error de red: " + error);
         });
-    });
-    
-
   }
 
 
