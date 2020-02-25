@@ -83,28 +83,31 @@ export default class HomeScreen extends Component {
   }
 
   sendValoration() {
-    fetch(this.state.urlValoraciones, {
-      method: 'POST', // or 'PUT'
-      body: JSON.stringify(this.state.valoraciones), // data can be `string` or {object}!
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((respuesta) => {
-        if (respuesta.ok) {
-          return respuesta.json();
-        } else {
-          console.log("Error haciendo POST");
+    this.state.valoraciones.array.forEach(valoracion => {
+      fetch(this.state.urlValoraciones, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(valoracion), // data can be `string` or {object}!
+        headers: {
+          'Content-Type': 'application/json'
         }
       })
-      .then(respuestaJSON => {
-        console.log(respuestaJSON);
-        alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
-
-      })
-      .catch(error => {
-        console.log("Error de red: " + error);
-      });
+        .then((respuesta) => {
+          if (respuesta.ok) {
+            return respuesta.json();
+          } else {
+            console.log("Error haciendo POST");
+          }
+        })
+        .then(respuestaJSON => {
+          console.log(respuestaJSON);
+          //alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
+  
+        })
+        .catch(error => {
+          console.log("Error de red: " + error);
+        });
+    });
+    
 
   }
 
