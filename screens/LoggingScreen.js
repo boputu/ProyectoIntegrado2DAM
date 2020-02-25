@@ -42,17 +42,17 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: true });
   }
 
-  aceptar() {
+  aceptar(url,tel) {
     fetch(this.state.urlValoraciones)
       .then(res => res.json())
       .then(res => {
 
-        alert(this.state.qrURL);
-        if (this.state.qrURL == "www.floridauniversitaria.es") {
+        console.log(url);
+        if (url == "www.floridauniversitaria.es") {
           this.state.accepted = true;
           res.forEach(valoracion => {
             if (valoracion[0] != undefined) {
-              if (valoracion[0].id == this.state.qrTEL) {
+              if (valoracion[0].id == tel) {
                 this.state.accepted = false;
               }
             }
@@ -60,19 +60,19 @@ export default class LoggingScreen extends Component {
 
           if (this.state.accepted) {
             const { navigate } = this.props.navigation;
-            if (this.state.qrTEL == "") {
-              Alert.alert("Introduce o escanea un código QR")
+            if (tel == "") {
+              Alert.alert("Escanea un código QR")
             } else {
-              navigate('Home', { qr: this.state.qrTEL });
+              navigate('Home', { qr: tel });
             }
           }
           else {
-            alert("Ya ha votado");
+            alert("No puedes votar 2 veces!");
           }
         }
         else {
-          this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
-          //alert("No permiso");
+          //this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
+          alert("Escanea un QR de la Florida");
           //Comprobar aqui con los codigos que nos dara manel
 
         }
@@ -155,10 +155,10 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: false });
     //navigate('Home', { qr: data });
 
-    this.state.qrURL = data.substring(154, 181);
+    this.state.qrURL = data.substring(161, 188);
     this.state.qrTEL = data.substring(42, 51);
 
-    this.aceptar();
+    this.aceptar(this.state.qrURL,this.state.qrTEL);
 
     /*let url = "";
     let corretoCount = 0;
