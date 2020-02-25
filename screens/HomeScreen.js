@@ -47,20 +47,6 @@ export default class HomeScreen extends Component {
   getDataAplicaciones = () => {
     this.setState({ isLoading: true });
 
-    fetch(this.state.urlImagenes)
-    .then(respuesta => {
-      if (respuesta.ok) {
-        return respuesta.json();
-      }
-      else {
-        console.log("Error")
-      }
-    })
-    .then(respuestaJSON => {
-      this.setState({ imagenes: respuestaJSON })
-    })
-    .catch(error => console.log(error))
-
     fetch(this.state.urlAplicaciones)
       .then(res => res.json())
       .then(res => {
@@ -68,17 +54,6 @@ export default class HomeScreen extends Component {
           dataAplicaciones: res,
           isLoading: false,
         });
-        res.forEach(aplicacion => {
-            let url = "";
-            this.state.imagenes.forEach(imagen => {
-              if (imagen.id == aplicacion.id) {
-                url = imagen.url;
-              }
-            });
-            this.state.dataAplicaciones.push({ url: url });
-            console.log(this.state.dataAplicaciones);
-        });
-
       });
   }
 
@@ -138,6 +113,7 @@ export default class HomeScreen extends Component {
 
   render() {
     //alert("render home");
+    console.log(this.state.dataAplicaciones);
 
     let first = this.props.navigation.getParam("first", true);
     if (first) {
@@ -176,7 +152,6 @@ export default class HomeScreen extends Component {
 
                 <View style={[{ flex: 1, backgroundColor: "white" }, index % 2 == 0 ? { marginRight: 0.5 } : { marginLeft: 0.5 }]}>
                   <CasillaApp
-                    imagen={item.url}
                     nombre={item.nombreApp}
                     equipo={item.idEquipo}
                     familia={item.familiaProfesional}
