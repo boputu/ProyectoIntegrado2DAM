@@ -58,35 +58,44 @@ export default class HomeScreen extends Component {
       });
   }
 
-  sendValoration() {
+  async sendValoration() {
 
-      this.state.valoraciones.forEach(valoracion => {
-        this.state.valoracionesJSON+=valoracion+",";
+      /*this.state.valoraciones.forEach(valoracion => {
+        let objeto = '{"id":' + '"' + valoracion.id + '"' + ',"Creatividad":' + valoracion.Creatividad + ',"Implementacion":' + valoracion.Implementacion + ',"Comunicacion":' + valoracion.Comunicacion + ',"idAplicacion":' + valoracion.idAplicacion +"},";
+        this.state.valoracionesJSON+=objeto;
+
       });
-      alert(this.state.valoracionesJSON.toString());
+      this.state.valoracionesJSON = this.state.valoracionesJSON.substring(0, this.state.valoracionesJSON.length-1);
+      this.state.valoracionesJSON = Object.assign({}, this.state.valoraciones);
+      //alert(this.state.valoraciones[0].Creatividad);
+      //alert(this.state.valoracionesJSON.Creatividad);
+      alert(this.state.valoracionesJSON);*/
 
-      fetch(this.state.urlValoraciones, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(this.state.valoraciones), // data can be `string` or {object}!
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then((respuesta) => {
-          if (respuesta.ok) {
-            return respuesta.json();
-          } else {
-            console.log("Error haciendo POST");
+      await this.state.valoraciones.forEach(valoracion => {
+        fetch(this.state.urlValoraciones, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(valoracion), // data can be `string` or {object}!
+          headers: {
+            'Content-Type': 'application/json'
           }
         })
-        .then(respuestaJSON => {
-          console.log(respuestaJSON);
-          //alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
-  
-        })
-        .catch(error => {
-          console.log("Error de red: " + error);
-        });
+          .then((respuesta) => {
+            if (respuesta.ok) {
+              return respuesta.json();
+            } else {
+              console.log("Error haciendo POST");
+            }
+          })
+          .then(respuestaJSON => {
+            console.log(respuestaJSON);
+            //alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
+    
+          })
+          .catch(error => {
+            console.log("Error de red: " + error);
+          });
+      });
+      
   }
 
 
@@ -182,12 +191,12 @@ export default class HomeScreen extends Component {
               progress
               onPress={next => {
                 if (!first) {
-                  if (this.state.valoraciones.length >= this.state.dataAplicaciones.length) {
+                  //if (this.state.valoraciones.length >= this.state.dataAplicaciones.length) {
                     this.sendValoration();
-                  }
-                  else {
+                  //}
+                  /*else {
                     alert("Aun no has votado todos los proyectos");
-                  }
+                  }*/
                 }
                 next();
               }}

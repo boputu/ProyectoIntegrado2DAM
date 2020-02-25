@@ -42,11 +42,14 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: true });
   }
 
-  aceptar(url,tel) {
+  aceptar(url,tel,data) {
     fetch(this.state.urlValoraciones)
       .then(res => res.json())
       .then(res => {
 
+        let test = data.split("\n");
+
+        console.log(test[2].split(":")[1]);
         if (url == "www.floridauniversitaria.es") {
           this.state.accepted = true;
           res.forEach(valoracion => {
@@ -157,7 +160,7 @@ export default class LoggingScreen extends Component {
     this.state.qrURL = data.substring(161, 188);
     this.state.qrTEL = data.substring(42, 51);
 
-    this.aceptar(this.state.qrURL, this.state.qrTEL);
+    this.aceptar(this.state.qrURL, this.state.qrTEL, data);
   };
 }
 
