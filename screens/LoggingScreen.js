@@ -47,7 +47,6 @@ export default class LoggingScreen extends Component {
       .then(res => res.json())
       .then(res => {
 
-        console.log(url);
         if (url == "www.floridauniversitaria.es") {
           this.state.accepted = true;
           res.forEach(valoracion => {
@@ -71,7 +70,7 @@ export default class LoggingScreen extends Component {
           }
         }
         else {
-          //this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
+          this.props.navigation.navigate('Home', { qr: tel });
           alert("Escanea un QR de la Florida");
           //Comprobar aqui con los codigos que nos dara manel
 
@@ -106,7 +105,7 @@ export default class LoggingScreen extends Component {
         <View style={styles.container}>
 
           <Image
-            style={{ width: 300, height: 150, marginBottom: 50, resizeMode: "contain"}}
+            style={{ width: 300, height: 150, marginBottom: 50, resizeMode: "contain" }}
             source={require('../images/florida.png')}
           />
           <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
@@ -149,7 +148,7 @@ export default class LoggingScreen extends Component {
     );
 
   }
-  handleBarCodeScanned = ({ type, data }) => {
+  handleBarCodeScanned = ({ data }) => {
     const { navigate } = this.props.navigation;
     this.setState({ scanned: true });
     this.setState({ rendered: false });
@@ -158,47 +157,7 @@ export default class LoggingScreen extends Component {
     this.state.qrURL = data.substring(161, 188);
     this.state.qrTEL = data.substring(42, 51);
 
-    this.aceptar(this.state.qrURL,this.state.qrTEL);
-
-    /*let url = "";
-    let corretoCount = 0;
-    let correcto = false;
-    let dosP = false;
-    let cuentaLetras = 27;
-    let letra = "";
-    for (let i = 0; i <= data.length; i++) {
-      letra = data[i];
-      alert(letra);
-      if (letra == "U") {
-        corretoCount++;
-      }
-      else {
-        corretoCount = 0;
-      }
-      if (letra == "R" && corretoCount == 1) {
-        corretoCount++;
-      }
-      else {
-        corretoCount = 0;
-      }
-      if (letra == "L" && corretoCount == 2) {
-        correcto = true;
-      }
-      else {
-        corretoCount = 0;
-      }
-      if (correcto == true) {
-        if (dosP == false) {
-          dosP = true;
-        }
-        else {
-          if (cuentaLetras >= 0) {
-            url += letra;
-          }
-        }
-      }
-      letra = "";
-    }*/
+    this.aceptar(this.state.qrURL, this.state.qrTEL);
   };
 }
 
@@ -308,7 +267,7 @@ const styles = StyleSheet.create({
   loginText: {
     color: 'white',
     fontSize: 18,
-    fontFamily:'arvo'
+    fontFamily: 'arvo'
   },
   button: {
     alignItems: 'center',

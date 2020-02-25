@@ -76,7 +76,7 @@ class CasillaApp extends Component {
           >
   
             <View style={styles.item_LogoContainer}>
-              <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
+            <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
             </View>
 
           </TouchableOpacity>
@@ -128,7 +128,7 @@ class CasillaApp extends Component {
           >
   
             <View style={styles.item_LogoContainer}>
-              <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
+            <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
             </View>
 
           </TouchableOpacity>

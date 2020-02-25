@@ -25,7 +25,10 @@ export default class HomeScreen extends Component {
       isLoading: false,
       urlAplicaciones: Global.url + "Aplicaciones",
       urlValoraciones: Global.url + "Valoraciones",
+      urlImagenes: Global.url + "Imagenes",
+      imagenes:[],
       modalVisible: false,
+      valoracionesJSON:""
     }
   }
   componentDidUpdate(prevProps) {
@@ -48,7 +51,6 @@ export default class HomeScreen extends Component {
     fetch(this.state.urlAplicaciones)
       .then(res => res.json())
       .then(res => {
-
         this.setState({
           dataAplicaciones: res,
           isLoading: false,
@@ -57,29 +59,34 @@ export default class HomeScreen extends Component {
   }
 
   sendValoration() {
-    fetch(this.state.urlValoraciones, {
-      method: 'POST', // or 'PUT'
-      body: JSON.stringify(this.state.valoraciones), // data can be `string` or {object}!
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((respuesta) => {
-        if (respuesta.ok) {
-          return respuesta.json();
-        } else {
-          console.log("Error haciendo POST");
+
+      this.state.valoraciones.forEach(valoracion => {
+        this.state.valoracionesJSON+=valoracion+",";
+      });
+      alert(this.state.valoracionesJSON.toString());
+
+      fetch(this.state.urlValoraciones, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(this.state.valoraciones), // data can be `string` or {object}!
+        headers: {
+          'Content-Type': 'application/json'
         }
       })
-      .then(respuestaJSON => {
-        console.log(respuestaJSON);
-        alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
-
-      })
-      .catch(error => {
-        console.log("Error de red: " + error);
-      });
-
+        .then((respuesta) => {
+          if (respuesta.ok) {
+            return respuesta.json();
+          } else {
+            console.log("Error haciendo POST");
+          }
+        })
+        .then(respuestaJSON => {
+          console.log(respuestaJSON);
+          //alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
+  
+        })
+        .catch(error => {
+          console.log("Error de red: " + error);
+        });
   }
 
 
@@ -112,6 +119,7 @@ export default class HomeScreen extends Component {
 
   render() {
     //alert("render home");
+    console.log(this.state.dataAplicaciones);
 
     let first = this.props.navigation.getParam("first", true);
     if (first) {
@@ -161,7 +169,7 @@ export default class HomeScreen extends Component {
                 </View>
               }
 
-              keyExtractor={item => item.equipo}
+              keyExtractor={item => item.id}
             />
 
           </View>
