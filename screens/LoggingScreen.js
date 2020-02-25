@@ -42,15 +42,14 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: true });
   }
 
-  aceptar(url, tel,data) {
+  aceptar(data) {
     fetch(this.state.urlValoraciones)
       .then(res => res.json())
       .then(res => {
 
-        console.log(url);
-        console.log(tel);
+        console.log(data);
 
-        if (url == "www.floridauniversitaria.es") {
+        if (data.length == 8) {
           this.state.accepted = true;
           res.forEach(valoracion => {
             if (valoracion[0] != undefined) {
@@ -157,50 +156,7 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: false });
     //navigate('Home', { qr: data });
 
-    this.state.qrURL = data.substring(161, 188);
-    this.state.qrTEL = data.substring(42, 51);
-
-    this.aceptar(this.state.qrURL, this.state.qrTEL,data);
-
-    /*let url = "";
-    let corretoCount = 0;
-    let correcto = false;
-    let dosP = false;
-    let cuentaLetras = 27;
-    let letra = "";
-    for (let i = 0; i <= data.length; i++) {
-      letra = data[i];
-      alert(letra);
-      if (letra == "U") {
-        corretoCount++;
-      }
-      else {
-        corretoCount = 0;
-      }
-      if (letra == "R" && corretoCount == 1) {
-        corretoCount++;
-      }
-      else {
-        corretoCount = 0;
-      }
-      if (letra == "L" && corretoCount == 2) {
-        correcto = true;
-      }
-      else {
-        corretoCount = 0;
-      }
-      if (correcto == true) {
-        if (dosP == false) {
-          dosP = true;
-        }
-        else {
-          if (cuentaLetras >= 0) {
-            url += letra;
-          }
-        }
-      }
-      letra = "";
-    }*/
+    this.aceptar(data);
   };
 }
 
