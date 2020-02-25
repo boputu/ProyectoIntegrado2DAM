@@ -70,7 +70,7 @@ export default class LoggingScreen extends Component {
           }
         }
         else {
-          this.props.navigation.navigate('Home', { qr: tel });
+          //this.props.navigation.navigate('Home', { qr: tel });
           alert("Escanea un QR de la Florida");
           //Comprobar aqui con los codigos que nos dara manel
 
