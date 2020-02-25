@@ -42,14 +42,12 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: true });
   }
 
-  aceptar(data) {
+  aceptar(url,tel) {
     fetch(this.state.urlValoraciones)
       .then(res => res.json())
       .then(res => {
 
-        console.log(data);
-
-        if (data.length == 8) {
+        if (url == "www.floridauniversitaria.es") {
           this.state.accepted = true;
           res.forEach(valoracion => {
             if (valoracion[0] != undefined) {
@@ -64,7 +62,7 @@ export default class LoggingScreen extends Component {
             if (tel == "") {
               Alert.alert("Escanea un código QR")
             } else {
-              //navigate('Home', { qr: tel });
+              navigate('Home', { qr: tel });
             }
           }
           else {
@@ -72,7 +70,7 @@ export default class LoggingScreen extends Component {
           }
         }
         else {
-          this.props.navigation.navigate('Home', { qr: this.state.qrTEL });
+          this.props.navigation.navigate('Home', { qr: tel });
           alert("Escanea un QR de la Florida");
           //Comprobar aqui con los codigos que nos dara manel
 
@@ -150,13 +148,16 @@ export default class LoggingScreen extends Component {
     );
 
   }
-  handleBarCodeScanned = ({ type, data }) => {
+  handleBarCodeScanned = ({ data }) => {
     const { navigate } = this.props.navigation;
     this.setState({ scanned: true });
     this.setState({ rendered: false });
     //navigate('Home', { qr: data });
 
-    this.aceptar(data);
+    this.state.qrURL = data.substring(161, 188);
+    this.state.qrTEL = data.substring(42, 51);
+
+    this.aceptar(this.state.qrURL, this.state.qrTEL);
   };
 }
 
