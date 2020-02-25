@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     fontSize: 30,
-    color: 'grey',
+    color: 'red',
     opacity: 0.7
   },
 
