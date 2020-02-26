@@ -9,6 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import { Overlay } from 'react-native-elements';
+import Global from '../constants/Global';
 
 class CasillaApp extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class CasillaApp extends Component {
     this.state={
       yaVotados:[],
       isVisible: false,
+      urlImagen: "",
     }
   }
 
@@ -47,6 +49,23 @@ class CasillaApp extends Component {
     //this.props.yaVotado(this.yaVotado());
   }
 
+  UNSAFE_componentWillMount(){
+    this.getImagen(this.props.equipo);
+  }
+
+  getImagen(id){
+    this.setState({isLoading: true})
+    fetch(Global.url + "Imagenes/" + id)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          urlImagen: res,
+          isLoading: false,
+        });
+        console.log(Global.url + "Imagenes/" + id);
+      });
+  }
+
   render() {
     //lert("render casilla");
     //alert("Equipo " + this.props.equipo);
@@ -76,7 +95,7 @@ class CasillaApp extends Component {
           >
   
             <View style={styles.item_LogoContainer}>
-            <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
+              <Image source={{uri: this.state.urlImagen.url}} style={styles.image}></Image>
             </View>
 
           </TouchableOpacity>
@@ -128,7 +147,7 @@ class CasillaApp extends Component {
           >
   
             <View style={styles.item_LogoContainer}>
-            <Image source={require('../images/LogoApp.png')} style={{ width: 100, height: 100 }}></Image>
+              <Image source={{uri: this.state.urlImagen.url}} style={styles.image}></Image>
             </View>
 
           </TouchableOpacity>
@@ -191,7 +210,8 @@ const styles = StyleSheet.create({
   },
 
   item_LogoContainer: {
-    flex: 1 / 2,
+    width: 150,
+    height: 150,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -263,5 +283,10 @@ const styles = StyleSheet.create({
   textOverlay: {
     color: "#FF5E60",
     fontSize: 17,
-  }
+  },
+
+  image: {
+    resizeMode: "contain",
+    padding: 70
+  },
 })

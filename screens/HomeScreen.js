@@ -27,7 +27,6 @@ export default class HomeScreen extends Component {
       urlAplicaciones: Global.url + "Aplicaciones",
       urlValoraciones: Global.url + "Valoraciones",
       urlImagenes: Global.url + "Imagenes",
-      imagenes: [],
       modalVisible: false,
       valoracionesJSON: "",
       pickerFilter: "Todos"
@@ -59,6 +58,7 @@ export default class HomeScreen extends Component {
         });
       });
   }
+
 
   filter(selected) {
 
