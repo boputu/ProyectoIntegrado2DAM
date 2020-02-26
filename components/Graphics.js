@@ -75,7 +75,12 @@ class Graphics extends React.Component {
                 </View>*/}
                 <View style={[styles.StatsContainer, styles.margin]}>
                     <Text style={styles.label2}>Media de votos:</Text>
-                    <Text style={styles.totalRate}>{this.props.media}</Text>
+                    <Text style={styles.totalRate}>{this.props.media} <Ionicons name="ios-star" color='black' size={15} /></Text>
+                </View>
+
+                <View style={[styles.StatsContainer, styles.margin]}>
+                    <Text style={styles.label2}>Personas que votaron:</Text>
+                    <Text style={styles.totalRate}>{this.props.countRate} <Ionicons name="ios-man" color='black' size={15} /></Text>
                 </View>
 
                 <View

@@ -7,7 +7,8 @@ import {
   Text,
   View,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Picker
 } from 'react-native';
 
 import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman';
@@ -28,7 +29,8 @@ export default class HomeScreen extends Component {
       urlImagenes: Global.url + "Imagenes",
       imagenes: [],
       modalVisible: false,
-      valoracionesJSON: ""
+      valoracionesJSON: "",
+      pickerFilter: "Todos"
     }
   }
   componentDidUpdate(prevProps) {
@@ -56,6 +58,34 @@ export default class HomeScreen extends Component {
           isLoading: false,
         });
       });
+  }
+
+  filter(selected) {
+
+    this.setState({ isLoading: true });
+    this.setState({ pickerFilter: selected })
+
+    if (selected == 'Todos') {
+      fetch(this.state.urlAplicaciones)
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            dataAplicaciones: res,
+            isLoading: false,
+          });
+        });
+
+    } else {
+
+      fetch(this.state.urlAplicaciones + '?familiaProfesional=' + selected)
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            dataAplicaciones: res,
+            isLoading: false,
+          });
+        });
+    }
   }
 
   async sendValoration() {
@@ -186,6 +216,28 @@ export default class HomeScreen extends Component {
     } else {
       return (
         <View style={styles.mainContainer}>
+          <View style={styles.search}>
+            <Text style={{ color: "white", fontFamily: "arvo", fontSize: 17}}>     Filtrar por ciclo: <Ionicons name="ios-search" color='black' size={15}/>   </Text>
+            <Picker
+              selectedValue={this.state.pickerFilter}
+              style={{ height: 35, width: 200, opacity: 0.5, fontFamily: "arvo", backgroundColor: "black", color: "white",}}
+              onValueChange={(itemValue, itemIndex) =>
+                this.filter(itemValue)
+              }>
+              <Picker.Item label="Todos" value="Todos" />
+              <Picker.Item label="DAM" value="DAM" />
+              <Picker.Item label="Mecatrónica" value="Mecatrónica" />
+              <Picker.Item label="Automatización y Robótica industrial" value="Automatización y Robótica industrial" />
+              <Picker.Item label="ASIR" value="ASIR" />
+              <Picker.Item label="Animación 3D y Videojuegos" value="Animación 3D y Videojuegos" />
+              <Picker.Item label="GVEC" value="GVEC" />
+              <Picker.Item label="Turismo" value="Turismo" />
+              <Picker.Item label="AFI" value="AFI" />
+              <Picker.Item label="Animación 3D, juegos y entornos interactivos" value="Animación 3D, juegos y entornos interactivos" />
+              <Picker.Item label="Educación Infantil" value="Educación Infantil" />
+              <Picker.Item label="MKyP" value="MKyP" />
+            </Picker>
+          </View>
           <View style={styles.flatlistContainer}>
 
             <FlatList
@@ -250,7 +302,14 @@ const styles = StyleSheet.create({
 
   flatlistContainer: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#ebebeb',
+  },
+
+  search: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "grey",
   },
 
   buttonContainer: {
