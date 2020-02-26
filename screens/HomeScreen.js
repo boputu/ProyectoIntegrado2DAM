@@ -101,7 +101,7 @@ export default class HomeScreen extends Component {
     //alert(this.state.valoracionesJSON.Creatividad);
     alert(this.state.valoracionesJSON);*/
 
-    fetch(this.state.urlValoraciones)
+    await fetch(this.state.urlValoraciones)
       .then((respuesta) => {
         if (respuesta.ok) {
           return respuesta.json();
@@ -123,7 +123,7 @@ export default class HomeScreen extends Component {
 
     await this.state.valoraciones.forEach(valoracion => {
       votado = false;
-      respuestaJSON.forEach(element => {
+      this.state.respuestaJSON.forEach(element => {
         if (element.idUsu == valoracion.idUsu && element.idAplicacion == valoracion.idAplicacion) {
           votado = true;
         }
