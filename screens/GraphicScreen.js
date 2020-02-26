@@ -227,13 +227,12 @@ export default class GraphicScreen extends Component {
 
                       //Barra progreso comunicación y usabilidad / 100
                       cuBar={item.comunicacion / 5}
-                      totalRate={item.numVotos}
-
-                      //Suma de ci,it,cu
-                      //total={this.state.valoraciones.creatividad+this.state.valoraciones.implementacion+this.state.valoraciones.comunicacion}
 
                       //Suma de ci,it,cu / 3
                       media={((item.creatividad + item.implementacion + item.comunicacion) / 3).toFixed(1)}
+
+                      //Numero de personas que votaron la app
+                      countRate={item.numVotos}
                     />
                   )
                 }}
