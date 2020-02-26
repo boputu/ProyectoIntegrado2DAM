@@ -26,9 +26,9 @@ export default class HomeScreen extends Component {
       urlAplicaciones: Global.url + "Aplicaciones",
       urlValoraciones: Global.url + "Valoraciones",
       urlImagenes: Global.url + "Imagenes",
-      imagenes:[],
+      imagenes: [],
       modalVisible: false,
-      valoracionesJSON:""
+      valoracionesJSON: ""
     }
   }
   componentDidUpdate(prevProps) {
@@ -60,18 +60,46 @@ export default class HomeScreen extends Component {
 
   async sendValoration() {
 
-      /*this.state.valoraciones.forEach(valoracion => {
-        let objeto = '{"id":' + '"' + valoracion.id + '"' + ',"Creatividad":' + valoracion.Creatividad + ',"Implementacion":' + valoracion.Implementacion + ',"Comunicacion":' + valoracion.Comunicacion + ',"idAplicacion":' + valoracion.idAplicacion +"},";
-        this.state.valoracionesJSON+=objeto;
+    /*this.state.valoraciones.forEach(valoracion => {
+      let objeto = '{"id":' + '"' + valoracion.id + '"' + ',"Creatividad":' + valoracion.Creatividad + ',"Implementacion":' + valoracion.Implementacion + ',"Comunicacion":' + valoracion.Comunicacion + ',"idAplicacion":' + valoracion.idAplicacion +"},";
+      this.state.valoracionesJSON+=objeto;
 
+    });
+    this.state.valoracionesJSON = this.state.valoracionesJSON.substring(0, this.state.valoracionesJSON.length-1);
+    this.state.valoracionesJSON = Object.assign({}, this.state.valoraciones);
+    //alert(this.state.valoraciones[0].Creatividad);
+    //alert(this.state.valoracionesJSON.Creatividad);
+    alert(this.state.valoracionesJSON);*/
+
+    fetch(this.state.urlValoraciones)
+      .then((respuesta) => {
+        if (respuesta.ok) {
+          return respuesta.json();
+        } else {
+          console.log("Error haciendo GET");
+        }
+      })
+      .then(respuestaJSON => {
+        this.setState({ respuestaJSON: respuestaJSON })
+        console.log(respuestaJSON);
+        //alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
+
+      })
+      .catch(error => {
+        console.log("Error de red: " + error);
       });
-      this.state.valoracionesJSON = this.state.valoracionesJSON.substring(0, this.state.valoracionesJSON.length-1);
-      this.state.valoracionesJSON = Object.assign({}, this.state.valoraciones);
-      //alert(this.state.valoraciones[0].Creatividad);
-      //alert(this.state.valoracionesJSON.Creatividad);
-      alert(this.state.valoracionesJSON);*/
 
-      await this.state.valoraciones.forEach(valoracion => {
+    let votado = false;
+
+    await this.state.valoraciones.forEach(valoracion => {
+      votado = false;
+      respuestaJSON.forEach(element => {
+        if (element.idUsu == valoracion.idUsu && element.idAplicacion == valoracion.idAplicacion) {
+          votado = true;
+        }
+      });
+
+      if (votado == false) {
         fetch(this.state.urlValoraciones, {
           method: 'POST', // or 'PUT'
           body: JSON.stringify(valoracion), // data can be `string` or {object}!
@@ -89,13 +117,15 @@ export default class HomeScreen extends Component {
           .then(respuestaJSON => {
             console.log(respuestaJSON);
             //alert("Post insertado correctamente " + this.valoraciones.id + " " + this.valoraciones.Implementacion);
-    
+
           })
           .catch(error => {
             console.log("Error de red: " + error);
           });
-      });
-      
+      }
+    });
+
+
   }
 
 
@@ -192,7 +222,7 @@ export default class HomeScreen extends Component {
               onPress={next => {
                 if (!first) {
                   //if (this.state.valoraciones.length >= this.state.dataAplicaciones.length) {
-                    this.sendValoration();
+                  this.sendValoration();
                   //}
                   /*else {
                     alert("Aun no has votado todos los proyectos");
@@ -224,7 +254,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    flex: 1/6,
+    flex: 1 / 6,
     flexDirection: 'row',
     justifyContent: "center",
     alignItems: "center",

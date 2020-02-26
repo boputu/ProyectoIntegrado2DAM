@@ -159,6 +159,8 @@ export default class LoggingScreen extends Component {
 
     this.state.qrTEL = dataSplit[2].split(":")[1];
     this.state.qrURL = dataSplit[6].split(":")[1];
+    this.state.qrURL = this.state.qrURL.slice(0, this.state.qrURL.length-1);
+    this.state.qrTEL = this.state.qrTEL.slice(0, this.state.qrTEL.length-1);
     
 
     this.aceptar(this.state.qrURL, this.state.qrTEL);
