@@ -226,15 +226,16 @@ const styles = StyleSheet.create({
   },
 
   textName: {
-    color: "#FF5E60",
-    fontSize: 20,
-    fontWeight: "bold",
+    color: "#e61a31",
+    fontSize: 22,
+    textAlign: "center",
+    fontFamily: 'arvo'
   },
 
   textTeam: {
     color: "#FF5E60",
     fontSize: 15,
-
+    fontFamily: 'arvo',
     textAlign: "center",
 
     marginTop: 3

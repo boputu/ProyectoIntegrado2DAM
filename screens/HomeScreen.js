@@ -289,7 +289,9 @@ export default class HomeScreen extends Component {
                 next();
               }}
             >
-              Completar Valoraciones
+              <Text style={{fontFamily: 'arvo', color: 'white', fontSize: 20}}>
+                Completar Valoraciones
+              </Text> 
             </AwesomeButtonCartman>
 
           </View>
