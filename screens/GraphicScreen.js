@@ -76,7 +76,7 @@ export default class GraphicScreen extends Component {
                 nombreApp = aplicacion.nombreApp;
               }
             });
-            this.setState({ valoraciones: [{ idApp: valoracion.idAplicacion, nombreApp: nombreApp, creatividad: valoracion.Creatividad, implementacion: valoracion.Implementacion, comunicacion: valoracion.Comunicacion }] })
+            this.setState({ valoraciones: [{ idApp: valoracion.idAplicacion, numVotos: 1, nombreApp: nombreApp, creatividad: valoracion.Creatividad, implementacion: valoracion.Implementacion, comunicacion: valoracion.Comunicacion }] })
           }
           else {
             let appRegistrada = false;
@@ -99,6 +99,7 @@ export default class GraphicScreen extends Component {
               this.state.valoraciones[pos].creatividad = (this.state.valoraciones[pos].creatividad + valoracion.Creatividad) / 2;
               this.state.valoraciones[pos].implementacion = (this.state.valoraciones[pos].implementacion + valoracion.Implementacion) / 2;
               this.state.valoraciones[pos].comunicacion = (this.state.valoraciones[pos].comunicacion + valoracion.Comunicacion) / 2;
+              this.state.valoraciones[pos].numVotos++;
               this.forceUpdate();
             }
             else {
@@ -108,7 +109,7 @@ export default class GraphicScreen extends Component {
                   nombreApp = aplicacion.nombreApp;
                 }
               });
-              this.state.valoraciones.push({ idApp: valoracion.idAplicacion, nombreApp: nombreApp, creatividad: valoracion.Creatividad, implementacion: valoracion.Implementacion, comunicacion: valoracion.Comunicacion });
+              this.state.valoraciones.push({ idApp: valoracion.idAplicacion, numVotos: 1, nombreApp: nombreApp, creatividad: valoracion.Creatividad, implementacion: valoracion.Implementacion, comunicacion: valoracion.Comunicacion });
             }
           }
         });
@@ -223,6 +224,7 @@ export default class GraphicScreen extends Component {
 
                       //Barra progreso comunicación y usabilidad / 100
                       cuBar={item.comunicacion / 5}
+                      totalRate={item.numVotos}
 
                       //Suma de ci,it,cu
                       //total={this.state.valoraciones.creatividad+this.state.valoraciones.implementacion+this.state.valoraciones.comunicacion}
