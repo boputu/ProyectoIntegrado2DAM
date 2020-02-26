@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { TouchableOpacity, TextInput, FlatList, ScrollView } from 'react-native-gesture-handler';
 import CustomSlider from '../components/customSlider';
+import AboutUs from '../components/AboutUs';
 import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman';
 
 import Global from '../constants/Global';
@@ -29,16 +30,20 @@ export default class RateScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Valora la App!',
-    headerStyle: {
-      backgroundColor: '#e61a31',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Valora la App!',
+      headerRight: (<AboutUs />),
+      headerStyle: {
+        backgroundColor: '#e61a31',
+      },
+      headerTintColor: 'white',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        textAlign: 'center'
+      },
+    }
   };
 
   getData(id) {

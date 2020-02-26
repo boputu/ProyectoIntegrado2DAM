@@ -7,6 +7,7 @@ import * as Progress from 'react-native-progress';
 import { Ionicons } from '@expo/vector-icons';
 
 import Graphics from '../components/Graphics';
+import AboutUs from '../components/AboutUs';
 
 import {
   StyleSheet,
@@ -120,9 +121,11 @@ export default class GraphicScreen extends Component {
   }
 
 
+
   static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Estadísticas',
+      title: 'Estadisticas',
+      headerRight: (<AboutUs />),
       headerStyle: {
         backgroundColor: '#e61a31',
       },

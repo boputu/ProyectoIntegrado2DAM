@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import AwesomeButtonCartman from 'react-native-really-awesome-button/src/themes/cartman';
+import AboutUs from '../components/AboutUs';
 
 import CasillaApp from '../components/CasillaApp';
 
@@ -174,7 +175,12 @@ export default class HomeScreen extends Component {
     let qr = navigation.state.params.qr;
     return {
       title: qr,
-      headerRight: (<Ionicons style={{ paddingRight: 150 }} name="ios-qr-scanner" color='yellow' size={30} />),
+      headerRight: (
+      <View style={styles.topBar}>
+      <Ionicons style={{ paddingRight: 85 }} name="ios-qr-scanner" color='yellow' size={30} />
+      <AboutUs/>
+      </View>
+      ),
       headerStyle: {
         backgroundColor: '#e61a31',
       },
@@ -298,6 +304,12 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1
+  },
+
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   flatlistContainer: {

@@ -8,6 +8,7 @@ import {
   View,
   KeyboardAvoidingView,
   Dimensions,
+  TouchableOpacity,
   TouchableHighlight,
   Image,
   Alert
@@ -17,6 +18,8 @@ import * as Permissions from 'expo-permissions';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Global from '../constants/Global';
+
+import AboutUs from '../components/AboutUs';
 
 const { width } = Dimensions.get('screen');
 
@@ -83,16 +86,19 @@ export default class LoggingScreen extends Component {
     this.setState({ hasCameraPermission: status === 'granted' });
   }
 
-  static navigationOptions = {
-    title: 'Rate it!',
-    headerStyle: {
-      backgroundColor: '#e61a31',
-    },
-    headerTintColor: 'white',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Rate it!',
+      headerRight: (<AboutUs />),
+      headerStyle: {
+        backgroundColor: '#e61a31',
+      },
+      headerTintColor: 'white',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        textAlign: 'center'
+      },
+    }
   };
 
   render() {
@@ -108,15 +114,15 @@ export default class LoggingScreen extends Component {
             style={{ width: 300, height: 150, marginBottom: 50, resizeMode: "contain" }}
             source={require('../images/florida.png')}
           />
-          <TouchableHighlight style={[styles.scanContainer, styles.loginButton]}
+          <TouchableOpacity style={[styles.scanContainer, styles.loginButton]}
             onPress={() => { this.renderCamera() }}>
             <Text style={styles.loginText}>Escanear QR   <Ionicons name="ios-barcode" color='white' size={25} /></Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
-          <TouchableHighlight style={[styles.scanContainer, styles.graphicButton]}
+          <TouchableOpacity style={[styles.scanContainer, styles.graphicButton]}
             onPress={() => { this.props.navigation.navigate('Graphic') }}>
             <Text style={styles.loginText}>Consultar gráficos   <Ionicons name="ios-stats" color='white' size={25} /></Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           {this.state.rendered && (
             <BarCodeScanner
