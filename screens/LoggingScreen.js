@@ -47,7 +47,6 @@ export default class LoggingScreen extends Component {
       .then(res => res.json())
       .then(res => {
 
-
         if (url == "www.floridauniversitaria.es") {
           this.state.accepted = true;
           res.forEach(valoracion => {
