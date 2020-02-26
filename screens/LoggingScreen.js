@@ -157,6 +157,8 @@ export default class LoggingScreen extends Component {
 
     let dataSplit = data.split("\n");
     
+    this.state.qrURL = undefined;
+    this.state.qrTEL = undefined;
     if(dataSplit[6] != undefined){
       this.state.qrTEL = dataSplit[2].split(":")[1];
       this.state.qrURL = dataSplit[6].split(":")[1];
