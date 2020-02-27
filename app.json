@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ProyectoIntegrado",
-    "slug": "ProyectoIntegrado",
+    "name": "Rate It",
+    "slug": "Rate It",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -13,9 +13,9 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./images/florida.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#DCDCDC"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +24,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.florida2dam2020.rateit",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.florida2dam2020.rateit",
+      "versionCode": 1
     }
   }
 }
