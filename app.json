@@ -1,7 +1,6 @@
 {
   "expo": {
     "name": "Rate It",
-    "slug": "Rate It",
     "description": "Ésta aplicación está diseñada para permitir a los usuarios valorar los distintos proyectos de Florida Expo. También puede mostrar mediante gráficos qué aplicación es la mejor valorada ya sea por su innovación, por su comunicación o por su transferibilidad.",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -10,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
@@ -26,12 +25,12 @@
     ],
     "ios": {
       "bundleIdentifier": "com.florida2dam2020.rateit",
-      "buildNumber": "1.0.0",
+      "buildNumber": "2.0.0",
       "supportsTablet": true
     },
     "android": {
       "package": "com.florida2dam2020.rateit",
-      "versionCode": 1
+      "versionCode": 2
     }
   }
 }

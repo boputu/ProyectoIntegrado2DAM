@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import 'react-native-gesture-handler';
 
@@ -44,8 +43,8 @@ export default class GraphicScreen extends Component {
     this.getData();
   }
 
-  getData() {
-    fetch(this.state.urlAplicaciones)
+  async getData() {
+    await fetch(this.state.urlAplicaciones)
       .then(respuesta => {
         if (respuesta.ok) {
           return respuesta.json();
@@ -60,7 +59,7 @@ export default class GraphicScreen extends Component {
       .catch(error => console.log(error))
 
 
-    fetch(this.state.urlValoraciones)
+     await fetch(this.state.urlValoraciones)
       .then(respuesta => {
         if (respuesta.ok) {
           return respuesta.json();
@@ -93,7 +92,7 @@ export default class GraphicScreen extends Component {
               let pos = 0;
               let posActual = 0;
               this.state.valoraciones.forEach(element => {
-                if (element.idAplicacion == element.idApp) {
+                if (valoracion.idAplicacion == element.idApp) {
                   pos = posActual;
                 }
                 posActual++;
@@ -102,6 +101,7 @@ export default class GraphicScreen extends Component {
               this.state.valoraciones[pos].creatividad = (this.state.valoraciones[pos].creatividad + valoracion.Creatividad) / 2;
               this.state.valoraciones[pos].implementacion = (this.state.valoraciones[pos].implementacion + valoracion.Implementacion) / 2;
               this.state.valoraciones[pos].comunicacion = (this.state.valoraciones[pos].comunicacion + valoracion.Comunicacion) / 2;
+              this.state.valoraciones[pos].numVotos++;
               this.forceUpdate();
             }
             else {
