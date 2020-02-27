@@ -69,6 +69,7 @@ export default class GraphicScreen extends Component {
         }
       })
       .then(respuestaJSON => {
+        let posVotos = 0;
         respuestaJSON.forEach(valoracion => {
           if (this.state.valoraciones == undefined) {
             let nombreApp = "";
@@ -100,7 +101,6 @@ export default class GraphicScreen extends Component {
               this.state.valoraciones[pos].creatividad = (this.state.valoraciones[pos].creatividad + valoracion.Creatividad) / 2;
               this.state.valoraciones[pos].implementacion = (this.state.valoraciones[pos].implementacion + valoracion.Implementacion) / 2;
               this.state.valoraciones[pos].comunicacion = (this.state.valoraciones[pos].comunicacion + valoracion.Comunicacion) / 2;
-              this.state.valoraciones[pos].numVotos++;
               this.forceUpdate();
             }
             else {
@@ -112,6 +112,10 @@ export default class GraphicScreen extends Component {
               });
               this.state.valoraciones.push({ idApp: valoracion.idAplicacion, numVotos: 1, nombreApp: nombreApp, creatividad: valoracion.Creatividad, implementacion: valoracion.Implementacion, comunicacion: valoracion.Comunicacion });
             }
+          }
+          posVotos++;
+          if(this.state.valoraciones[posVotos] != undefined){
+            this.state.valoraciones[posVotos].numVotos++;
           }
         });
         console.log(this.state.valoraciones);
