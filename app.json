@@ -2,6 +2,7 @@
   "expo": {
     "name": "Rate It",
     "slug": "Rate It",
+    "description": "Ésta aplicación está diseñada para permitir a los usuarios valorar los distintos proyectos de Florida Expo. También puede mostrar mediante gráficos qué aplicación es la mejor valorada ya sea por su innovación, por su comunicación o por su transferibilidad.",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
