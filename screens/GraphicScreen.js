@@ -18,7 +18,8 @@ import {
   TouchableHighlight,
   Dimensions,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 
 import Global from '../constants/Global';
@@ -159,39 +160,40 @@ export default class GraphicScreen extends Component {
 
                   let colorCi;
 
-                  if (item.creatividad.toFixed(1) == 1 || item.creatividad.toFixed(1) == 2) {
+                  if (item.creatividad.toFixed(1) >= 1 && item.creatividad.toFixed(1) < 3) {
                     colorCi = "red";
                   }
-                  if (item.creatividad.toFixed(1) == 3) {
+                  if (item.creatividad.toFixed(1) >= 3 && item.creatividad.toFixed(1) < 4) {
                     colorCi = "orange";
                   }
-                  if (item.creatividad.toFixed(1) == 5 || item.creatividad.toFixed(1) == 4) {
+                  if (item.creatividad.toFixed(1) >= 4) {
                     colorCi = "green";
                   }
 
 
+
                   let colorIt;
 
-                  if (item.implementacion.toFixed(1) == 1 || item.implementacion.toFixed(1) == 2) {
+                  if (item.implementacion.toFixed(1) >= 1 && item.implementacion.toFixed(1) < 3) {
                     colorIt = "red";
                   }
-                  if (item.implementacion.toFixed(1) == 3) {
+                  if (item.implementacion.toFixed(1) >= 3 && item.implementacion.toFixed(1) < 4) {
                     colorIt = "orange";
                   }
-                  if (item.implementacion.toFixed(1) == 5 || item.implementacion.toFixed(1) == 4) {
+                  if (item.implementacion.toFixed(1) >= 4) {
                     colorIt = "green";
                   }
 
 
                   let colorCu;
 
-                  if (item.comunicacion.toFixed(1) == 1 || item.comunicacion.toFixed(1) == 2) {
+                  if (item.comunicacion.toFixed(1) >= 1 && item.comunicacion.toFixed(1) < 3) {
                     colorCu = "red";
                   }
-                  if (item.comunicacion.toFixed(1) == 3) {
+                  if (item.comunicacion.toFixed(1) >= 3 && item.comunicacion.toFixed(1) < 4) {
                     colorCu = "orange";
                   }
-                  if (item.comunicacion.toFixed(1) == 5 || item.comunicacion.toFixed(1) == 4) {
+                  if (item.comunicacion.toFixed(1) >= 4) {
                     colorCu = "green";
                   }
 

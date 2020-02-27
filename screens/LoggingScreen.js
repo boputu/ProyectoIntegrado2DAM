@@ -33,7 +33,6 @@ export default class LoggingScreen extends Component {
       qrData: "",
       rendered: false,
       urlValoraciones: Global.url + "Valoraciones",
-      accepted: undefined
     }
   }
 
@@ -45,32 +44,19 @@ export default class LoggingScreen extends Component {
     this.setState({ rendered: true });
   }
 
-  aceptar(url,tel) {
+  aceptar(url,tel,data) {
     fetch(this.state.urlValoraciones)
       .then(res => res.json())
       .then(res => {
 
-        if (url == "www.floridauniversitaria.es") {
-          this.state.accepted = true;
-          res.forEach(valoracion => {
-            if (valoracion[0] != undefined) {
-              if (valoracion[0].id == tel) {
-                this.state.accepted = false;
-              }
-            }
-          });
-
-          if (this.state.accepted) {
+        if (url == "www.floridauniversitaria.es" || data.length == 23) {
             const { navigate } = this.props.navigation;
-            if (tel == "") {
-              Alert.alert("Escanea un código QR")
+            if (tel == undefined) {
+              let eventBrite = data.substr(data.length - 9);
+              navigate('Home', { qr: eventBrite });
             } else {
               navigate('Home', { qr: tel });
             }
-          }
-          else {
-            alert("No puedes votar 2 veces!");
-          }
         }
         else {
           //this.props.navigation.navigate('Home', { qr: tel });
@@ -174,7 +160,7 @@ export default class LoggingScreen extends Component {
 
     
 
-    this.aceptar(this.state.qrURL, this.state.qrTEL);
+    this.aceptar(this.state.qrURL, this.state.qrTEL, data);
   };
 }
 
